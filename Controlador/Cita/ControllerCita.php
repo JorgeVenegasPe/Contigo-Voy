@@ -3,7 +3,7 @@ class usernameControlerCita{
     private $model;
     public function __construct()
     {
-        require_once("C:/xampp/htdocs/Psicologia-Agenda-Clinica-Master/Modelo/Cita/ModelCita.php");
+        require_once("../Modelo/Cita/ModelCita.php");
         $this->model=new UserModelCita();
     }
 

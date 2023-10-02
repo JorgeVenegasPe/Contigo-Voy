@@ -51,7 +51,7 @@ a {
     margin-inline: auto;
     width: 1200px;
     margin-top: 1em;
-    max-width: 1200px;
+    max-width:900px;
 }
 .container-calendario{
     display: grid;

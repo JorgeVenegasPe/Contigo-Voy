@@ -353,4 +353,16 @@ aside .sidebar a:hover span {
         position: relative;
         margin-top: 1.8rem;
     }
+    .containerTotal{
+        width: 94%;
+        grid-template-columns: 7rem auto;
+    }
+    .container-calendario{
+        width: 94%;
+        grid-template-columns: 7rem auto;
+    }
+    main .insights{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }
