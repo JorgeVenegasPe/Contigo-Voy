@@ -3,7 +3,7 @@ class userModelPaciente{
     private $PDO;
     public function __construct()
     {
-        require_once("C:/xampp/htdocs/Psicologia-Agenda-Clinica-master/Conexion/conexion.php");
+        require_once("../conexion/conexion.php");
         $con=new conexion();
         $this->PDO=$con->conexion();
 

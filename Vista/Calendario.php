@@ -9,10 +9,10 @@ if (isset($_SESSION['NombrePsicologo'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Issets/Bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../Issets/css/calendario.css">
     <link rel="stylesheet" href="../Issets/Bootstrap/datatables.min.css">
     <link rel="stylesheet" href="../Issets/Bootstrap/bootstrap-clockpicker.css">
     <link rel="stylesheet" href="../Issets/fullcalendar/main.css">
+    <link rel="stylesheet" href="../Issets/css/calendario.css">
     <link rel="stylesheet" href="../Issets/css/main.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />

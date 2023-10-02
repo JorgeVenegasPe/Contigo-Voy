@@ -7,16 +7,12 @@ if (isset($_SESSION['NombrePsicologo'])){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../Issets/css/seguridad.css">
     <link rel="stylesheet" href="../Issets/css/main.css">
-    <link rel="icon" href="../Issets/images/contigovoyico.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../Issets/css/SegEstilos.css">
-    
+    <title>Politicas y Seguridad</title>
 </head>
 <body>    
   <?php
@@ -34,9 +30,6 @@ if (isset($_SESSION['NombrePsicologo'])){
     require_once '../Issets/views/Info.php';
     ?> 
       <body>
-   <header class="hero">
-
-    </header>
     <section class="wave-contenedor website">
         <img src="../Issets/images/1img.jpeg" alt="">
         <div class="contenedor-textos-main">
@@ -50,8 +43,8 @@ if (isset($_SESSION['NombrePsicologo'])){
     <section class="info-last">
         <div class="contenedor last-section">
             <div class="contenedor-textos-main">
-                <h2 class="titulo left"><strong>En Medesk todo gira alrededor de conseguir la máxima seguridad</strong> </h2>
-                <p class="parrafo">Garantizamos la seguridad de toda la información que ingresa en Medesk.Todos sus datos están protegidos y almacenados disponibles en cualquier momento, incluso puede configurar diferentes niveles de acceso a la información para todos los miembros de su clínica o consultorio. Trabajamos para garantizar que trabaje con total confidencialidad.</p>
+                <h2 class="titulo left"><strong>En Contigo Voy todo gira alrededor de conseguir la máxima seguridad</strong> </h2>
+                <p class="parrafo">Garantizamos la seguridad de toda la información que ingresa en Contigo Voy.Todos sus datos están protegidos y almacenados disponibles en cualquier momento, incluso puede configurar diferentes niveles de acceso a la información para todos los miembros de su clínica o consultorio. Trabajamos para garantizar que trabaje con total confidencialidad.</p>
         <section id="caracteristicas">
         
             <ul>
@@ -68,7 +61,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <section class="info-last">
 
         <div class="contenedor last-section">
-                <h2 class="titulo left"><strong>Así es cómo Medesk mantiene todo bajo llave:</strong> </h2>
+                <h2 class="titulo left"><strong>Así es cómo Contigo Voy mantiene todo bajo llave:</strong> </h2>
         <section id="caracteristicas">
         
             <ul>
@@ -81,11 +74,8 @@ if (isset($_SESSION['NombrePsicologo'])){
                 <br><li>Ofrezca a sus pacientes y colegas las protección que merecen</li>
               </ul>
     </section>
-<footer>
-    <footer class="hero">
-</footer>
 </body>
-<script src="../Issets/js/Dashboard.js"></script>
+<script src="../Issets/js/dashboard.js"></script>
 </html>
 <?php
 }else{

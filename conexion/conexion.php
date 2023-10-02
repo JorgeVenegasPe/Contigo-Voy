@@ -1,9 +1,9 @@
 <?php
 class conexion{
     private $host="localhost";
-    private $dbname="ghxumdmy_psicologiaMaster";
-    private $user="ghxumdmy_psicologia";
-    private $password="ghxumdmy_psicologia";
+    private $dbname="psicologia";
+    private $user="root";
+    private $password="";
 
     public function conexion(){
         try{

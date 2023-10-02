@@ -130,13 +130,6 @@ main .insights h3{
     cursor: pointer;
 }
 
-.containerTotal{
-    display: grid;
-    width: 96%;
-    margin: 0 auto;
-    gap: 1rem;
-    grid-template-columns: 17rem auto;
-}
 
 input[type="date"]{
     background: transparent;

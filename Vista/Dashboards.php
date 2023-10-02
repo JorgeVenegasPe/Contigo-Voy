@@ -542,9 +542,6 @@ main .insights small {
                             <span class="material-symbols-sharp" translate="no">settings</span>
                         </a>
                     </div>
-                    <?php
-                    require_once 'ajuste.php';
-                    ?>
                     <div class="profile">
 
                         <div class="info">

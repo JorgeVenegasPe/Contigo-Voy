@@ -43,7 +43,7 @@
 			<button type="submit" class="form__button">Ingresar</button>
 			
 			<p class="form__switch">
-				Olvidaste la Contraseña? <a href="#">Aqui</a>
+				Olvidaste la Contrase単a <a href="#">Aqui</a>
 			</p>
 		</form>
 	</div>
