@@ -1,169 +1,809 @@
-/* ============ MAIN ===============*/
-main{
-    margin-top: 1.4rem;
-}  
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+:root {
+  --color-primary: #49c691;
+  --color-danger: #6a91f4;
+  --color-success: #b4d77b;
+  --color-warning: #6a91f4;
+  --color-white: #fff;
+  --color-info-dark: #7d8da1;
+  --color-info-light: #dce1eb;
+  --color-dark: #363949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #49c691;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
 
-main .insights{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(28rem, 4fr));
-    gap: 1.6rem;
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+/*=========== dark mode ===============*/
+.dark-theme-variables {
+  --color-background: #181a1e;
+  --color-white: #202528;
+  --color-dark: #edeffd;
+  --color-dark-variant: #a3bdcc;
+  --color-light: rgba(0, 0, 0, 0.4);
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  appearance: none;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "poppins", sans-serif;
+  font-size: 0.88rem;
+  background: var(--color-background);
+  user-select: none;
+  overflow-x: hidden;
+  color: var(--color-dark);
+}
+
+.container {
+  display: grid;
+  width: 96%;
+  margin: 0 auto;
+  gap: 1.5rem;
+  grid-template-columns: 17rem auto 23rem;
+}
+
+a {
+  color: var(--color-dark);
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 0.77rem;
+}
+
+small {
+  font-size: 0.7rem;
+}
+
+.text-muted {
+  color: var(--color-info-dark);
+}
+
+p {
+  color: var(--color-dark-variant);
+}
+
+.arriba {
+  /*Nueva clase creada para el formulario - Hans */
+  color: #89bef5; /*Añadi un cambio de color - Hans */
+  font-size: 15px;
+  font-weight: bold;
+}
+.abajo {
+  /*Nueva clase creada para el formulario - Hans */
+  font-size: 0.9rem;
+  color: #89bef5; /*Añadi un cambio de color - Hans */
+  font-weight: normal;
+  text-align: center;
+}
+.visual {
+  color: #49c691;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+b {
+  color: var(--color-dark);
+}
+
+.primary {
+  color: var(--color-primary);
+}
+
+.danger {
+  color: var(--color-primary);
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+
+/* ============ MAIN ===============*/
+main {
+  margin-top: 1.4rem;
+}
+
+main .date {
+  display: inline-block;
+  background: var(--color-light);
+  border-radius: var(--border-radius-1);
+  margin-top: 1rem;
+  padding: 0.5rem 1.6rem;
+}
+
+main .date input[type="date"] {
+  background: transparent;
+  color: var(--color-dark);
+}
+
+main .insights {
+  /*background-color: #007bff;*/
+  width: 100%;
+  gap: 3rem;
+  margin-bottom: 15px;
+  margin-top: 58px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px;
 }
 
 main .insights > div {
-    background: var(--color-white);
-    padding:  var(--card-padding);
-    text-align: center;
-    color:#49c691;
-    border-radius: var(--card-border-radius);
-    margin-top: 1rem;
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
+  background: var(--color-white);
+  /*daniel*/
+  /*margin-left: 20px;*/
+  /*padding: var(--card-padding);*/
+  /*padding: 10px 70px;*/
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
 }
 
-main .insights > div:hover{
-    box-shadow: none;
+main .insights > div:hover {
+  box-shadow: none;
 }
 
-main .insights h3{
-    margin: 1rem 0 0.6rem;
-    font-size: 1rem;
+main .insights > div .middle {
+  /*display: flex;*/
+  align-items: center;
+  justify-content: space-between;
 }
 
+main .insights h3 {
+  margin: 1rem 0 0.6rem;
+  font-size: 1rem;
+}
+
+main .insights .progress {
+  position: relative;
+  height: 90px;
+  width: 90px;
+}
+main .insights small {
+  margin-top: 1.3rem;
+  display: block;
+}
+/* ================Recent Orders ========================*/
+main .recent-orders {
+  margin-top: 2rem;
+}
+main .recent-orders h2 {
+  margin-bottom: 0.8rem;
+}
+
+main .recent-orders a {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
+}
 /*========= right =======*/
 .right {
-    margin-top:1.4rem;
+  margin-top: 1.4rem;
 }
 
 .right .top {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
 }
 .right .top button {
-    display: none;
+  display: none;
 }
 
 .right .theme-toggler {
-    background: var(--color-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 1.6rem;
-    width: 4.2rem;
-    cursor: pointer;
-    border-radius: var(--border-radius-1);
+  background: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.6rem;
+  width: 4.2rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-1);
 }
 
 .right .theme-toggler span {
-    font-size: 1.2rem;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-size: 1.2rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .right .theme-toggler span.active {
-    background: var(--color-primary);
-    color: white;
-    border-radius: var(--border-radius-1);
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius-1);
 }
 
 /*============== recent updates ============*/
 .right .recent-updates {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
-
 
 .right .recent-updates h2 {
-    margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
+/*+++++++++++++++++++++++ DANIEL +++++++++++++++++++++++++*/
 .right .recent-updates .updates {
-    background: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
+  background: var(--color-white);
+  padding: 10px 20px;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+  height: 220px;
+  max-height: 222px;
+  overflow-y: scroll; /* Hacer que el contenido sea desplazable */
+  border-radius: 0px 0px 20px 20px;
 }
+
+/* Ocultar la barra de desplazamiento pero mantener la funcionalidad */
+.right .recent-updates .updates::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.right .recent-updates .updates::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*DANIEL  28-09-2023*/
+.contend_table {
+  height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+  background-color: #fff;
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+.contend_table:hover {
+  box-shadow: none;
+}
+.contend_table::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.contend_table::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 .right .recent-updates a {
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
-    color: var(--color-primary);
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+  color: var(--color-primary);
 }
-.right .recent-updates .updates:hover{
-    box-shadow: none;
+.right .recent-updates .updates:hover {
+  box-shadow: none;
 }
 
 .right .recent-updates .updates .update {
-    gap: 1rem;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
+  gap: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .right .recent-updates .message {
-    margin-top: 1em;
+  margin-top: 1em;
 }
+
 /* ========= DANIEL ===========*/
 
 .agenda {
-    max-width: 500px;
-    margin: 0px;
-    /*background-color: #fff;*/
-    border-radius: 10px;
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
-    padding: 20px;
-    margin-bottom: 40px;
-  }
+  max-width: 500px;
+  margin: 0px;
+  /*background-color: #fff;*/
+  border-radius: 10px;
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+  padding: 20px;
+  margin-bottom: 40px;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+tr {
+  background-color: var(--color-white);
+  border-radius: 40px;
+  /* Borde ovalado */
+}
+
+td {
+  text-align: center;
+}
+
+th {
+  background-color: #f6f6f9;
+  color: #6a90f1;
+}
+
+/*.evento {
+    background-color: #e7f0ff;
+}*/
+.button1 {
+  /*display: block;*/
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button2 {
+  /* Quita el margin-left anterior */
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* Alinea el botón al final del lado derecho */
+  margin-left: auto;
+  margin-right: 20px; /* Puedes ajustar este valor según sea necesario */
+}
 
 .button3 {
-margin: 10px auto;
-padding: 10px 20px;
-background-color: #49c691;
-color: #fff;
-border: none;
-border-radius: 30px;
-cursor: pointer;
-margin-left: auto;
-margin-right: 20px; 
+  /* Quita el margin-left anterior */
+  font-size: 10px;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background-color: #49c691;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  /* Alinea el botón al final del lado derecho */
+  margin-left: auto;
+  margin-right: 20px; /* Puedes ajustar este valor según sea necesario */
+}
+
+.span1 {
+  display: inline;
+  margin-right: 10px;
+}
+.span2 {
+  padding: 5px;
+  vertical-align: middle;
+  margin: 10px 50px 10px 20px;
+}
+.div_event1 {
+  display: flex;
+  align-items: center;
+}
+.div_event2 {
+  /*background-color: #e7f0ff;*/
+  border: 2px solid #cfcfcf;
+  display: flex;
+  align-items: center;
+}
+/* Estilos para el botón circular */
+.add-button {
+  position: absolute;
+  top: 20px; /* Ajusta la posición vertical */
+  right: 15px; /* Ajusta la posición horizontal */
+  width: 40px;
+  height: 40px;
+  background-color: #fff; /* Color de fondo verde */
+  border: none;
+  border-radius: 50%; /* Hace que el botón sea circular */
+  color: #007bff; /* Cambia el color del símbolo de suma a azul */
+  font-size: 25px; /* Tamaño de fuente */
+  font-weight: bold; /* Estilo de fuente en negrita */
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilos para el símbolo de suma */
+.add-button .add-button-content {
+  position: absolute;
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Centrar en el medio */
 }
 
 .div_event3 {
-    background-color: #6a90f1;
-    border-radius: 20px 20px 0px 0px;
-    display: flex;
-    flex-direction: row;
-  
-    justify-content: space-between;
-    color: #fff;
-    padding: 15px 25px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
+  background-color: #6a90f1;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  flex-direction: row;
 
-.h3-dsh{
-    text-align: start; 
-    margin:5px 30px;
+  justify-content: space-between;
+  color: #fff;
+  padding: 15px 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-.pie-chart{
-    border-radius: 20px; 
-    background-color: #fff; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-    margin:20px 0px; 
-    color:#6A90F1;
+.h3-dsh {
+  text-align: center;
+  margin: 5px 0px;
+  font-size: 13px;
 }
-
+.pie-chart {
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  margin: 60px 0px 30px 0px;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  color: #6a90f1;
+  padding: 5px;
+  transition: all 300ms ease;
+}
+.pie-chart:hover {
+  box-shadow: none;
+}
 .section-cia {
-    border-radius: 5px;
-    border: 2px solid #a0a0a0;
-    padding: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px 10px 5px 0px;
+  border-radius: 5px;
+  border: 2px solid #a0a0a0;
+  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 10px 5px 0px;
+}
+
+/*.contenedor-secciones{
+    width:900px; display:grid; grid-template-columns: 55% 45%;
+}
+*/
+/*DANIEL*/
+
+.contenedor_dsh {
+  width: 800px;
+}
+
+.grafico {
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.estadistica_h3 {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilo para la tabla */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Estilo para las filas tr */
+tr {
+  position: relative;
+  /* Posición relativa para las filas */
+}
+
+/* Estilo para el círculo al inicio de la celda de hora */
+td:first-child::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  /* Ajusta la posición horizontal del círculo */
+  width: 10px;
+  /* Diámetro del círculo */
+  height: 10px;
+  border-radius: 50%;
+  /* Forma circular */
+  background-color: #55bdbf;
+  /* Color del círculo */
+  transform: translateY(-50%);
+  /* Centrar el círculo verticalmente */
+  z-index: 1;
+  /* Colocar el círculo por encima de la línea */
+  transition: background-color 0.3s;
+  /* Transición de color del círculo */
+}
+
+/* Estilo para la línea horizontal en el medio de la fila */
+tr::before {
+  content: "";
+  position: absolute;
+  top: 58%;
+  /* Ajusta la posición vertical de la línea */
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid transparent;
+  /* Inicialmente transparente */
+  transform: translateY(-50%);
+  /* Centrar la línea verticalmente */
+  transition: border-color 0.5s;
+  /* Transición de color de borde */
+  z-index: 1;
+  margin-left: 10px;
+
+  /* Colocar la línea por encima de las celdas */
+}
+
+/* Estilo para cambiar la línea al pasar el mouse por encima de la fila */
+tr:hover::before {
+  margin-left: 10px;
+  border-color: #49c691;
+  /* Color de la línea al pasar el mouse */
+}
+
+/* Estilo para las celdas td */
+td {
+  padding: 8px;
+  text-align: center;
+  z-index: 2;
+  /* Colocar las celdas por encima de la línea */
+  position: relative;
+  /* Añadir posición relativa a las celdas */
+}
+
+/* Estilo para el círculo al inicio de la celda td de hora */
+td::before {
+  content: "";
+  position: absolute;
+  top: 58%;
+  /* Ajusta la posición vertical del círculo */
+  left: -50%;
+  /* Ajusta la posición horizontal del círculo */
+  width: 10px;
+  /* Diámetro del círculo */
+  height: 10px;
+  border-radius: 50%;
+  /* Forma circular */
+  background-color: #fff;
+  /* Color del círculo */
+  transform: translateY(-50%);
+  /* Centrar el círculo verticalmente */
+  z-index: 2;
+  /* Colocar el círculo por encima de la línea */
+  transition: background-color 0.5s;
+  /* Transición de color del círculo */
+}
+
+/* Cambia el color del círculo al pasar el mouse por encima de la fila */
+tr:hover td::before {
+  visibility: visible;
+  background-color: #49c691;
+  /* Cambia el color del círculo a azul */
+}
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+@media screen and (max-width: 1280px) {
+  div.container {
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+  td::before {
+    left: -65%;
+  }
+  main .recent-orders {
+    width: 94%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 8.8rem;
   }
 
+  main .recent-orders table {
+    width: 83vw;
+  }
+
+  main table thead tr th:last-child,
+  main table thead tr th:first-child {
+    display: none;
+  }
+
+  /*Daaniel*/
+  main .insights {
+    margin-top: 66px;
+    gap: 0.8rem;
+  }
+
+  main .insights > div {
+    background: var(--color-white);
+    padding: 5px 24px;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+  }
+
+  .pie-chart {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #6a90f1;
+    padding: 5px;
+    margin: 105px 0px 30px 0px;
+    margin-left: 0%;
+  }
+  .grafico {
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+  }
+  .contenedor_dsh {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1115px) {
+  main .insights {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (max-width: 1105px) {
+  main .insights {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 10% 50% 35%;
+  }
+
+  .agenda {
+    min-width: 200px;
+    margin: 0px;
+    /* background-color: #fff; */
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 10% 50% 35%;
+  }
+
+  main .insights {
+    /* background-color: #49c691; */
+    /*background-color: #007bff;*/
+    width: 100%;
+    gap: 0.8rem;
+    margin-bottom: 15px;
+    margin-top: 58px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0px;
+  }
+  main .insights > div {
+    background: var(--color-white);
+    padding: 2px;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+  }
+  .pie-chart {
+    margin: 75px 0px 30px 0px;
+  }
+}
+
+@media screen and (max-width: 919px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 915px) {
+  .pie-chart {
+    margin: 75px 0px 30px 0px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 20% 40% 30%;
+  }
+  .estadistica_h3 {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 916px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 912px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 883px) {
+  main .insights {
+    margin-top: -35px;
+  }
+}
+@media screen and (max-width: 879px) {
+  main .insights {
+    margin-top: -35px;
+  }
+  .pie-chart {
+    margin: 125px 0px 30px 0px;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  main .insights {
+    margin-top: -30px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .pie-chart {
+    margin: 125px 0px 30px 0px;
+  }
+}
+
+@media screen and (max-width: 705px) {
+  .pie-chart {
+    margin: 125px 0px 30px 0px;
+  }
+}
