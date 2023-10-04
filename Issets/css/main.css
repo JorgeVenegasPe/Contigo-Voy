@@ -337,7 +337,51 @@ aside .sidebar a:hover {
 aside .sidebar a:hover span {
     margin-left: 1rem;
 }
+/* Estilo para el checkbox principal */
+.checkbox-principal {
+    cursor: pointer;
+    position: relative;
+    width: 20px; 
+    height: 20px; 
+    background-color: #fff; 
+    border: 2px solid #333; 
+    border-radius: 4px; 
+    transition: background-color 0.3s, border-color 0.3s; 
+    margin-right: 10px; 
+}
+/* Estilo para el checkbox principal cuando está marcado */
+.checkbox-principal:checked {
+    color: red;
+    background-color: red; 
+    border-color: red;
+}
 
+/* Estilo para el tick (✓) dentro de los checkboxes individuales cuando están marcados */
+.checkbox:checked::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+}
+@keyframes fade-in {
+	5% {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	90% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes load {
+	to {
+		transform: scaleX(1);
+	}
+}
 @media screen and (max-width: 1280px) {
 
     aside .logo h2{

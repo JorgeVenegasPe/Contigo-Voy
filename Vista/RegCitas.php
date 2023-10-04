@@ -30,7 +30,7 @@ if (isset($_SESSION['NombrePsicologo'])){
   <main class="animate__animated animate__fadeIn">
     <?php
     require_once '../Issets/views/Info.php';
-    require("../Controlador/Cita/citaControlador.php");
+    require("../Controlador/Cita/ControllerCita.php");
     $obj=new usernameControlerCita();
     $rows=$obj->ver($_SESSION['IdPsicologo']);
     ?>

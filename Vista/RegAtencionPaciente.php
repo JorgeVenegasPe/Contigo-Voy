@@ -11,6 +11,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
+    <link rel="stylesheet" href="../issets/css/formularios.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -29,7 +30,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <div class="container-form">
       <div class="recent-updates">
         <form action="../Crud/Paciente/guardarAtencPaciente.php" method="post">
-        <h4><a href="RegPaciente.php" style="float: left;"><</a>Atencion al Paciente</h4>
+        <h4><a href="RegPaciente.php" style="float: left;color: #6B93F3;"><</a>Atencion al Paciente</h4>
         <br>
         <div style="display:flex; flex-direction:row; gap:70px;">
           <div class="checkout-information">
@@ -104,7 +105,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                 </div>
               </div>
             </div>
-            <div class="input-group" style="flex-direction: column;width: 140%;">
+            <div class="input-group" style="flex-direction: column;    width: 100%;">
                 <h3 for="DescripcionEnfermedad">Clasificacion</h3>
                 <div style="display: flex; gap:5px;">
                   <input id="DescripcionEnfermedad" type="text" name="DescripcionEnfermedad" class="input" />

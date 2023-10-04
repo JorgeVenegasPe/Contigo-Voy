@@ -103,8 +103,6 @@
 }
 
 /* ___________________________________________________________________ */
-
-
 .container{
     display: grid;
     width: 96%;
@@ -112,8 +110,6 @@
     gap :1.5rem;
     grid-template-columns: 17rem auto 23rem;
 }
-
-
 .containerTotal{
     display: grid;
     width: 96%;
@@ -121,23 +117,19 @@
     gap: 1rem;
     grid-template-columns: 17rem auto;
 }
-
 main .recent-citas{
     margin-top: 2rem;
 }
-
 main .recent-citas h2{
     margin-bottom: 0.8rem;
 }
-
 main .recent-citas a {
     text-align: center;
     display: block;
     margin: 1rem auto;
     color: var(--color-primary);
 }
-
-.checkout-information,
+.checkout-informationPac,
 .input-group {
 	display: flex;
 	flex-direction: column;
@@ -149,17 +141,15 @@ main .recent-citas a {
     flex-direction: row;
     width: 50%;
 }
-.checkout-information {
+.checkout-informationPac {
 	background: var(--color-white);
     width: 100%;
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
     text-align: center;
-    /* box-shadow: var(--box-shadow); */
     transition: all 300ms ease;
 }
-
-.checkout-information:hover{
+.checkout-informationPac:hover{
     box-shadow: none;
 }
 
@@ -236,54 +226,7 @@ input::placeholder {
     vertical-align: middle; /* Alinea verticalmente el texto con el checkbox */
 }
 
-/* Estilo para el checkbox principal */
-.checkbox-principal {
-    cursor: pointer;
-    position: relative;
-    width: 20px; 
-    height: 20px; 
-    background-color: #fff; 
-    border: 2px solid #333; 
-    border-radius: 4px; 
-    transition: background-color 0.3s, border-color 0.3s; 
-    margin-right: 10px; 
-}
-/* Estilo para el checkbox principal cuando está marcado */
-.checkbox-principal:checked {
-    color: red;
-    background-color: red; 
-    border-color: red;
-}
 
-/* Estilo para el tick (✓) dentro de los checkboxes individuales cuando están marcados */
-.checkbox:checked::before {
-    content: '✓';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    color: #fff;
-}
-
-
-
-@keyframes fade-in {
-	5% {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-	}
-	90% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes load {
-	to {
-		transform: scaleX(1);
-	}
-}
     .container-paciente-tabla.active{
     display: grid;
     width: 100%;
@@ -297,7 +240,6 @@ input::placeholder {
         margin: 20px;
         grid-template-columns: auto 0rem;
     }
-
     .patient-details {
         display: none;
         width: 95%;
@@ -311,8 +253,6 @@ input::placeholder {
     .hidden {
         display: none;
     }
-
-
     .input-group4{  /*   Modifique esta clase para mi formulario - Hans */
         display: flex;
         flex-direction: row;
@@ -327,8 +267,6 @@ input::placeholder {
         gap: 20px;
         justify-content: space-between;
     }
-    
-
 .details.open {
     margin-left: -20px;
 }

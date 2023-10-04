@@ -11,6 +11,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
+    <link rel="stylesheet" href="../issets/css/formularios.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -32,7 +33,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     ?> 
       <div class="recent-updates">
         <form action="../Crud/Paciente/guardarPaciente.php" method="post" >
-        <h4><a href="TablaPacientes.php" style="float: left;"><</a>Datos del Paciente</h4>
+        <h4><a href="TablaPacientes.php" style="float: left;color: #6B93F3;"><</a>Datos del Paciente</h4>
         <br>
         <div style="display:flex; flex-direction:row; gap:70px;">
           <div class="checkout-information">
@@ -104,14 +105,14 @@ if (isset($_SESSION['NombrePsicologo'])){
             </div>
             <div class="input-group">
   		        <h3 for="Telefono">Celular</h3>
-  		        <input type="tel" id="Telefono" class="input" name="Telefono" placeholder="Ejemp. 955888222"  required/>
+  		        <input type="tel" id="Telefono" class="input" name="Telefono" placeholder="Ejemp. 955888222" style="color: #7B7C89;" required/>
   	        </div>
             <div style="margin-left:2em" id="respuesta2"> </div>
           </div>
           <div class="checkout-information">
             <div  class="input-group">
   		          <h3 for="Email">Correo Electronico</h3>
-  		          <input type="Email" id="Email" class="input" name="Email" required/>
+  		          <input type="Email" id="Email" class="input" name="Email" style="color: #7B7C89;" required/>
   	        </div>
             <div style="margin-left:2em" id="respuesta3"> </div>
             <div  class="input-group2">
@@ -140,16 +141,16 @@ if (isset($_SESSION['NombrePsicologo'])){
   	          </div>
               <div class="input-group">
   		          <h3 for="Direccion">Dirección</h3>
-  		          <input type="text" id="Direccion" class="input" name="Direccion" required/>
+  		          <input type="text" id="Direccion" class="input" name="Direccion" style="color: #7B7C89;" required/>
   	        </div>
             </div>
             <div class="input-group">
   		          <h3 for="AntecedentesMedicos">Antecedentes médicos</h3>
-  		          <input type="text" id="AntecedentesMedicos" class="input" name="AntecedentesMedicos" required/>
+  		          <input type="text" id="AntecedentesMedicos" class="input" name="AntecedentesMedicos" style="color: #7B7C89;" required/>
   	        </div>
             <div class="input-group">
   		          <h3 for="MedicamentosPrescritos">Medicamentos Prescritos</h3>
-  		          <input type="text" id="MedicamentosPrescritos" class="input" name="MedicamentosPrescritos"  required/>
+  		          <input type="text" id="MedicamentosPrescritos" class="input" name="MedicamentosPrescritos"  style="color: #7B7C89;" required/>
   	        </div>
             <div class="input-group" style="display: none">
   		          <h3 for="IdPsicologo">IdPsicologo</h3>
@@ -159,9 +160,9 @@ if (isset($_SESSION['NombrePsicologo'])){
         </div>
         <br>
           <div class="button-container">
-            <a href="RegFamiliar.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px; ">Registro Familiar</a>
-            <a href="AtenPaciente.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px;">Atencion al Paciente</a>
-            <button id="submitButton" class="button">Registrar</button>
+            <a href="RegAreaFamiliar.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px; ">Registro Familiar</a>
+            <a href="RegAtencionPaciente.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px;">Atencion al Paciente</a>
+            <button id="submitButton" class="button">FINALIZAR</button>
           </div>
         </form>
     </div>
