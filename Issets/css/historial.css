@@ -50,30 +50,33 @@
     padding-top: 2rem;
 }
 /*-Para cuando cambie a active-------*/
-.container-paciente-tabla.active{
+.container-paciente-tabla.active {
     display: grid;
     grid-template-columns: 40% 60%;
-    padding-left: 2rem;
-    padding-right: 2rem;
     gap: 0rem;
     width: 100%;
+    grid-template-rows: auto; /* Establece grid-template-rows a auto para que ambas filas se ajusten automáticamente al contenido */
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 /*---Container blanco de la izquierda (paciente/fecha)----*/
-.before-details{
+.before-details {
     background-color: var(--color-white);
     box-shadow: var(--box-shadow);
-    height: 85%;
-    width: 100%;
+    height: auto;
+    width: auto;
     border-radius: 30px;
+    grid-row: 1; /* Esto coloca .before-details en la primera fila */
+    padding: 1rem 0rem 1.5rem 0rem;
 }
-.container-paciente-tabla.active .before-details{
+.container-paciente-tabla.active .before-details{/*---------------------------------------------------------------------------------------------------------------*/
+    max-height: 435px; /* Establece la altura máxima deseada */
+    overflow-y: auto; 
     border-radius: 30px 0px 0px 30px;
+    padding: 1rem 0rem 1.5rem 0rem;
 }
 /*-----------Container de la derecha (detalles)------------*/
-.checkout-information {
-    border-left: 10px solid #6a92f4;
-    padding: 10px 10px;
-}
+
 /*------------Grupo TOP-------------*/
 .top-group{
     display: flex;
@@ -133,13 +136,13 @@
 table{
     width: 100%;
     margin-top: 0.5rem;
-    max-height: 55%;/*-no se por que pusieron esto PREGUNTAR*/
     border-spacing: 0.5rem;
 }
 /*----------------Tabla cuando este en active---------------*/
+
 .container-paciente-tabla.active table {
     width:100%;
-    margin-top: 1rem;
+    margin-top: 0rem;
     border-spacing: 0;
 }
 .container-paciente-tabla.active table tr.primera-fila td:first-child{
@@ -169,13 +172,16 @@ table{
     width: auto;
     background-color: var(--color-white);
     max-width: 100%;
+    height: 105%;
     text-align: center;
     color: #49c691;
     border-radius: var(--card-border-radius);
-    margin-top: 1rem;
     box-shadow: var(--box-shadow);
     animation: fadeIn 0.5s ease-in-out;
     border-radius: 0px 30px 30px 0px;
+    border-left: 10px solid #6a92f4;
+    padding: 10px 10px 10px 10px;
+    grid-row: 1; /* Esto coloca .patient-details en la primera fila */
 }
 /*-------------------Botones verdes config------------------*/
 .BUT {
@@ -197,4 +203,47 @@ table{
     background-color: var(--color-white);
     border: 1.5px solid var(--color-primary);
     transition: all 0.5s ease-in-out;
+}
+
+/*--------------------- Responsive -------------------------*/
+@media (max-width: 950px) {
+    /*Arriba----------------------*/
+    .input-group input{
+        font-size: 0.8rem;
+        width: 90%;
+    }
+    .button{
+        font-size: 0.8rem;
+        padding: 9px 12px;
+    }
+    /*Izquierda-------------------*/
+
+    /*Derecha---------------------*/
+    .date h2{
+        font-size: 1.5rem;
+    }
+    .date p{
+        font-size: 0.7rem;
+    }
+    .date{
+        height: 70px;
+        width: 100px;
+    }
+    .visual2{
+        font-size: 1.3rem;
+    }
+    .ci-input-group .arriba{
+        font-size: 1rem;
+    }
+    .ci-input-group .abajo{
+        font-size: 0.7rem;
+    }
+    .green-button{
+        width: 115px;
+        height: 25px;
+        border-radius: 30px;
+        font-size: 10px;
+        background-color: #52C291;
+        color: white;
+    }
 }

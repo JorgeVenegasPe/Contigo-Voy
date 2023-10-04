@@ -60,10 +60,10 @@ require_once("../Controlador/Paciente/ControllerPaciente.php");
                                     data-medicamentosprescritos="<?=$patient['MedicamentosPrescritos']?>"
                                     data-FechaInicioCita="<?=$patient['FechaInicioCita']?>">
                                     <p style="cursor: pointer;" class="nombre-paciente"><?=$patient['NomPaciente']?> <?=$patient['ApPaterno']?></p>
-                                    <p><?=$patient['Diagnostico']?> / <?=$patient['MotivoConsulta']?></p> 
+                                    <p><?= isset($patient['Diagnostico']) ? $patient['Diagnostico'] : 'Diagnostico' ?> / <?=isset($patient['MotivoConsulta'])?$patient['MotivoConsulta']:'Motivo de Consulta'?></p> 
                                 </a>
                             </td>
-                            <td ><?=$patient['FechaInicioCita']?></td>
+                            <td><?= isset($patient['FechaInicioCita'])? substr($patient['FechaInicioCita'], 0, 10):'Fecha de próx cita'?></td>
                             <td class="additional-column"></td>
                         </tr>
                     </tbody>
@@ -71,11 +71,8 @@ require_once("../Controlador/Paciente/ControllerPaciente.php");
             <?php endif;?>
         </table>
         </div>
-        <div class="details">
         <div class="patient-details">
                     
-        </div>
-
         </div>
     </div>
 </main>
@@ -156,7 +153,6 @@ showInfoLinks.forEach(link => {
             const patientInfoHTML = `
             
             <div style="display:grid; flex-direction:row; gap:10px;">
-                <div class="checkout-information">
                     <div class="top-group">
                         <div class="name">
                             <h2 class="visual2">${nombres}</h2>                        
@@ -187,7 +183,6 @@ showInfoLinks.forEach(link => {
                     <div class="BUT">
                         <button type="button" class="green-button" id="button2">Nueva Entrada</button>
                     </div>
-                </div>
             </div>
             `;
 
