@@ -150,9 +150,6 @@ b {
 }
 
 /* ============ MAIN ===============*/
-main {
-  margin-top: 1.4rem;
-}
 
 main .date {
   display: inline-block;
@@ -172,7 +169,7 @@ main .insights {
   width: 100%;
   gap: 3rem;
   margin-bottom: 15px;
-  margin-top: 58px;
+  margin-top: 0px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
@@ -271,7 +268,7 @@ main .recent-orders a {
 
 /*============== recent updates ============*/
 .right .recent-updates {
-  margin-top: 1rem;
+  margin-top: 45px;
 }
 
 .right .recent-updates h2 {
@@ -301,8 +298,8 @@ main .recent-orders a {
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*DANIEL  28-09-2023*/
 .contend_table {
-  height: 300px;
-  max-height: 300px;
+  height: 370px;
+  max-height: 370px;
   overflow-y: scroll;
   background-color: #fff;
   border-radius: 0px 0px 20px 20px;
@@ -481,7 +478,7 @@ th {
   border-radius: 20px;
   background-color: #fff;
   box-shadow: var(--box-shadow);
-  margin: 60px 0px 30px 0px;
+  margin: 40px 0px 30px 0px;
   border-collapse: separate;
   border-spacing: 0 10px;
   color: #6a90f1;
@@ -653,7 +650,7 @@ tr:hover td::before {
 
   /*Daaniel*/
   main .insights {
-    margin-top: 66px;
+    margin-top: -15px;
     gap: 0.8rem;
   }
 
@@ -673,7 +670,7 @@ tr:hover td::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     color: #6a90f1;
     padding: 5px;
-    margin: 105px 0px 30px 0px;
+    margin: 82px 0px 30px 0px;
     margin-left: 0%;
   }
   .grafico {
@@ -694,9 +691,13 @@ tr:hover td::before {
   }
 }
 
-@media screen and (max-width: 1105px) {
+@media screen and (max-width: 1115px) {
   main .insights {
-    margin-top: 42px;
+    margin-top: -25px;
+  }
+
+  .pie-chart {
+    margin: 92px 0px 30px 0px;
   }
 }
 
@@ -728,7 +729,7 @@ tr:hover td::before {
     width: 100%;
     gap: 0.8rem;
     margin-bottom: 15px;
-    margin-top: 58px;
+    margin-top: -10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 0px;
@@ -742,18 +743,13 @@ tr:hover td::before {
     transition: all 300ms ease;
   }
   .pie-chart {
-    margin: 75px 0px 30px 0px;
+    margin: 95px 0px 30px 0px;
   }
 }
 
 @media screen and (max-width: 919px) {
   main .insights {
     margin-top: -10px;
-  }
-}
-@media screen and (max-width: 915px) {
-  .pie-chart {
-    margin: 75px 0px 30px 0px;
   }
 }
 
@@ -783,11 +779,16 @@ tr:hover td::before {
   }
 }
 @media screen and (max-width: 879px) {
+  .contend_table {
+    height: 300px;
+    max-height: 300px;
+  }
+
   main .insights {
-    margin-top: -35px;
+    margin-top: -25px;
   }
   .pie-chart {
-    margin: 125px 0px 30px 0px;
+    margin: 90px 0px 30px 0px;
   }
 }
 
@@ -795,15 +796,23 @@ tr:hover td::before {
   main .insights {
     margin-top: -30px;
   }
-}
-@media screen and (max-width: 769px) {
-  .pie-chart {
-    margin: 125px 0px 30px 0px;
-  }
-}
 
-@media screen and (max-width: 705px) {
+  .right .recent-updates .updates {
+    background: var(--color-white);
+    padding: 10px 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    height: 270px;
+    max-height: 270px;
+    overflow-y: scroll;
+    border-radius: 0px 0px 20px 20px;
+  }
+  .recent-updates {
+    width: 300px;
+  }
+
   .pie-chart {
-    margin: 125px 0px 30px 0px;
+    margin: 35px 0px 30px 0px;
+    width: 300px;
   }
 }

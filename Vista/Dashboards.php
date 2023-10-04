@@ -79,7 +79,7 @@ if (isset($_SESSION['NombrePsicologo'])) {
 
               // Crear un arreglo con todas las horas desde las 09:00 AM hasta las 12:00 PM
               $horas_disponibles = array();
-              for ($i = 9; $i <= 12; $i++) {
+              for ($i = 8; $i <= 12; $i++) {
                 $hora = new DateTime("$i:00");
                 $horas_disponibles[] = $hora;
               }
@@ -150,7 +150,7 @@ if (isset($_SESSION['NombrePsicologo'])) {
                       <td>
                         <div class="section-cia">
                           <span><?= $cita["NomPaciente"] ?></span>
-                          <button class="button3">Botón</button>
+                          <a class="button3" href="RegCitas.php">Botón</a>
                         </div>
                       </td>
                     </tr>
