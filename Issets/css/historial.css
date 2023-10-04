@@ -217,7 +217,15 @@ table{
         padding: 9px 12px;
     }
     /*Izquierda-------------------*/
-
+    .before-details{
+        padding: 0.5rem 0rem 0.5rem 0rem;
+    }
+    .container-paciente-tabla.active .before-details{
+        padding: 0.5rem 0rem 0.5rem 0rem;
+    }
+    .container-paciente-tabla.active table{
+        font-size: 9px;
+    }
     /*Derecha---------------------*/
     .date h2{
         font-size: 1.5rem;
