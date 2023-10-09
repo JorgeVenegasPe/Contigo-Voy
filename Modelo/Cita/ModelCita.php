@@ -3,7 +3,7 @@ class UserModelCita{
     private $PDO;
     public function __construct()
     {
-        require_once("../conexion/conexion.php");
+        require_once("C:/xampp/htdocs/Contigo-Voy/conexion/conexion.php");
         $con=new conexion();
         $this->PDO=$con->conexion();
     }

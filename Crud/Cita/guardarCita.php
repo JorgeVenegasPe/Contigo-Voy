@@ -1,5 +1,5 @@
 <?php
-require_once("../../Controlador/Cita/citaControlador.php");
+require_once("C:/xampp/htdocs/Contigo-Voy/Controlador/Cita/ControllerCita.php");
 $obj = new usernameControlerCita();
 $FechaInicioCita = $_POST['FechaInicioCita'];
 $HoraInicio = $_POST['HoraInicio'];
@@ -79,10 +79,10 @@ try {
                     <br><a href="https://gestion.contigo-voy.com" style="background-color: #9274b3; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer;">Acceso a la Pagina</a>
                     ';
     $mail->send();
-    header('Location: ../../Vista/citas.php?enviado=true');
+    header('Location: ../../Vista/RegCitas.php?enviado=true');
     exit;
 } catch (Exception $e) {
-    header('Location: ../../Vista/citas.php?error=' . urlencode($mail->ErrorInfo));
+    header('Location: ../../Vista/RegCitas.php?error=' . urlencode($mail->ErrorInfo));
     exit;
 }
 
