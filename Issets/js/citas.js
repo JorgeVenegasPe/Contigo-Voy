@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 
 // JavaScript para habilitar la funcionalidad de selección de todos los checkboxes
 document.getElementById('checkboxPrincipal').addEventListener('change', function() {
@@ -115,4 +113,3 @@ document.getElementById('checkboxPrincipal').addEventListener('change', function
     });
     });
     
->>>>>>> Stashed changes
