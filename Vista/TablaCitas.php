@@ -91,19 +91,26 @@ if (isset($_SESSION['NombrePsicologo'])){
                                 <td><?=$row[3]?></td>
                                 <td><?=$row[4]?></td>
                                 <td style="color:green"><?=$row[5]?></td>
+<<<<<<< Updated upstream
                                 <td>
                                     <div class="dropdown">
                                         <button class="dropbtn"><span class="material-symbols-sharp">more_vert</span></button>
+=======
+                            <td>
+                                <div class="dropdown">
+                                    <button class="buttonTab"><span class="material-symbols-sharp">more_vert</span></button>
+>>>>>>> Stashed changes
                                     <div class="dropdown-content">
                                         <a type="button" class="btne" onclick="openModalEliminar('<?=$row[0]?>')">
                                             <span class="material-symbols-outlined">delete</span>
                                             <p>Eliminar</p>
                                         </a>
-                                        <a type="button" class="btnm" onclick="openModal('<?=$row[0]?>')">
+                                        <a type="button" class="btnm" onclick="openModalEditar('<?=$row[0]?>')"> <!-- Cambia la función a openModalEditar -->
                                             <span class="material-symbols-outlined"> edit</span>
                                             <p>Editar</p>
                                         </a>
                                     </div>
+<<<<<<< Updated upstream
                                 </td>
                                 <!-- <td class="acct">
                                     <a type="button" class="btne" onclick="openModalEliminar('')">
@@ -243,6 +250,55 @@ if (isset($_SESSION['NombrePsicologo'])){
                                 </div>
                             </div>
                         <?php endforeach;?>
+=======
+                                </div>
+                            </td>
+                            </tr>
+                            <!-- Modal de eliminación -->
+                            <div id="modalEliminar<?=$row[0]?>" class="modal">
+                                <div class="containerModalEliminar">
+                                    <a href="#" class="close"  onclick="closeModalEliminar('<?=$row[0]?>')">&times;</a>
+                                    <div class="message_dialog">
+                                        <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">
+                                        ¿Estás seguro de eliminar la cita de <?=$row[1]?>?</h2>
+                                        <div class="delete-container">
+                                                <button class="button-delete">Eliminar</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal de edicion -->
+                            <div id="modalEditar<?=$row[0]?>" class="modal">
+                               <div class="containerModalEliminar">
+                                   <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
+                                   <div class="message_dialog">
+                                       <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
+                                       <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog"> <!-- Cambia 'procesar_edicion.php' al archivo que manejará la edición de la cita -->
+                                        <input type="hidden" name="id_cita" value="<?=$row[0]?>">
+                                            <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
+                                        <label for="motivo">Motivo:</label>
+                                            <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
+                                        <label for="estado">Estado:</label>
+                                        <select name="estado" id="estado" value="<?=$row[3]?>" >
+                                            <option value="Pendiente">Se require confirmacion</option>
+                                            <option value="Cancelada">Confirmado</option>
+                                            <option value="Realizada">Ausencia del paciente</option>
+                                        </select><br>                                   
+                                        <label for="fecha_inicio">Fecha de Inicio:</label>
+                                           <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
+                                        <label for="hora_inicio">Hora de Inicio:</label>
+                                            <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
+                                        <label for="duracion">Duracion:</label>
+                                             <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
+                                           <div class="delete-container">        
+                                            <button type="submit" class="button-editar">Guardar Cambios</button>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                        </div>
+                        <?php endforeach; ?>
+>>>>>>> Stashed changes
                     <?php else:?>
                         <tr>
                             <td colspan="11">No hay registros</td>
@@ -400,14 +456,13 @@ $(document).ready(function() {
   });
 });
 //Funciones del modal
-function openModal(id) {
-    document.getElementById('modal' + id).style.display = 'block';
+function openModalEditar(id) {
+    document.getElementById('modalEditar' + id).style.display = 'block';
 }
 
-function closeModal(id) {
-    document.getElementById('modal' + id).style.display = 'none';
+function closeModalEditar(id) {
+    document.getElementById('modalEditar' + id).style.display = 'none';
 }
-
 function openModalEliminar(id) {
     document.getElementById('modalEliminar' + id).style.display = 'block';
 }
