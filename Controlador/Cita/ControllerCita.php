@@ -49,6 +49,7 @@ class usernameControlerCita{
                 'EtiquetaCita' => $cita['EtiquetaCita'],
                 'Duracioncita' => $cita['Duracioncita'],
                 'Email' => $cita['Email'],
+                'Telefono' => $cita['Telefono'],
             ];
     
             return $datos;
