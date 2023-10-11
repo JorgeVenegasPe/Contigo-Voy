@@ -99,13 +99,56 @@ if (isset($_SESSION['NombrePsicologo'])){
                                             <span class="material-symbols-outlined">delete</span>
                                             <p>Eliminar</p>
                                         </a>
-                                        <a type="button" class="btnm" onclick="openModal('<?=$row[0]?>')">
+                                        <a type="button" class="btnm" onclick="openModalEditar('<?=$row[0]?>')">
                                             <span class="material-symbols-outlined"> edit</span>
                                             <p>Editar</p>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal de eliminación -->
+                            <div id="modalEliminar<?=$row[0]?>" class="modal">
+                                <div class="containerModalEliminar">
+                                    <a href="#" class="close"  onclick="closeModalEliminar('<?=$row[0]?>')">&times;</a>
+                                    <div class="message_dialog">
+                                        <h2 style="font-size:1rem; color:#49c691;padding: 0.3rem 0 1rem 1.3rem">
+                                        ¿Estás seguro de eliminar la cita de <?=$row[1]?>?</h2>
+                                        <div class="delete-container">
+                                                <button class="button-delete">Eliminar</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal de edicion -->
+                            <div id="modalEditar<?=$row[0]?>" class="modal">
+                               <div class="containerModalEliminar">
+                                   <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
+                                   <div class="message_dialog">
+                                       <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
+                                       <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog"> <!-- Cambia 'procesar_edicion.php' al archivo que manejará la edición de la cita -->
+                                        <input type="hidden" name="id_cita" value="<?=$row[0]?>">
+                                            <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
+                                        <label for="motivo">Motivo:</label>
+                                            <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
+                                        <label for="estado">Estado:</label>
+                                        <select name="estado" id="estado" value="<?=$row[3]?>" >
+                                            <option value="Pendiente">Se require confirmacion</option>
+                                            <option value="Cancelada">Confirmado</option>
+                                            <option value="Realizada">Ausencia del paciente</option>
+                                        </select><br>                                   
+                                        <label for="fecha_inicio">Fecha de Inicio:</label>
+                                           <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
+                                        <label for="hora_inicio">Hora de Inicio:</label>
+                                            <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
+                                        <label for="duracion">Duracion:</label>
+                                             <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
+                                           <div class="delete-container">        
+                                            <button type="submit" class="button-editar">Guardar Cambios</button>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                        </div>
                         <?php endforeach;?>
                     <?php else:?>
                         <tr>
@@ -265,12 +308,12 @@ $(document).ready(function() {
   });
 });
 //Funciones del modal
-function openModal(id) {
-    document.getElementById('modal' + id).style.display = 'block';
+function openModalEditar(id) {
+    document.getElementById('modalEditar' + id).style.display = 'block';
 }
 
-function closeModal(id) {
-    document.getElementById('modal' + id).style.display = 'none';
+function closeModalEditar(id) {
+    document.getElementById('modalEditar' + id).style.display = 'none';
 }
 
 function openModalEliminar(id) {
