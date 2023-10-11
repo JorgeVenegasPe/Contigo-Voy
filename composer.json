@@ -1,8 +1,5 @@
 {
     "require": {
-        "ultramsg/whatsapp-php-sdk": "^2.0",
-        "twilio/sdk": "^6.22.1"
+        "ultramsg/whatsapp-php-sdk": "^2.0"
     }
 }
-
-

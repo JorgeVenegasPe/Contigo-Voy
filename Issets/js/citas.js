@@ -93,23 +93,6 @@ document.getElementById('checkboxPrincipal').addEventListener('change', function
     botonEliminar.style.display = "none";
     }
 
-    var tableRows = document.querySelectorAll("#myTable tr");
-    tableRows.forEach(function(row) {
-    row.addEventListener("mouseover", function() {
-    // Muestra el dropdown en la fila actual
-    var dropdown = this.querySelector(".dropdown-content");
-    if (dropdown) {
-      dropdown.style.display = "block";
-    }
-    });
-
-    row.addEventListener("mouseout", function() {
-    // Oculta el dropdown cuando el mouse sale de la fila
-    var dropdown = this.querySelector(".dropdown-content");
-    if (dropdown) {
-      dropdown.style.display = "none";
-    }
-    });
-    });
+    
     });
     

@@ -9,20 +9,15 @@ if (isset($_SESSION['NombrePsicologo'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
-    <link rel="stylesheet" href="../issets/css/citas.css">
     <link rel="stylesheet" href="../issets/css/main.css">
+    <link rel="stylesheet" href="../issets/css/citas.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Citas</title>
 </head>
 <body>
-  <style>
-      form {
-	      max-width: 590px;
-      }
-  </style>
-<div class="containerTotal">
+<div class="container">
     <?php
     require_once '../Issets/views/Menu.php';
     ?>
@@ -30,13 +25,13 @@ if (isset($_SESSION['NombrePsicologo'])){
   <main class="animate__animated animate__fadeIn">
     <?php
     require_once '../Issets/views/Info.php';
-    require("../Controlador/Cita/citaControlador.php");
+    require("../Controlador/Cita/ControllerCita.php");
     $obj=new usernameControlerCita();
     $rows=$obj->ver($_SESSION['IdPsicologo']);
     ?>
-    <div class="recent-updates">
+    <div>
         <form action="../Crud/Cita/guardarCita.php" method="post">
-        <h4 ><a href="TablaCitas.php" style="float: left;"><</a>Formulario de Citas</h4>
+        <h4><a href="TablaCitas.php" style="float: left;color: #6B93F3;"><</a>Citas</h4>
         <br>
         <div class="checkout-information">
               <div class="input-group2">
@@ -81,14 +76,14 @@ if (isset($_SESSION['NombrePsicologo'])){
               <div class="input-group2">
                 <div class="input-group" >
                   <h3 for="EstadoCita">Estado de la Cita <b style="color:red">*</b></h3>
-                  <select class="input" id="EstadoCita" name="EstadoCita"required>
+                  <select style="width:136%" class="input" id="EstadoCita" name="EstadoCita"required>
                         <option value="">Seleccione un Estado</option>
                         <option value="Se requiere confirmacion">Se requiere confirmacion</option>
                         <option value="Confirmado">Confirmado</option>
                         <option value="Ausencia del paciente">Ausencia del paciente</option>
                     </select>
                 </div>
-                <div class="input-group" style="width:40%">
+                <div class="input-group" style="width:50%; margin-left: 65px;">
                     <h3 for="ColorFondo">Color de Cita <b style="color:red">*</b></h3>
                     <input type="color" value="#f38238" id="ColorFondo" name="ColorFondo" list="colorOptions">
                         <datalist id="colorOptions">
@@ -108,7 +103,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <h3 for="FechaInicioCita">Fecha de Cita<b style="color:red">*</b></h3>
                         <input  type="date" id="FechaInicioCita" name="FechaInicioCita" min="<?= $fechamin ?>" value="<?= $fechamin ?>">
                     </div>
-                    <div class="input-group" style="width:39%">
+                    <div class="input-group" style="width:49%">
                         <h3 for="HoraInicio">Hora de Cita <b style="color:red">*</b></h3>
                         <input type="time" id="HoraInicio" name="HoraInicio" />
                     </div>
@@ -123,8 +118,8 @@ if (isset($_SESSION['NombrePsicologo'])){
                         </select>
                        </div>
                     <div class="input-group">
-                        <h3 for="DuracionCita">Duracion <b style="color:red">*</b></h3>
-                      <select class="input" id="DuracionCita" name="DuracionCita" required>
+                        <h3 style="margin-left: 65px;" for="DuracionCita">Duracion <b style="color:red">*</b></h3>
+                      <select style="margin-left: 65px; width:100px;" class="input" id="DuracionCita" name="DuracionCita" required>
                             <option value="5'">5'</option>
                             <option value="10'">10'</option>
                             <option value="15'">15'</option>
@@ -171,7 +166,7 @@ if (isset($_SESSION['NombrePsicologo'])){
         </div>
             <br>
         <div class="button-container">
-          <button id="submitButton" class="button">Registrar</button>
+          <button id="submitButton" class="button">Finalizar</button>
         </div>
       </form>
     </div>
@@ -191,7 +186,7 @@ $(document).ready(function() {
 
       // Realizar la solicitud AJAX al servidor
       $.ajax({
-        url: 'Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
+        url: '../Crud/Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
         method: 'POST',
         data: { codigopac: codigopac, idPsicologo: idPsicologo },
         success: function(response) {
@@ -200,13 +195,11 @@ $(document).ready(function() {
             $('#IdPaciente').val('');
             $('#NomPaciente').val('');
             $('#correo').val('');
-            $('#telefono').val('');
           } else {
             $('#Paciente').val(response.nombre);
             $('#NomPaciente').val(response.nom);
 		        $('#IdPaciente').val(response.id);
 		        $('#correo').val(response.correo);
-            $('#telefono').val(response.telefono);
           }
         },
         error: function() {
@@ -226,7 +219,7 @@ $(document).ready(function() {
 
     // Realizar la solicitud AJAX al servidor
     $.ajax({
-      url: 'Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
+      url: '../Crud/Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
       method: 'POST',
       data: { NomPaciente: NomPaciente, idPsicologo: idPsicologo },
       success: function(response) {
@@ -234,14 +227,10 @@ $(document).ready(function() {
           $('#Paciente').val(response.error);
           $('#IdPaciente').val('');
           $('#codigopac').val('');
-          $('#correo').val('');
-          $('#telefono').val('');
         } else {
           $('#Paciente').val(response.nombre);
 		      $('#IdPaciente').val(response.id);
 		      $('#codigopac').val(response.codigopac);
-          $('#correo').val(response.correo);
-          $('#telefono').val(response.telefono);
         }
       },
       error: function() {

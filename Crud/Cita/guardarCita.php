@@ -1,5 +1,5 @@
 <?php
-require_once("../../Controlador/Cita/citaControlador.php");
+require_once("C:/xampp/htdocs/Contigo-Voy/Controlador/Cita/ControllerCita.php");
 $obj = new usernameControlerCita();
 $FechaInicioCita = $_POST['FechaInicioCita'];
 $HoraInicio = $_POST['HoraInicio'];
@@ -7,37 +7,28 @@ $FechaInicio = $FechaInicioCita . ' ' . $HoraInicio;
 $fechaInicioObj = new DateTime($FechaInicio);
 $obj->guardar($_POST['IdPaciente'],$_POST['MotivoCita'],$_POST['EstadoCita'],$FechaInicio,$_POST['DuracionCita'],$_POST['FechaFin'],$_POST['TipoCita'], $_POST['ColorFondo'], $_POST['IdPsicologo'], $_POST['CanalCita'], $_POST['EtiquetaCita']);
 
-//mensaje a whatsapp
-require_once ('../../vendor/autoload.php');
-use Twilio\Rest\Client;
+/* require_once ('../../vendor/autoload.php'); // if you use Composer
+//require_once('ultramsg.class.php'); // if you download ultramsg.class.php
+	
+$token="6701xvlxp8x2vcg7"; // Ultramsg.com token
+$instance_id="instance53361"; // Ultramsg.com instance id
+$client = new UltraMsg\WhatsAppApi($token,$instance_id);
+	
+$to=$_POST['telefono']; 
+$body = '
+Hola ' . $_POST['Paciente'] . ',
+Gracias por reservar una cita con nosotros.
+Los detalles de su reserva son los siguientes:
+Fecha: ' . $_POST['FechaInicioCita'] . '
+Hora: ' . $_POST['HoraInicio'] . '
+Cuenta pacientes y reservas de citas en línea
+Utilice nuestra plataforma para reservar y administrar sus citas médicas:
+Acceso a la Pagina: https://gestion.contigo-voy.com
+';
 
-$sid    = "ACdf69f7526e205e7017ead8bc1a9d0c4a";
-$token  = "b06695cb8ed7c3d84d98f3c6585b6347";
-$twilio = new Client($sid, $token);
-
-$numeroPaciente = $_POST['telefono'];
-
-// Mensaje personalizado
-$mensaje = "Hola " . $_POST['Paciente'] . ",\n";
-$mensaje .= "Gracias por reservar una cita con nosotros.\n";
-$mensaje .= "Los detalles de su reserva son los siguientes:\n";
-$mensaje .= "Fecha: " . $_POST['FechaInicioCita'] . "\n";
-$mensaje .= "Hora: " . $_POST['HoraInicio'] . "\n";
-$mensaje .= "Cuenta pacientes y reservas de citas en línea\n";
-$mensaje .= "Utilice nuestra plataforma para reservar y administrar sus citas médicas:\n";
-$mensaje .= "Acceso a la Pagina: https://gestion.contigo-voy.com";
-
-$message = $twilio->messages
-  ->create("whatsapp:+51$numeroPaciente", // to
-    array(
-      "from" => "whatsapp:+14155238886",
-      "body" => $mensaje // Mensaje personalizado con los detalles de la cita
-    )
-  );
-
-print($message->sid);
-
-
+$api=$client->sendChatMessage($to,$body);
+print_r($api);
+*/
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -88,10 +79,10 @@ try {
                     <br><a href="https://gestion.contigo-voy.com" style="background-color: #9274b3; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer;">Acceso a la Pagina</a>
                     ';
     $mail->send();
-    header('Location: ../../Vista/citas.php?enviado=true');
+    header('Location: ../../Vista/RegCitas.php?enviado=true');
     exit;
 } catch (Exception $e) {
-    header('Location: ../../Vista/citas.php?error=' . urlencode($mail->ErrorInfo));
+    header('Location: ../../Vista/RegCitas.php?error=' . urlencode($mail->ErrorInfo));
     exit;
 }
 

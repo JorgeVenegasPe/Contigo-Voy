@@ -12,6 +12,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/historial.css">    
     <link rel="stylesheet" href="../issets/css/main.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos de Paciente</title>
@@ -22,23 +23,25 @@ require_once("../Controlador/Paciente/ControllerPaciente.php");
     $Pac=new usernameControlerPaciente();
     $patients=$Pac->showCompletoAtencion($_SESSION['IdPsicologo']);    
 ?>
-<div class="containerTotal">
+<div class="container">
 <?php
     require_once '../issets/views/Menu.php';
   ?> 
   <!----------- end of aside -------->
   <main class="animate_animated animate_fadeIn">
-    <?php
-    require_once '../issets/views/Info.php';
-    ?> 
-    
-    <h2 style="color: #49c691;">Historial de Pacientes</h2>
+    <div class="center-divs">
+        <h4 style="color: #49c691;">Historial de Pacientes</h4>
+        <?php
+            require_once '../Issets/views/Info.php';
+        ?>
+    </div>
     <div class="recent-updates" style="display:flex; flex-direction: row; gap:20px; align-items: center; padding: 10px 0px 0px 10px">
-        <div class="input-group">
-  	        <input type="text" placeholder="Buscar paciente"  class="input" required></input>
+        <div class="input-buscador">
+            <span id="search-icon"><i class="fas fa-search"></i></span>
+            <input type="text" id="myInput" placeholder="Buscar Paciente" class="input" required>
         </div>
-        <a class="button" href="RegPaciente.php">
-           Agregar Paciente  <span class="material-symbols-sharp">add</span>
+        <a class="button-arriba" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
+            <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar Paciente
         </a>
     </div>
    
@@ -160,7 +163,7 @@ showInfoLinks.forEach(link => {
                             <button type="button" class="green-button" id="butto">Ver Historial Medico</button>                            
                         </div>
                         <div class="date">
-                            <h2>20/07</h2>
+                            <h6>20/07</h6>
                             <p>Próxima Consulta</p>
                         </div>
                     </div>

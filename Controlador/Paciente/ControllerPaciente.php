@@ -3,7 +3,7 @@ class usernameControlerPaciente{
     private $model;
     public function __construct()
     {
-        require_once("../Modelo/Paciente/ModelPaciente.php");
+        require_once("C:/xampp/htdocs/Contigo-Voy/Modelo/Paciente/ModelPaciente.php");
         $this->model=new UserModelPaciente();
     }
 
@@ -26,7 +26,7 @@ class usernameControlerPaciente{
     // Mpdificar datos del paciente
     public function modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email, $Direccion,$AntecedentesMedicos,$MedicamentosPrescritos,$IdProvincia,$IdDepartamento,$IdDistrito){
         return ($this->model->modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email, $Direccion,$AntecedentesMedicos,$MedicamentosPrescritos,$IdProvincia,$IdDepartamento,$IdDistrito)) !=false ? 
-        header("Location:../../Vista/DatosPaciente.php") : header("Location:../../Vista/DatosPaciente.php");
+        header("Location:../../Vista/Historial.php") : header("Location:../../Vista/Historial.php");
     }
 
     // Mostrar datos del paciente seleccionado
@@ -42,7 +42,7 @@ class usernameControlerPaciente{
 
     
     public function show($IdPaciente){
-        return ($this->model->show($IdPaciente) != false) ? $this->model->show($IdPaciente):header("Location:../../Vista/DatosPaciente.php");
+        return ($this->model->show($IdPaciente) != false) ? $this->model->show($IdPaciente):header("Location:../../Vista/Historial.php");
     }
     // Mostrar 4 paciente reciente 
     public function MostrarPacientesRecientes($idPsicologo) {
@@ -77,13 +77,13 @@ class usernameControlerPaciente{
     // Guardar datos familiares del paciente
     public function guardarAreaFamiliar($IdPaciente, $NomPadre,$EstadoPadre, $NomMadre,$EstadoMadre, $NomApoderado,$EstadoApoderado,$CantHermanos,$CantHijos,$IntegracionFamiliar,$HistorialFamiliar){
         $id=$this->model->insertarAreaFamiliar($IdPaciente, $NomPadre,$EstadoPadre, $NomMadre,$EstadoMadre, $NomApoderado,$EstadoApoderado,$CantHermanos,$CantHijos,$IntegracionFamiliar,$HistorialFamiliar);
-        return ($id!=false) ? header("Location:../../Vista/DatosPaciente.php") : header("Location:../../Vista/DatosPaciente.php");
+        return ($id!=false) ? header("Location:../../Vista/TablaPacientes.php") : header("Location:../../Vista/TablaPacientes.php");
     }
 
     // Modificar datos familiares del paciente
     public function ModificarAreaFamiliar($IdFamiliar,$NomPadre,$EstadoPadre, $NomMadre,$EstadoMadre, $NomApoderado,$EstadoApoderado,$CantHermanos,$CantHijos,$IntegracionFamiliar,$HistorialFamiliar){
         return ($this->model->ModificarAreaFamiliar($IdFamiliar,$NomPadre,$EstadoPadre, $NomMadre,$EstadoMadre, $NomApoderado,$EstadoApoderado,$CantHermanos,$CantHijos,$IntegracionFamiliar,$HistorialFamiliar)) !=false ? 
-        header("Location:../../Vista/DatosPaciente.php") : header("Location:../../Vista/DatosPaciente.php");
+        header("Location:../../Vista/TablaPacientes.php") : header("Location:../../Vista/TablaPacientes.php");
     }
 
 // ================ Atencion al paciente =============//
@@ -91,13 +91,13 @@ class usernameControlerPaciente{
     // Guardar la atencion del paciente
      public function guardarAtencPac($IdPaciente, $IdEnfermedad,$MotivoConsulta,$FormaContacto, $Diagnostico, $Tratamiento ,$Observacion,$UltimosObjetivos){
         $id=$this->model->insertarAtencPaciente($IdPaciente, $IdEnfermedad,$MotivoConsulta,$FormaContacto, $Diagnostico, $Tratamiento ,$Observacion,$UltimosObjetivos);
-        return ($id!=false) ? header("Location:../../Vista/DatosPaciente.php") : header("Location:../../Vista/DatosPaciente.php");
+        return ($id!=false) ? header("Location:../../Vista/Historial.php") : header("Location:../../Vista/Historial.php");
     }
 
     // Modificar datos seleccionados de la atencion al paciente
     public function modificarAtencPaciente($IdAtencion, $MotivoConsulta,$FormaContacto,$Diagnostico, $Tratamiento, $Observacion, $UltimosObjetivos){
         return ($this->model->modificarAtencPaciente($IdAtencion, $MotivoConsulta,$FormaContacto,$Diagnostico, $Tratamiento, $Observacion, $UltimosObjetivos)) !=false ? 
-        header("Location:../../Vista/DatosPaciente.php") : header("Location:../../Vista/DatosPaciente.php");
+        header("Location:../../Vista/Historial.php") : header("Location:../../Vista/Historial.php");
     }
     
     // Mostrar datos completos de el paciente

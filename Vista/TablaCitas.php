@@ -12,19 +12,11 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="../Issets/css/citas.css">
     <link rel="stylesheet" href="../Issets/css/main.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Citas</title>
 </head>
-<style>
-    table {
-    width: 100%;
-    border-collapse: separate; 
-    border-spacing: 0 10px; 
-    max-height: 35%;
-    
-}
-</style>
 <body>
 <?php
     require("../Controlador/Cita/ControllerCita.php");
@@ -32,31 +24,39 @@ if (isset($_SESSION['NombrePsicologo'])){
     $rowscita=$obj->contarRegistrosEnCitas($_SESSION['IdPsicologo']);
     $rows=$obj->ver($_SESSION['IdPsicologo']);
 ?>
-<div class="containerTotal">
+<div class="container">
     <?php
     require_once '../Issets/views/Menu.php';
     ?>
     <!----------- fin de aside -------->
     <main class="animate__animated animate__fadeIn">
-    <?php
-    require_once '../Issets/views/Info.php';
-    ?>
-    <h2 style="color: #49c691;">Lista de Citas</h2>
-    <div class="recent-updates" style="display:flex; flex-direction: row; gap:20px; align-items: center; padding: 10px 0px 0px 10px">
-        <span style="font-size: 15px;color: #6a90f1;">
-        <b style="font-size: 25px;color: #6a90f1;"><?= $rowscita ?></b> pacientes </span>
-        <div class="input-group">
-            <input type="text" style="background-color: White;" id="myInput" placeholder="Buscar" class="input" required></input>
+        <div class="center-divs">
+            <h4 style="color: #49c691;">Lista de Citas</h4>
+            <?php
+            require_once '../Issets/views/Info.php';
+            ?>
         </div>
-        <a class="button" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
-            <span class="material-symbols-sharp">add</span>Agregar Cita
-        </a>
-        <button type="button" class="button-eliminar" id="eliminarSeleccionados" style="display: none;">Eliminar</button>
-    </div>
+        <div class="contenedor-botones">
+            <span style="font-size: 15px;color: #6a90f1; ">
+                <b style="font-size: 25px;color: #6a90f1;"><?= $rowscita ?></b> 
+                Citas 
+            </span>
+            <div class="separador"></div>
+            <div class="input-buscador">
+                <span id="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" id="myInput" placeholder="Buscar cita" class="input" required>
+            </div>
+            <a class="button-arriba" style="padding:10px 30px; font-size:10px;" href="RegCitas.php">
+                <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar Cita
+            </a>
+            <a class="button-eliminar" id="eliminarSeleccionados">
+                <i id="search-icon" class="fas fa-trash" style="margin-right: 10px;color:red" ></i>Eliminar
+            </a>
+        </div>
         <div class="recent-citas">
             <table>
                 <?php
-                $rowsPerPage = 7;
+                $rowsPerPage = 1;
                 if (is_array($rows) && count($rows) > 0) {
                     $totalRows = count($rows);
                     $totalPages = ceil($totalRows / $rowsPerPage);
@@ -75,7 +75,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <th>Estado</th>
                         <th>Fecha de Inicio</th>
                         <th>Duracion</th>
-                        <th ></th>
+                        <th >Más</th>
                     </tr>
                 </thead>
                 <tbody id="myTable">
@@ -91,66 +91,22 @@ if (isset($_SESSION['NombrePsicologo'])){
                                 <td><?=$row[3]?></td>
                                 <td><?=$row[4]?></td>
                                 <td style="color:green"><?=$row[5]?></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="buttonTab"><span class="material-symbols-sharp">more_vert</span></button>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="buttonTab"><span class="material-symbols-sharp">more_vert</span></button>
                                     <div class="dropdown-content">
                                         <a type="button" class="btne" onclick="openModalEliminar('<?=$row[0]?>')">
                                             <span class="material-symbols-outlined">delete</span>
                                             <p>Eliminar</p>
                                         </a>
-                                        <a type="button" class="btnm" onclick="openModalEditar('<?=$row[0]?>')"> <!-- Cambia la función a openModalEditar -->
+                                        <a type="button" class="btnm" onclick="openModal('<?=$row[0]?>')">
                                             <span class="material-symbols-outlined"> edit</span>
                                             <p>Editar</p>
                                         </a>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
                             </tr>
-                            <!-- Modal de eliminación -->
-                            <div id="modalEliminar<?=$row[0]?>" class="modal">
-                                <div class="containerModalEliminar">
-                                    <a href="#" class="close"  onclick="closeModalEliminar('<?=$row[0]?>')">&times;</a>
-                                    <div class="message_dialog">
-                                        <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">
-                                        ¿Estás seguro de eliminar la cita de <?=$row[1]?>?</h2>
-                                        <div class="delete-container">
-                                                <button class="button-delete">Eliminar</button>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal de edicion -->
-                            <div id="modalEditar<?=$row[0]?>" class="modal">
-                               <div class="containerModalEliminar">
-                                   <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
-                                   <div class="message_dialog">
-                                       <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
-                                       <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog"> <!-- Cambia 'procesar_edicion.php' al archivo que manejará la edición de la cita -->
-                                        <input type="hidden" name="id_cita" value="<?=$row[0]?>">
-                                            <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
-                                        <label for="motivo">Motivo:</label>
-                                            <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
-                                        <label for="estado">Estado:</label>
-                                        <select name="estado" id="estado" value="<?=$row[3]?>" >
-                                            <option value="Pendiente">Se require confirmacion</option>
-                                            <option value="Cancelada">Confirmado</option>
-                                            <option value="Realizada">Ausencia del paciente</option>
-                                        </select><br>                                   
-                                        <label for="fecha_inicio">Fecha de Inicio:</label>
-                                           <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
-                                        <label for="hora_inicio">Hora de Inicio:</label>
-                                            <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
-                                        <label for="duracion">Duracion:</label>
-                                             <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
-                                           <div class="delete-container">        
-                                            <button type="submit" class="button-editar">Guardar Cambios</button>
-                                           </div>
-                                       </form>
-                                   </div>
-                               </div>
-                        </div>
-                        <?php endforeach; ?>
+                        <?php endforeach;?>
                     <?php else:?>
                         <tr>
                             <td colspan="11">No hay registros</td>
@@ -178,6 +134,7 @@ if (isset($_SESSION['NombrePsicologo'])){
 
 </div>
 <script src="../issets/js/Dashboard.js"></script>
+<script src="../Issets/js/citas.js"></script>
 <script>
         // Obtener elementos del formulario
     var fechaInicioInput = document.getElementById('FechaInicioCita');
@@ -308,13 +265,14 @@ $(document).ready(function() {
   });
 });
 //Funciones del modal
-function openModalEditar(id) {
-    document.getElementById('modalEditar' + id).style.display = 'block';
+function openModal(id) {
+    document.getElementById('modal' + id).style.display = 'block';
 }
 
-function closeModalEditar(id) {
-    document.getElementById('modalEditar' + id).style.display = 'none';
+function closeModal(id) {
+    document.getElementById('modal' + id).style.display = 'none';
 }
+
 function openModalEliminar(id) {
     document.getElementById('modalEliminar' + id).style.display = 'block';
 }
