@@ -24,39 +24,28 @@ table {
 
 
 /* Estilo para el botón desplegable */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Estilo para el contenido desplegable */
+/* Estilos para las opciones del botón */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: #f1f1f1;
+    min-width: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
-/* Estilo para los enlaces en el contenido desplegable */
+/* Estilos para las opciones del botón cuando se muestra */
+.dropdown-content.active {
+    display: block;
+}
+
+/* Estilos para las opciones del botón */
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    padding: 12px 15px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
-
-/* Cambia el color de fondo de los enlaces al pasar el cursor por encima */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Muestra el contenido desplegable al pasar el cursor por encima del botón */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 
 
 /*=================== Formulario ======================*/
@@ -121,16 +110,16 @@ form {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
-    overflow: auto;
+    overflow: hidden;
   }
-  
+
   /* Estilos para el contenido del modal */
   .containerModalEliminar {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 100%;
     max-width: 400px;
     border-radius: 1rem;
   }
@@ -175,30 +164,40 @@ form {
     text-decoration: none;
     cursor: pointer;
   }
-/* boton delete*/
-.button-delete {
-    background-color: transparent;
-    color: #FF5733; 
+
+/* boton modal*/
+.button-modal {
+    color: white; 
     padding: 7px 15px; 
-    border: 0.15em solid red; 
+    border: none; 
     outline: none;
-    border-radius: 5px; 
-    cursor: pointer; 
+    border-radius: 5px;  
     font-size: 12px; 
     font-weight: 600;
 }
-
-.button-delete:hover {
-    background-color: rgb(228, 214, 214);
+/* boton cancelar*/
+.button-cancelar {
+    background-color: var(--color-primary);
 }
 
-.button-delete:focus {
-    outline: none; /* Quitar el borde de enfoque */
+/* boton delete*/
+.button-delete {
+    background-color: var(--color-danger);
 }
-.delete-container {
+
+.button-editar {
+    background-color: var(--color-danger);
+}
+
+.button-modal:hover {
+    cursor: pointer;
+    color:#dcdcdc;
+}
+
+.modal-button-container {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    gap: 15px;
+    justify-content: end;
 }
 
 .message_dialog label{
@@ -222,20 +221,3 @@ select {
     padding-top: 0;
     padding-bottom: 0;
 }
-
-button.button-editar {
-    background-color: transparent;
-    color: var(--color-primary);
-    padding: 7px 15px;
-    border: 0.15em solid var(--color-primary); 
-    outline: none;
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 12px;
-    font-weight: 600;
-}
-
-button.button-editar:hover {
-    background-color: #eefae6;
-}
-
