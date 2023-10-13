@@ -168,7 +168,7 @@ if (isset($_SESSION['NombrePsicologo'])){
       <span class="notification__progress"></span>
     </div>
   </main>
-  <script src="../Issets/js/Dashboard.js"></script>
+  <script src="../Issets/js/dashboard.js"></script>
 <script>
 
 $(document).ready(function() {
