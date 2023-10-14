@@ -12,7 +12,8 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Paciente</title>
 </head>
@@ -25,26 +26,34 @@ if (isset($_SESSION['NombrePsicologo'])){
         $rowscita=$objcita->contarRegistrosEnPacientes($_SESSION['IdPsicologo']);
         $patients = $obj->showCompleto($_SESSION['IdPsicologo']);
     ?>
-    <div class="containerTotal">
+    <div class="container">
         <?php
             require_once '../Issets/views/Menu.php';
         ?> 
-    <!----------- end of aside -------->
-    <main class="animate__animated animate__fadeIn">
-            <?php
-                require_once '../Issets/views/Info.php';
-            ?>
-            <h2 style="color: #49c691;">Lista de Pacientes</h2>
-            <div class="recent-updates" style="display:flex; flex-direction: row; gap:20px; align-items: center; padding: 10px 0px 0px 10px">
-                <span style="font-size: 15px;color: #6a90f1;">
-                <b style="font-size: 25px;color: #6a90f1;"><?= $rowscita ?></b> pacientes </span>
-                <div class="input-group">
-                    <input type="text" style="background-color: White;" id="myInput" placeholder="Buscar" class="input" required></input>
+        <!----------- end of aside -------->
+        <main class="animate__animated animate__fadeIn">
+            <div class="center-divs">
+                <h4 style="color: #49c691;">Lista de Pacientes</h4>
+                <?php
+                    require_once '../Issets/views/Info.php';
+                ?>
+            </div>
+            <div class="contenedor-botones">
+                <span style="font-size: 15px;color: #6a90f1; ">
+                    <b style="font-size: 25px;color: #6a90f1;"><?= $rowscita ?></b> 
+                    pacientes 
+                </span>
+                <div class="separador"></div>
+                <div class="input-buscador">
+                    <span id="search-icon"><i class="fas fa-search"></i></span>
+                    <input type="text" id="myInput" placeholder="Buscar Paciente" class="input" required>
                 </div>
-                <a class="button" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
-                    <span class="material-symbols-sharp">add</span>Agregar Paciente
+                <a class="button-arriba" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
+                    <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar Paciente
                 </a>
-                <button type="button" class="button-eliminar" id="eliminarSeleccionados" style="display: none;">Eliminar</button>
+                <a class="button-eliminar" id="eliminarSeleccionados">
+                    <i id="search-icon" class="fas fa-trash" style="margin-right: 10px;color:red" ></i>Eliminar
+                </a>
             </div>
             <div class="container-paciente-tabla">
                 <table>
@@ -52,7 +61,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <tr>
                             <th><input type="checkbox" id="checkboxPrincipal" class="checkbox-principal"></th>
                             <th style="text-align: start; " >Paciente</th>
-                            <th class="additional-column">Id</th>
+                            <th class="additional-column">Codigo</th>
                             <th class="additional-column">DNI</th>
                             <th class="additional-column">Email</th>
                             <th class="additional-column">Celular</th>
@@ -64,8 +73,8 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <?php foreach ($patients as $patient) : ?>
                             <tbody id="myTable" class="tu-tbody-clase">
                                 <tr >
-                                    <td style="width: 8%;  padding: 18px;">
-                                        <input type="checkbox" class="checkbox" id="checkbox<?=$patient[0]?>" value="<?=$patient[0]?>">
+                                    <td>
+                                        <input type="checkbox" class="checkbox" id="checkbox<?=$row[0]?>" value="<?=$row[0]?>">
                                     </td>
                                     <td style="text-align: start; font-weight:bold;padding: 14px;">
                                         <a style="cursor:pointer"
@@ -88,7 +97,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                                             data-FechaInicioCita="<?=$patient['FechaInicioCita']?>">
                                             <?=$patient['NomPaciente']?> <?=$patient['ApPaterno']?>
                                         </a>
-                                        <a class="button_1" style="display:none;   width: 110px; padding:6px; font-size:10px;margin-top: 4.5%;margin-bottom: 0%;" href="RegCitas.php">
+                                        <a class="buttoncita" style="display:none;   width: 110px; padding:6px; font-size:10px;margin-top: 4.5%;margin-bottom: 0%;" href="RegCitas.php">
                                             <div style="display: flex;">
                                                 <span class="material-symbols-sharp">add</span>Crear Cita
                                             </div>                                                                           
@@ -99,14 +108,14 @@ if (isset($_SESSION['NombrePsicologo'])){
                                     <td class="additional-column" style="font-weight:bold;width:25%;text-align: start; margin-left:4%; padding-left: 3%;"><?=$patient['Email']?></td>
                                     <td class="additional-column" style="font-weight:bold;"><?=$patient['Telefono']?></td>
                                     <td class="additional-column" >
-                                            <div style="display: flex;justify-content: center;margin-top: 2%;">
-                                            <a class="button" style="width: 110px; padding:6px; font-size:10px;" href="RegCitas.php">                                        
-                                                    <span class="material-symbols-sharp">add</span>Crear Cita                                                                                                            
+                                        <div style="display: flex;justify-content: center;margin-top: 2%;">
+                                            <a class="buttoncita" style="width: 110px; padding:6px; font-size:10px;" href="RegCitas.php">                                        
+                                                <span class="material-symbols-sharp">add</span>Crear Cita                                                                                                            
                                             </a>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="dropdown ">
+                                        <div class="dropdown">
                                             <button class="buttonTab"><span class="material-symbols-sharp">more_vert</span></button>
                                         </div>
                                     </td>
@@ -121,7 +130,7 @@ if (isset($_SESSION['NombrePsicologo'])){
             </div>
         </main>
     </div>
-    <script src="../Issets/js/Dashboard.js"></script>
+    <script src="../Issets/js/dashboard.js"></script>
     <script src="../Issets/js/pacientes.js"></script>
 </body>
 </html>

@@ -11,14 +11,13 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
-    <link rel="stylesheet" href="../issets/css/formularios.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos del Paciento</title>
 </head>
 <body>    
-<div class="containerTotal">
+<div class="container">
   <?php
     require_once '../Issets/views/Menu.php';
   ?> 
@@ -133,7 +132,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     $('.btndsm5').click(function() {
       var dsm5 = $('#dsm5').val();
       $.ajax({
-        url: 'Fetch/fetch_dsm5.php',
+        url: '../Crud/Fetch/fetch_dsm5.php',
         method: 'POST',
         data: { dsm5: dsm5 },
         success: function(response) {
@@ -161,7 +160,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     $('.btncea10').click(function() {
       var cea10 = $('#cea10').val();
       $.ajax({
-        url: 'Fetch/fetch_cea10.php',
+        url: '../Crud/Fetch/fetch_cea10.php',
         method: 'POST',
         data: { cea10: cea10 },
         success: function(response) {
@@ -192,7 +191,7 @@ if (isset($_SESSION['NombrePsicologo'])){
 
       // Realizar la solicitud AJAX al servidor
       $.ajax({
-        url: 'Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
+        url: '../Crud/Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
         method: 'POST',
         data: { codigopac: codigopac, idPsicologo: idPsicologo },
         success: function(response) {
@@ -225,7 +224,7 @@ $(document).ready(function() {
 
     // Realizar la solicitud AJAX al servidor
     $.ajax({
-      url: 'Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
+      url: '../Crud/Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
       method: 'POST',
       data: { NomPaciente: NomPaciente, idPsicologo: idPsicologo },
       success: function(response) {

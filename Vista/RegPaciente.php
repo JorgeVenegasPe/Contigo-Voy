@@ -11,27 +11,29 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
-    <link rel="stylesheet" href="../issets/css/formularios.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos del Paciente</title>
 </head>
-<body>    
-  <?php
-    require("../Controlador/Paciente/ControllerPaciente.php");
-    $obj = new usernameControlerPaciente();
-    $departamentos = $obj->MostrarDepartamento();
-  ?>
-<div class="containerTotal">
-<?php
-    require_once '../Issets/views/Menu.php';
-  ?> 
+<style>
+  main {
+    margin: 10px 5px;
+  }
+</style>
+<body>  
+<div class="container">
+    <?php
+      require_once '../Issets/views/Menu.php';
+    ?>   
   <main class="animate__animated animate__fadeIn">
     <?php
-    require_once '../Issets/views/Info.php';
-    ?> 
-      <div class="recent-updates">
+      require_once '../Issets/views/Info.php';
+      require("../Controlador/Paciente/ControllerPaciente.php");
+      $obj = new usernameControlerPaciente();
+      $departamentos = $obj->MostrarDepartamento();
+    ?>
+      <div>
         <form action="../Crud/Paciente/guardarPaciente.php" method="post" >
         <h4><a href="TablaPacientes.php" style="float: left;color: #6B93F3;"><</a>Datos del Paciente</h4>
         <br>
@@ -166,7 +168,7 @@ if (isset($_SESSION['NombrePsicologo'])){
           </div>
         </form>
     </div>
-    <div id="notification" style="display: none;" class="notification">
+    <div id="notification" class="notification">
       <p id="notification-text"></p>
       <span class="notification__progress"></span>
     </div>
@@ -182,7 +184,7 @@ $(document).ready(function() {
 
   function obtenerProvincias(departamentoId) {
     $.ajax({
-      url: 'Fetch/obtenerProvincias.php',
+      url: '../Crud/Fetch/obtenerProvincias.php',
       method: 'POST',
       data: { departamentoId: departamentoId },
       dataType: 'json',
@@ -212,7 +214,7 @@ $('#Provincia').change(function() {
 
 function obtenerDistritos(provinciaId) {
   $.ajax({
-    url: 'Fetch/obtenerDistritos.php',
+    url: '../Crud/Fetch/obtenerDistritos.php',
     method: 'POST',
     data: { provinciaId: provinciaId },
     dataType: 'json',
@@ -280,7 +282,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Dni=' + Dni;
     
       $.ajax({
-        url: 'Fetch/vereficardni.php',
+        url: '../Crud/Fetch/vereficardni.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",
@@ -312,7 +314,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Telefono=' + Telefono;
 
       $.ajax({
-        url: 'Fetch/vereficarcelular.php',
+        url: '../Crud/Fetch/vereficarcelular.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",
@@ -341,7 +343,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Email=' + Email;
 
       $.ajax({
-        url: 'Fetch/vereficaremail.php',
+        url: '../Crud/Fetch/vereficaremail.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",

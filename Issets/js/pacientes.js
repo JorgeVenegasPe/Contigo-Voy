@@ -44,7 +44,7 @@ document.getElementById('checkboxPrincipal').addEventListener('change', function
     function eliminarRegistros(idsAEliminar) {
     // Realiza una solicitud AJAX para enviar los IDs a tu script de eliminación en el servidor
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'Fetch/eliminar_registros.php', true);
+    xhr.open('POST', '../Crud/Fetch/eliminar_registros.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     
     // Define lo que hacer cuando la solicitud se complete
@@ -76,7 +76,7 @@ document.getElementById('checkboxPrincipal').addEventListener('change', function
     });
     
     if (almenosUnCheckboxSeleccionado) {
-        botonEliminar.style.display = "block";
+        botonEliminar.style.display = "flex";
     } else {
         botonEliminar.style.display = "none";
     }
@@ -88,7 +88,7 @@ document.getElementById('checkboxPrincipal').addEventListener('change', function
     
     checkboxPrincipal.addEventListener("change", function() {
     if (checkboxPrincipal.checked) {
-    botonEliminar.style.display = "block";
+    botonEliminar.style.display = "flex";
     } else {
     botonEliminar.style.display = "none";
     }

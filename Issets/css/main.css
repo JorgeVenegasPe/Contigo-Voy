@@ -60,14 +60,6 @@ body{
     color: var(--color-dark);
 }
 
-.container{
-    display: grid;
-    width: 96%;
-    margin: 0 auto;
-    gap :1.5rem;
-    grid-template-columns: 17rem auto 23rem;
-}
-
 a{
     color: var(--color-dark);
 }
@@ -78,26 +70,32 @@ img{
 }
 
 h1{
-    font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    color:#6A90F1;
 }
 
 h2{
     font-size: 2rem;
+    color:#6A90F1;
 }
 
 h3{
-    font-size: 0.80rem;
+    font-size: 0.90rem;
 }
 
 h4{
     font-size: 2.50rem;
+    color:#49c691;
 }
 
 h5{
-    font-size: 0.77rem;
+    font-size: 0.90rem;
+    color:#6A90F1;
 }
 
+h6{
+    font-size: 2rem;
+}
 small{
     font-size: 0.70rem;;
 }
@@ -130,7 +128,6 @@ b{
     color: var(--color-warning);
 }
 
-
 tr {
     background-color: var(--color-white);
     border-radius: 40px;
@@ -140,7 +137,7 @@ td {
     text-align: center;
 }
 th {
-    background-color: #f6f6f9;
+    background-color: var(--color-white);
     color: #6a90f1;
 }
 
@@ -178,6 +175,104 @@ form {
 	padding: 25px;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 5px;
+    background-color: #49c691;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 0.1em solid #49c691; 
+    padding: 2px;
+    outline: 2px solid #49c691;
+    transition: color 1s;
+}
+.buttonTab {
+    font: inherit;
+    text-decoration: none;
+    border: none;
+    color: inherit;
+    background-color: var(--color-white);
+}
+.search:hover {
+    color: black;
+    cursor: pointer;
+}
+main {
+    margin: 30px 20px;
+}
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.5rem;
+    grid-template-columns: 17rem auto;
+}
+.center-divs{
+    display: flex;
+    justify-content: space-between;
+}
+.notification {
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	width: max-content;
+	padding: 20px 15px;
+	border-radius: 4px;
+	background-color: #141619;
+	color: #f6f5f9;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+	transform: translateY(30px);
+	opacity: 0;
+	visibility: hidden;
+	animation: fade-in 4s linear forwards;
+}
+
+.notification__progress {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	width: calc(100% - 10px);
+	height: 3px;
+	transform: scaleX(0);
+	transform-origin: left;
+	background-image: linear-gradient(to right, #539bdb, #3250bf);
+	border-radius: inherit;
+	animation: load 3s 0.25s linear forwards;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #6B93F3;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 0.1em solid #6B93F3;
+    padding: 5px 35px;
+    outline: 1px solid #6B93F3;
+    transition: color 1s;
+    letter-spacing: 2px;
+}
+
+.button:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end; /* Cambiamos de "right" a "flex-start" */
+}
+
+/*======== Info =========*/
 main .top {
     display: flex;
     justify-content: end;
@@ -185,10 +280,6 @@ main .top {
     height: 3rem;
     margin-right: 2em;
     gap: 1rem;
-}
-
-main .top button {
-    display: none;
 }
 
 .button-seguridad{
@@ -257,6 +348,8 @@ aside{
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
     transition: all 200ms ease;
     height: 100vh;
 }
@@ -337,51 +430,7 @@ aside .sidebar a:hover {
 aside .sidebar a:hover span {
     margin-left: 1rem;
 }
-/* Estilo para el checkbox principal */
-.checkbox-principal {
-    cursor: pointer;
-    position: relative;
-    width: 20px; 
-    height: 20px; 
-    background-color: #fff; 
-    border: 2px solid #333; 
-    border-radius: 4px; 
-    transition: background-color 0.3s, border-color 0.3s; 
-    margin-right: 10px; 
-}
-/* Estilo para el checkbox principal cuando está marcado */
-.checkbox-principal:checked {
-    color: red;
-    background-color: red; 
-    border-color: red;
-}
 
-/* Estilo para el tick (✓) dentro de los checkboxes individuales cuando están marcados */
-.checkbox:checked::before {
-    content: '✓';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    color: #fff;
-}
-@keyframes fade-in {
-	5% {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-	}
-	90% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes load {
-	to {
-		transform: scaleX(1);
-	}
-}
 @media screen and (max-width: 1280px) {
 
     aside .logo h2{
@@ -397,7 +446,7 @@ aside .sidebar a:hover span {
         position: relative;
         margin-top: 1.8rem;
     }
-    .containerTotal{
+    .container{
         width: 94%;
         grid-template-columns: 7rem auto;
     }
@@ -409,4 +458,158 @@ aside .sidebar a:hover span {
         grid-template-columns: 1fr;
         gap: 0;
     }
+}
+
+
+/*=========== Div Buscador=============*/
+.contenedor-botones{
+    display: flex; 
+    flex-direction: row; 
+    gap: 20px;
+    align-items: center;
+    padding: 0px 0px 0px 10px; 
+    border-top: 1px solid #6A90F1; 
+    border-bottom: 1px solid #6A90F1;
+    height: 80px;
+}
+
+.button-arriba {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding:10px 30px; 
+    font-size:10px;
+    color: #6a90f1;
+    cursor: pointer;
+    border-radius: 10px ;
+    border: 0.1em solid #6a90f1; /* Color del borde */
+    outline: 1px solid #6a90f1;
+    transition: color 1s;
+}
+
+.button-arriba:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.button-eliminar {
+    display: none;
+    height: 40px;
+    padding:10px 30px; 
+    font-size:10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    border-radius: 10px ;
+    border: 0.1em solid red; /* Color del borde */
+    outline: 1px solid red;
+    transition: color 1s;
+}
+
+.button-eliminar:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.separador {
+    border: 1px solid #6A90F1; /* Línea negra como separador hacia arriba */
+    height: 60px;
+    width: 1px; 
+    margin: 0px 10px;
+  }
+#search-icon {
+    display: flex;
+    color: #6a90f1;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ /* Buscador */
+ .input-buscador{
+	display: flex;
+    height: 40px;
+    width: 180px;
+	flex-direction: row;
+	gap: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #6a90f1;
+}
+
+.input-buscador input::placeholder {
+    color: #6a90f1;
+    font-weight: lighter;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.input-buscador input textarea::placeholder{
+    color: #6a90f1;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.input-buscador input{
+	width: 100%;
+    height: 100%;
+    background: var(--color-background);
+    background-color: transparent;
+}
+
+
+/*============= Estilo para el checkbox principal ===============*/
+.checkbox-principal {
+    cursor: pointer;
+    position: relative;
+    width: 16px; 
+    height: 16px; 
+    background-color: #fff; 
+    border: 2px solid #333; 
+    border-radius: 4px; 
+    transition: background-color 0.3s, border-color 0.3s; 
+    margin-right: 10px; 
+}
+/* Estilo para el checkbox principal cuando está marcado */
+.checkbox-principal:checked {
+    color: red;
+    background-color: red; 
+    border-color: red;
+}
+
+/* Estilos para el checkbox*/
+
+.checkbox {
+    position: relative;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-right: 10px;
+}
+
+.checkbox:checked {
+    background-color: #007bff; 
+    border-color: #007bff; 
+}
+
+.checkbox + label {
+    font-size: 16px; /* Tamaño de fuente del texto */
+    vertical-align: middle; /* Alinea verticalmente el texto con el checkbox */
+}
+/* Estilo para el tick (✓) dentro de los checkboxes individuales cuando están marcados */
+.checkbox:checked::before {
+    content: '-';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
 }

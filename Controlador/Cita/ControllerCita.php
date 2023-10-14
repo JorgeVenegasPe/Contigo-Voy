@@ -3,14 +3,14 @@ class usernameControlerCita{
     private $model;
     public function __construct()
     {
-        require_once("../Modelo/Cita/ModelCita.php");
+        require_once("C:/xampp/htdocs/Contigo-Voy/Modelo/Cita/ModelCita.php");
         $this->model=new UserModelCita();
     }
 
     // Guardar datos de la cita
     public function guardar($IdPaciente, $MotivoCita, $EstadoCita, $FechaInicioCita, $DuracionCita,$FechaFinCita, $TipoCita, $ColorFondo, $IdPsicologo, $CanalCita, $EtiquetaCita) {
         $id = $this->model->insertarCita($IdPaciente, $MotivoCita, $EstadoCita, $FechaInicioCita, $DuracionCita,$FechaFinCita , $TipoCita, $ColorFondo, $IdPsicologo, $CanalCita, $EtiquetaCita);
-        return ($id != false) ? header("Location:../../Vista/citas.php") : header("Location:../../Vista/citas.php");
+        return ($id != false) ? header("Location:../../Vista/RegCitas.php") : header("Location:../../Vista/RegCitas.php");
     }
 
     // Para ver datos completos de la cita
@@ -20,13 +20,13 @@ class usernameControlerCita{
 
     // Eliminar cita seleccionada 
     public function eliminar($id){
-        return ($this->model->eliminar($id)) ?  header("Location:../../Vista/Tablacitas.php") : header("Location:../../Vista/Tablacitas.php");
+        return ($this->model->eliminar($id)) ?  header("Location:../../Vista/TablaCitas.php") : header("Location:../../Vista/TablaCitas.php");
     }
 
     // Modificar cita completa
     public function modificarCita($IdCita,$FechaInicio, $EstadoCita,$MotivoCita,$Duracioncita,$TipoCita,$CanalCita,$EtiquetaCita ,$ColorFondo){
         return ($this->model->modificarCita($IdCita,$FechaInicio, $EstadoCita,$MotivoCita,$Duracioncita,$TipoCita,$CanalCita,$EtiquetaCita ,$ColorFondo)) !=false ? 
-        header("Location:../../Vista/citas.php") : header("Location:../../Vista/citas.php");
+        header("Location:../../Vista/RegCitas.php") : header("Location:../../Vista/RegCitas.php");
     }
 
     // Mostrar datos de cita seleccionada
@@ -53,7 +53,7 @@ class usernameControlerCita{
     
             return $datos;
         } else {
-            header("Location: ../../Vista/citas.php");
+            header("Location: ../../Vista/RegCitas.php");
         }
     }
     

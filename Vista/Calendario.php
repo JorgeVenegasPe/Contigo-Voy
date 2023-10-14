@@ -33,12 +33,14 @@ if (isset($_SESSION['NombrePsicologo'])){
   ?> 
   <!----------- end of aside -------->
   <main >
-    <?php
-    require_once '../Issets/views/Info.php';
-    ?> 
     <!----------- Calendario ------------------>
     <div class="container-fluid2">
-      <h4 style="text-align:center">Calendario de Citas</h4>
+      <div class="center-divs">
+        <h4 style="color: #49c691;">Calendario de Citas</h4>
+        <?php
+          require_once '../Issets/views/Info.php';
+        ?>
+      </div>
       <div id="Calendario1"></div>
     </div>
 
