@@ -22,7 +22,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <script src="../Issets/Bootstrap/bootstrap.min.js"></script>
     <script src="../Issets/Bootstrap/datatables.min.js"></script>
     <script src="../Issets/Bootstrap/bootstrap-clockpicker.js"></script> 
-    <script src="../Issets/js/moment-with-locales.js"></script>
+    <script src="../Issets/Bootstrap/moment-with-locales.js"></script>
     <script src="../Issets/fullcalendar/main.js"></script>
     <title>Calendario</title>
 </head>

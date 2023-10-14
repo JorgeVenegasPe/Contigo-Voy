@@ -165,7 +165,10 @@ if (isset($_SESSION['NombrePsicologo'])) {
                   <?php endif; ?>
                 </div>
               </div>
-                <a href="RegPaciente.php">Agregar Paciente</a>
+              <div style="justify-content: center;display: flex;">
+
+              <a  href="RegPaciente.php">Agregar Paciente</a>
+              </div>
             </div>
           </div>
 

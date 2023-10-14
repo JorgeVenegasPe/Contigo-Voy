@@ -9,6 +9,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="../issets/css/paciente.css">
     <link rel="stylesheet" href="../issets/css/main.css">
     <link rel="icon" href="../Issets/images/contigovoyico.ico">
@@ -74,7 +75,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                             <tbody id="myTable" class="tu-tbody-clase">
                                 <tr >
                                     <td>
-                                        <input type="checkbox" class="checkbox" id="checkbox<?=$row[0]?>" value="<?=$row[0]?>">
+                                        <input type="checkbox" class="checkbox" id="checkbox<?=$patient[0]?>" value="<?=$patient[0]?>">
                                     </td>
                                     <td style="text-align: start; font-weight:bold;padding: 14px;">
                                         <a style="cursor:pointer"
@@ -115,14 +116,69 @@ if (isset($_SESSION['NombrePsicologo'])){
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="buttonTab"><span class="material-symbols-sharp">more_vert</span></button>
+                                        <button class="buttonTab" onclick="openOptions(<?=$patient[0]?>)">
+                                            <span class="material-symbols-sharp">more_vert</span>
+                                        </button>
+                                        <div id="dropdown-content-<?=$patient[0]?>" class="dropdown-content">
+                                            <a type="button" class="btne" onclick="openModalEliminar('<?=$patient[0]?>')">
+                                            <span class="material-symbols-outlined">delete</span>
+                                                <p>Eliminar</p>
+                                            </a>
+                                            <a type="button" class="btnm" onclick="openModalEditar('<?=$patient[0]?>')">
+                                                <span class="material-symbols-outlined">edit</span>
+                                                <p>Editar</p>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
+                                <!-- Modal de eliminación -->
+                            <div id="modalEliminar<?=$patient[0]?>" class="modal">
+                                <div class="containerModalEliminar">
+                                    <a href="#" class="close"  onclick="closeModalEliminar('<?=$patient[0]?>')">&times;</a>
+                                    <div class="message_dialog">
+                                        <h2 style="font-size:1rem; color:#49c691;padding: 0.3rem 0 1rem 1.3rem">
+                                        ¿Estás seguro de eliminar la cita de <?=$patient[1]?>?</h2>
+                                        <div class="modal-button-container">
+                                                <button class="button-modal button-cancelar" onclick="closeModalEliminar('<?=$patient[0]?>')">Cancelar</button>
+                                                <button class="button-modal button-delete">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal de edicion -->
+                            <div id="modalEditar<?=$patient[0]?>" class="modal">
+                               <div class="containerModalEliminar">
+                                   <a href="#" class="close"  onclick="closeModalEditar('<?=$patient[0]?>')">&times;</a>
+                                   <div class="message_dialog">
+                                       <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$patient[1]?></h2>
+                                       <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog">
+                                        <input type="hidden" name="id_cita" value="<?=$patient[0]?>">
+                                            <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
+                                        <label for="motivo">Motivo:</label>
+                                            <input type="text" name="motivo" id="motivo" value="<?=$patient[2]?>"><br>
+                                        <label for="estado">Estado:</label>
+                                        <select name="estado" id="estado" value="<?=$patient[3]?>" >
+                                            <option value="Pendiente">Se require confirmacion</option>
+                                            <option value="Cancelada">Confirmado</option>
+                                            <option value="Realizada">Ausencia del paciente</option>
+                                        </select><br>                                   
+                                        <label for="fecha_inicio">Fecha de Inicio:</label>
+                                           <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$patient[4]?>"><br>
+                                        <label for="hora_inicio">Hora de Inicio:</label>
+                                            <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$patient[4]?>"><br>
+                                        <label for="duracion">Duracion:</label>
+                                             <input type="number" name="duracion" id="duracion" value="<?=$patient[5]?>"><br>                                                
+                                        </form>
+                                        <div class="modal-button-container">
+                                            <button class="button-modal button-cancelar" onclick="closeModalEditar('<?=$patient[0]?>')">Cancelar</button>        
+                                            <button class="button-modal button-editar">Guardar</button>
+                                        </div>
+                                   </div>
+                               </div>
+                        </div>
                         <?php endforeach;?>             
                     <?php endif;?>
+                            </tbody>
                 </table>
                 <div class="patient-details">
             
@@ -130,8 +186,49 @@ if (isset($_SESSION['NombrePsicologo'])){
             </div>
         </main>
     </div>
-    <script src="../Issets/js/dashboard.js"></script>
     <script src="../Issets/js/pacientes.js"></script>
+    <script src="../Issets/js/dashboard.js"></script>
+    <script>
+ //Funciones del modal
+function openModalEditar(id) {
+    closeOptions(id);
+    document.getElementById('modalEditar' + id).style.display = 'block';
+}
+
+function closeModalEditar(id) {
+    document.getElementById('modalEditar' + id).style.display = 'none';
+}
+
+function openModalEliminar(id) {
+    closeOptions(id);
+    document.getElementById('modalEliminar' + id).style.display = 'block';
+}
+
+function closeModalEliminar(id) {
+    document.getElementById('modalEliminar' + id).style.display = 'none';
+}
+function closeOptions(id) {
+    var dropdownContent = document.querySelector("#dropdown-content-" + id);
+    dropdownContent.style.display = "none";
+}
+
+function openOptions(id) {
+    var dropdownContent = document.querySelector("#dropdown-content-" + id);
+
+    // Comprueba si el dropdown ya está abierto
+    if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+    } else {
+        var dropdownContents = document.getElementsByClassName("dropdown-content");
+
+        for (var i = 0; i < dropdownContents.length; i++) {
+            dropdownContents[i].style.display = "none";
+        }
+
+        dropdownContent.style.display = "block";
+    }
+}
+    </script>
 </body>
 </html>
 <?php
