@@ -16,6 +16,53 @@ if (isset($_SESSION['NombrePsicologo'])){
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos del Paciento</title>
 </head>
+<style>
+
+  @media (max-width: 1704px) {
+    .input-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: var(--color-background);
+    height: 33px;
+}
+.checkout-information, .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+
+.checkout-information {
+      background: #8FBBC8;
+      width: 48%;
+      height: 100%;
+      border-radius: var(--card-border-radius);
+      padding: var(--card-padding);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 300ms ease;
+  }
+
+  
+form {
+    margin-inline: auto;
+    max-width: 990px;
+    text-align: center;
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    padding: 25px;
+    margin-top: -2.6%;
+}
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    margin-top: -3.5%;
+}
+}
+</style>
 <body>    
 <div class="container">
 <?php

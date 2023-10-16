@@ -1,0 +1,210 @@
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: initial;
+    margin-bottom: initial;
+    font-weight: bold;
+    line-height: initial;
+}
+p {
+    margin-top: initial;
+    margin-bottom: initial;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+#Calendario1{
+    padding: 3em;
+    border-radius: 2em;
+    background-color: #ffffff;
+    box-shadow: 0 2rem 3rem  rgba(132, 139, 200, 0.18);
+}
+#Calendario1 .fc-event {
+    background-color: inherit;
+  }
+
+  .input-group{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  
+  .modal {
+   z-index: 1055; 
+  }
+  #button-addon2{
+    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 9px;
+  background-color: #49c691;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 7px;
+  border: 0.1em solid #49c691; /* Color del borde */
+  padding: 2px;
+  outline: 2px solid #49c691;
+  transition: color 1s;
+  }
+.container-fluid2{
+    margin-inline: auto;
+    width: auto;
+    height: auto;
+    max-width:1200px;
+}
+.container-calendario{
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap:1.8rem;
+    grid-template-columns: 17rem auto;
+}
+.fc-col-header-cell-cushion{
+    color: #6a91f4;
+    
+}
+.fc-col-header-cell-cushion:hover{
+    color: #000000;
+    
+}
+.fc-toolbar-title {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #6a91f4;
+  }
+.fc-prev-button,
+.fc-prev-button.fc-button,
+.fc-prev-button.fc-button-primary {
+border-color: #49c691;
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+
+.fc-next-button,
+.fc-next-button.fc-button,
+.fc-next-button.fc-button-primary {
+border-color: #49c691;
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+.fc-today-button.fc-button.fc-button-primary {
+border-color: #49c691;
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+/* Cambiar color del botón dayGridMonth */
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+.fc-dayGridMonth-button.fc-button.fc-button-primary{
+background-color: #49c691;
+
+}
+/* Cambiar color del botón timeGridWeek */
+.fc-timeGridWeek-button.fc-button.fc-button-primary.fc-button-active{
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+
+/* Cambiar color del botón timeGridDay */
+.fc-timeGridDay-button.fc-button.fc-button-primary.fc-button-active {
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+
+/* Cambiar color del botón timeGridWeek */
+.fc-timeGridWeek-button,
+.fc-timeGridWeek-button.fc-button,
+.fc-timeGridWeek-button.fc-button-primary {
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+
+/* Cambiar color del botón timeGridDay */
+.fc-timeGridDay-button,
+.fc-timeGridDay-button.fc-button,
+.fc-timeGridDay-button.fc-button-primary {
+background-color: #49c691;
+/* Otros estilos que desees aplicar */
+}
+.modal-content{
+max-width: 690px;
+width: 580px;
+color: #9274b3;
+margin-inline: auto;
+margin-top: 80px;
+background-color: #fff;
+border-style: double;
+padding: 15px 35px;
+border-radius: 2em;
+box-shadow: 0 1px 1rem 
+    rgba(0, 0, 0, 0.1);
+}
+label{
+font-size: 15px;
+color: #9274b3;
+display: flex;
+font-weight: bold;
+align-items: center;
+gap: 1.1rem;
+}
+
+.input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.form-select {
+	width: 100%;
+	padding: 10px 15px;
+	border-radius: 8px;
+	background-color: #f6f6f9;
+    color: #000000;
+    font-weight: bold;
+}
+
+.form-control{
+	width: 100%;
+	padding: 10px 15px;
+	border-radius: 8px;
+    border: none;
+    background-color: #f6f6f9;
+    }
+
+.close {
+color: #aaa;
+margin-left: 490px;
+cursor: pointer;
+margin-bottom: -15px;
+font-size: 28px;
+font-weight: bold;
+}
+.form-row{
+flex-direction: row;
+}
+#BotonAgregar{
+background-color: #49c691;
+border-color: #49c691;
+font-size: 15px;
+
+}#BotonModificar{
+background-color: lightgreen;
+border-color: lightgreen;
+font-size: 15px;
+
+}#BotonBorrar{
+background-color: rgb(212, 46, 46);
+border-color: rgb(212, 46, 46);
+font-size: 15px;
+
+}#cancelarr{
+background-color:#2682d9;
+border-color: blue;
+font-size: 15px;
+}

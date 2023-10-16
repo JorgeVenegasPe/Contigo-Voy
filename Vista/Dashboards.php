@@ -39,7 +39,7 @@ if (isset($_SESSION['NombrePsicologo'])) {
       ?>
       <main class="animate__animated animate__fadeIn">
         <div class="contenedor_dsh" >
-          <div>
+          <div class="divis">
             <h4 >¡Buenos dias, <?= $_SESSION['NombrePsicologo'] ?>!</h4>
             <h1>Tienes <span style="color:#416cd8; font-weight: bold; font-size:20px"><?= count($totalRegistrosEnCitasHora) ?> citas</span> programadas para hoy</h1>
           </div>
@@ -165,12 +165,15 @@ if (isset($_SESSION['NombrePsicologo'])) {
                   <?php endif; ?>
                 </div>
               </div>
-                <a href="RegPaciente.php" style="padding: 20px;">Agregar Paciente</a>
+              <div style="justify-content: center;display: flex;">
+
+              <a  href="RegPaciente.php">Agregar Paciente</a>
+              </div>
             </div>
           </div>
 
           <!--<h2>Estadisticas</h2>-->
-          <div class="center-divs">
+          <div class="center-divs" id="center-divis">
             <div class="insights" style="color: #49c691; ">
               <div class="sales">
                 <div class="middle">
@@ -199,7 +202,7 @@ if (isset($_SESSION['NombrePsicologo'])) {
               <!------------------- Final del income -------------------->
             </div>
             <div class="div-grafico">
-              <h2 style="text-align: center;">Citas del Ultimo mes</h2>
+              <h2 style="text-align: center;">Citas del Último mes</h2>
               <div class="grafico2">
                 <div class="grafico">
                   <canvas id="myPieChart"></canvas>

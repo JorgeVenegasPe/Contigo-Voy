@@ -17,9 +17,38 @@ if (isset($_SESSION['NombrePsicologo'])){
     <title>Datos del Paciente</title>
 </head>
 <style>
-  main {
-    margin: 10px 5px;
+
+  @media (max-width: 1704px) {
+  .checkout-information {
+      background: #8FBBC8;
+      width: 48%;
+      height: 100%;
+      border-radius: var(--card-border-radius);
+      padding: var(--card-padding);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 300ms ease;
   }
+
+  .input-group2 {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      margin-bottom: 0px;
+  }
+
+  .button-container {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      margin-top: -2%;
+  }
+  .checkout-information, .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+  }
+}
 </style>
 <body>  
 <div class="container">
@@ -37,7 +66,7 @@ if (isset($_SESSION['NombrePsicologo'])){
         <form action="../Crud/Paciente/guardarPaciente.php" method="post" >
         <h4><a href="TablaPacientes.php" style="float: left;color: #6B93F3;"><</a>Datos del Paciente</h4>
         <br>
-        <div style="display:flex; flex-direction:row; gap:70px;">
+        <div style="display:flex; flex-direction:row; gap:70px;justify-content: center;">
           <div class="checkout-information">
             <div class="input-group2">
               <div class="input-group">
