@@ -221,3 +221,26 @@ select {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: #000;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: 1px solid #49c691;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: rgb(64, 192, 52);
+}
+
+.pagination .current-page {
+    background-color: #4CAF50;
+    color: #49c691;
+}

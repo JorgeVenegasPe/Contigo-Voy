@@ -1,5 +1,5 @@
 <?php
-require("C:/xampp/htdocs/Psicologia-Agenda-Clinica-Master/conexion/conexion.php");
+require("C:/xampp/htdocs/Contigo-Voy/conexion/conexion.php");
 $con = new conexion();
 $conn = $con->conexion();
 
