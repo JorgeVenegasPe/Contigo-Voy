@@ -154,13 +154,14 @@ if (isset($_SESSION['NombrePsicologo'])){
                                         <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
                                         <label for="duracion">Duracion:</label>
                                         <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>
-                                    </form>
-                                    <div class="modal-button-container">
+                                        <div class="modal-button-container">
                                         <button class="button-modal button-cancelar"
                                             onclick="closeModalEditar('<?=$row[0]?>')">Cancelar</button>
                                         <button type="submit" class="button-modal button-editar">Guardar</button>
 
                                     </div>
+                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
