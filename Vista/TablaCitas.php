@@ -108,51 +108,6 @@ if (isset($_SESSION['NombrePsicologo'])){
                                    </div>
                                 </td>
                             </tr>
-                            <!-- Modal de eliminación -->
-                            <div id="modalEliminar<?=$row[0]?>" class="modal">
-                                <div class="containerModalEliminar">
-                                    <a href="#" class="close"  onclick="closeModalEliminar('<?=$row[0]?>')">&times;</a>
-                                    <div class="message_dialog">
-                                        <h2 style="font-size:1rem; color:#49c691;padding: 0.3rem 0 1rem 1.3rem">
-                                        ¿Estás seguro de eliminar la cita de <?=$row[1]?>?</h2>
-                                        <div class="modal-button-container">
-                                                <button class="button-modal button-cancelar" onclick="closeModalEliminar('<?=$row[0]?>')">Cancelar</button>
-                                                <button class="button-modal button-delete">Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal de edicion -->
-                            <div id="modalEditar<?=$row[0]?>" class="modal">
-                               <div class="containerModalEliminar">
-                                   <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
-                                   <div class="message_dialog">
-                                       <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
-                                       <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog">
-                                        <input type="hidden" name="id_cita" value="<?=$row[0]?>">
-                                            <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
-                                        <label for="motivo">Motivo:</label>
-                                            <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
-                                        <label for="estado">Estado:</label>
-                                        <select name="estado" id="estado" value="<?=$row[3]?>" >
-                                            <option value="Pendiente">Se require confirmacion</option>
-                                            <option value="Cancelada">Confirmado</option>
-                                            <option value="Realizada">Ausencia del paciente</option>
-                                        </select><br>                                   
-                                        <label for="fecha_inicio">Fecha de Inicio:</label>
-                                           <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
-                                        <label for="hora_inicio">Hora de Inicio:</label>
-                                            <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
-                                        <label for="duracion">Duracion:</label>
-                                             <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
-                                        </form>
-                                        <div class="modal-button-container">
-                                            <button class="button-modal button-cancelar" onclick="closeModalEditar('<?=$row[0]?>')">Cancelar</button>        
-                                            <button class="button-modal button-editar">Guardar</button>
-                                        </div>
-                                   </div>
-                               </div>
-                        </div>
                         <?php endforeach;?>
                     <?php else:?>
                         <tr>
@@ -178,8 +133,56 @@ if (isset($_SESSION['NombrePsicologo'])){
         <p id="notification-text"></p>
         <span class="notification__progress"></span>
     </div>
-
 </div>
+<?php if ($rows) :?>
+    <?php foreach ($rows as $row): ?>
+    <!-- Modal de eliminación -->
+    <div id="modalEliminar<?=$row[0]?>" class="service-modal flex-center">
+        <div class="service-modal-body">
+            <a class="close"  onclick="closeModalEliminar('<?=$row[0]?>')">&times;</a>
+            <span style="font-size:50px; color:red" class="material-symbols-sharp">info</span>
+            <h2 style="font-size:20px">¿Estás seguro de eliminar la cita de <?=$row[1]?>?</h2>
+            <br>
+            <div class="modal-button-container">
+                <a class="button-modal button-cancelar" onclick="closeModalEliminar('<?=$row[0]?>')">Cancelar</a>
+                <a href="../Crud/Cita/eliminarCita.php?id=<?=$row[0]?>" class="button-modal button-delete">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de edicion -->
+    <div id="modalEditar<?=$row[0]?>" class="service-modal flex-center">
+       <div class="service-modal-body">
+           <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
+           <div class="message_dialog">
+               <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
+               <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog">
+                <input type="hidden" name="id_cita" value="<?=$row[0]?>">
+                    <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
+                <label for="motivo">Motivo:</label>
+                    <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado" value="<?=$row[3]?>" >
+                    <option value="Pendiente">Se require confirmacion</option>
+                    <option value="Cancelada">Confirmado</option>
+                    <option value="Realizada">Ausencia del paciente</option>
+                </select><br>                                   
+                <label for="fecha_inicio">Fecha de Inicio:</label>
+                   <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
+                <label for="hora_inicio">Hora de Inicio:</label>
+                    <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
+                <label for="duracion">Duracion:</label>
+                     <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
+                </form>
+                <div class="modal-button-container">
+                    <button class="button-modal button-cancelar" onclick="closeModalEditar('<?=$row[0]?>')">Cancelar</button>        
+                    <button class="button-modal button-editar">Guardar</button>
+                </div>
+           </div>
+       </div>
+    </div>           
+    <?php endforeach;?>             
+<?php endif;?>
+
 <script src="../issets/js/Dashboard.js"></script>
 <script src="../Issets/js/citas.js"></script>
 <script>
@@ -314,20 +317,24 @@ $(document).ready(function() {
 //Funciones del modal
 function openModalEditar(id) {
     closeOptions(id);
-    document.getElementById('modalEditar' + id).style.display = 'block';
+    var modal = document.getElementById('modalEditar' + id);
+    modal.classList.add('active');
 }
 
 function closeModalEditar(id) {
-    document.getElementById('modalEditar' + id).style.display = 'none';
+    var modal = document.getElementById('modalEditar' + id);    
+    modal.classList.remove('active');
 }
 
 function openModalEliminar(id) {
     closeOptions(id);
-    document.getElementById('modalEliminar' + id).style.display = 'block';
+    var modal = document.getElementById('modalEliminar' + id);
+    modal.classList.add('active');
 }
 
 function closeModalEliminar(id) {
-    document.getElementById('modalEliminar' + id).style.display = 'none';
+    var modal = document.getElementById('modalEliminar' + id);
+    modal.classList.remove('active');
 }
 function closeOptions(id) {
     var dropdownContent = document.querySelector("#dropdown-content-" + id);
@@ -348,6 +355,7 @@ function openOptions(id) {
         }
 
         dropdownContent.style.display = "block";
+        dropdownContent.style.marginLeft = "-71px";
     }
 }
 

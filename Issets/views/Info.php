@@ -9,7 +9,7 @@
         </div>
         <div>
             <div>
-                <a class="ajuste-info" style="cursor:pointer;" onclick="openModalAjustes()">
+                <a class="ajuste-info">
                     <span class="material-symbols-sharp" translate="no">settings</span>
                 </a>
             </div>
@@ -23,13 +23,14 @@
             <h3 class="cerrar-info">Cerrar Sesion</h3>
         </a>
     </div>
-<script>
-    function openModalAjustes() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    }
-    function closeModalAjustes() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "none";
-    }
- </script>
+
+    <div class="navigation">
+        <div class="form-info">
+        <a href="#" class="closeaaa" >&times;</a>
+            <h3>hola</h3>
+            <h3>hola</h3>
+            <h3>hola</h3>
+            <h3>hola</h3>
+            <h3>hola</h3>
+        </div>
+    </div>
