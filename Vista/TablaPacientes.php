@@ -288,7 +288,7 @@ if (isset($_SESSION['NombrePsicologo'])){
         <?php endforeach;?>             
     <?php endif;?>
     <script src="../Issets/js/pacientes.js"></script>
-    <script src="../Issets/js/main.js"></script>
+    <script src="../Issets/js/dashboard.js"></script>
     <script>
  //Funciones del modal
 function openModalEditar(id) {

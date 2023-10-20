@@ -154,24 +154,97 @@ if (isset($_SESSION['NombrePsicologo'])){
        <div class="service-modal-body">
            <a href="#" class="close"  onclick="closeModalEditar('<?=$row[0]?>')">&times;</a>
            <div class="message_dialog">
-               <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?=$row[1]?></h2>
+               <h2 style="font-size:20px; color:#49c691">Editar Cita de <?=$row[1]." ".$row[2]?></h2>
                <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog">
-                <input type="hidden" name="id_cita" value="<?=$row[0]?>">
-                    <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
-                <label for="motivo">Motivo:</label>
-                    <input type="text" name="motivo" id="motivo" value="<?=$row[2]?>"><br>
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado" value="<?=$row[3]?>" >
-                    <option value="Pendiente">Se require confirmacion</option>
-                    <option value="Cancelada">Confirmado</option>
-                    <option value="Realizada">Ausencia del paciente</option>
-                </select><br>                                   
-                <label for="fecha_inicio">Fecha de Inicio:</label>
-                   <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?=$row[4]?>"><br>
-                <label for="hora_inicio">Hora de Inicio:</label>
-                    <input type="time" name="hora_inicio" id="hora_inicio" value="<?=$row[4]?>"><br>
-                <label for="duracion">Duracion:</label>
-                     <input type="number" name="duracion" id="duracion" value="<?=$row[5]?>"><br>                                                
+	            <div class="input-group-modal">
+	    	        <h3 for="MotivoCita">Motivo de la Consutla <b style="color:red">*</b></h3>
+	    	        <textarea style="resize: none; padding: 1.2em 1em 2.8em 1em;font-family: 'Poppins', sans-serif;	font-size: 14px;" type="text" id="MotivoCita" name="MotivoCita"  required><?=$row[2]?></textarea>
+	            </div>
+              <div class="input-group2">
+                <div class="input-group-modal">
+                  <h3 for="EstadoCita">Estado de la Cita <b style="color:red">*</b></h3>
+                  <select style="width:136%" class="input" value="<?=$row[3]?>" id="EstadoCita" name="EstadoCita"required>
+                        <option value="">Seleccione un Estado</option>
+                        <option value="Se requiere confirmacion">Se requiere confirmacion</option>
+                        <option value="Confirmado">Confirmado</option>
+                        <option value="Ausencia del paciente">Ausencia del paciente</option>
+                    </select>
+                </div>
+                <div class="input-group-modal" style="width:50%; margin-left: 65px;">
+                    <h3 for="ColorFondo">Color de Cita <b style="color:red">*</b></h3>
+                    <input type="color" value="#f38238" id="ColorFondo" name="ColorFondo" list="colorOptions">
+                        <datalist id="colorOptions">
+                          <option value="#b4d77b">Rojo</option>
+                          <option value="#9274b3">Verde</option>
+                          <option value="#f38238">Azul</option>
+                        </datalist>
+                </div>
+              </div>
+                <div class="input-group2">
+                    <div class="input-group-modal" style="width:49%">
+                        <h3 for="FechaInicioCita">Fecha de Cita<b style="color:red">*</b></h3>
+                        <input  type="date" id="FechaInicioCita" name="FechaInicioCita" min="<?= $fechamin ?>" value="<?= $fechamin ?>">
+                    </div>
+                    <div class="input-group-modal" style="width:49%">
+                        <h3 for="HoraInicio">Hora de Cita <b style="color:red">*</b></h3>
+                        <input type="time" id="HoraInicio" name="HoraInicio" />
+                    </div>
+                </div>
+                <div class="input-group2">
+                    <div class="input-group-modal" style="width:49%">
+                      <h3 for="TipoCita">Tipo de Cita <b style="color:red">*</b></h3>
+                      <select class="input" id="TipoCita" name="TipoCita" required>
+                            <option value="">Seleccione un Tipo </option>
+                            <option value="Primera Visita">Primera Visita</option>
+                            <option value="Visita de control">Visita de control</option>
+                        </select>
+                       </div>
+                    <div class="input-group-modal">
+                        <h3 style="margin-left: 65px;" for="DuracionCita">Duracion <b style="color:red">*</b></h3>
+                      <select style="margin-left: 65px; width:100px;" class="input" id="DuracionCita" name="DuracionCita" required>
+                            <option value="5'">5'</option>
+                            <option value="10'">10'</option>
+                            <option value="15'">15'</option>
+                            <option value="20'">20'</option>
+                            <option value="30'">30'</option>
+                            <option value="40'">40'</option>
+                            <option value="45'">45'</option>
+                            <option value="50'">50'</option>
+                            <option value="60'">60'</option>
+                            <option value="90'">90'</option>
+                            <option value="120'">120'</option>
+                        </select>
+                    </div>
+                </div>
+	              <div class="input-group-modal" style="display: none;">
+	    	          <h3 for="FechaFin" >FechaFin <b style="color:red">*</b></h3>
+	    	          <input id="FechaFin" type="text" name="FechaFin"  readonly/>
+	              </div>
+                <div class="input-group2">
+                    <div class="input-group-modal" style="width:58%">
+                      <h3 for="CanalCita">Canal de Atraccion <b style="color:red">*</b></h3>
+                      <select class="input" id="CanalCita" name="CanalCita" required>
+                            <option value="">Seleccione una Atraccion</option>
+                            <option value="Cita Online">Cita Online</option>
+                            <option value="Marketing Directo">Marketing Directo</option>
+                            <option value="Referidos">Referidos</option>
+                        </select>
+                    </div>
+                    <div class="input-group-modal" style="width:55%">
+                      <h3 for="EtiquetaCita">Etiqueta <b style="color:red">*</b></h3>
+                      <select class="input" id="EtiquetaCita" name="EtiquetaCita" required>
+                            <option value="">Seleccione una Etiqueta</option>
+                            <option value="Consulta">Consulta</option>
+                            <option value="Familia Referida">Familia Referida</option>
+                            <option value="Prioridad">Prioridad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group-modal" style="display: none">
+                  <h3 for="IdPsicologo">IdPsicologo </h3>
+                  <input type="text" id="IdPsicologo"  name="IdPsicologo" value="<?=$_SESSION['IdPsicologo']?>" placeholder="Ingrese algun Antecedente Medico" />
+                </div>
+              <br>                                           
                 </form>
                 <div class="modal-button-container">
                     <button class="button-modal button-cancelar" onclick="closeModalEditar('<?=$row[0]?>')">Cancelar</button>        
@@ -186,6 +259,7 @@ if (isset($_SESSION['NombrePsicologo'])){
 <script src="../issets/js/Dashboard.js"></script>
 <script src="../Issets/js/citas.js"></script>
 <script>
+    
         // Obtener elementos del formulario
     var fechaInicioInput = document.getElementById('FechaInicioCita');
     var horaInicioInput = document.getElementById('HoraInicio');
@@ -228,20 +302,6 @@ if (isset($_SESSION['NombrePsicologo'])){
         var minutes = String(date.getMinutes()).padStart(2, '0');
         return hours + ':' + minutes;
     }
-
-    window.addEventListener('DOMContentLoaded', (event) => {
-    const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notification-text');
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const enviado = urlParams.get('enviado');
-
-    if (enviado === 'true') {
-        notification.style.display = 'block';
-        notificationText.textContent = 'Enviado Correctamente ✔️';
-        history.replaceState(null, null, window.location.pathname);
-    }
-});
   // Buscador del paciente según su id
   $(document).ready(function() {
     $('.Codigo').click(function() {

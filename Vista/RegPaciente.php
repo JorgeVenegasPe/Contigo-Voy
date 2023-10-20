@@ -163,11 +163,12 @@ if (isset($_SESSION['NombrePsicologo'])){
           </div>
         </form>
     </div>
-    <div id="notification" class="notification">
+  </main>
+  
+  <div id="notification" style="display: none;"  class="notification">
       <p id="notification-text"></p>
       <span class="notification__progress"></span>
     </div>
-  </main>
   <script src="../Issets/js/Dashboard.js"></script>
 <script>
 

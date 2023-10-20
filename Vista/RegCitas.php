@@ -170,14 +170,28 @@ if (isset($_SESSION['NombrePsicologo'])){
         </div>
       </form>
     </div>
-  </main>  
-  <div id="notification" style="display: none;" class="notification">
+  </main>
+</div>
+  
+<div id="notification" style="display: none;" class="notification">
       <p id="notification-text"></p>
       <span class="notification__progress"></span>
   </div>
-</div>
 <script src="../issets/js/Dashboard.js"></script>
 <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notification-text');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const enviado = urlParams.get('enviado');
+
+    if (enviado === 'true') {
+        notification.style.display = 'block';
+        notificationText.textContent = 'Enviado Correctamente ✔️';
+        history.replaceState(null, null, window.location.pathname);
+    }
+});
 //Buscador del paciente segun su id 
 $(document).ready(function() {
     $('.codigoaa').click(function() {
@@ -285,19 +299,7 @@ $(document).ready(function() {
         return hours + ':' + minutes;
     }
 
-    window.addEventListener('DOMContentLoaded', (event) => {
-    const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notification-text');
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const enviado = urlParams.get('enviado');
-
-    if (enviado === 'true') {
-        notification.style.display = 'block';
-        notificationText.textContent = 'Enviado Correctamente ✔️';
-        history.replaceState(null, null, window.location.pathname);
-    }
-});
+    
 </script>
 </body>
 </html>

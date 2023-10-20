@@ -198,6 +198,7 @@ form {
 .buttonTab {
     font: inherit;
     text-decoration: none;
+    cursor: pointer;
     border: none;
     color: inherit;
     background-color: var(--color-white);
@@ -248,7 +249,22 @@ main {
 	border-radius: inherit;
 	animation: load 3s 0.25s linear forwards;
 }
-
+@keyframes fade-in {
+	5% {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	90% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes load {
+	to {
+		transform: scaleX(1);
+	}
+}
 .button {
     display: flex;
     justify-content: center;
@@ -763,7 +779,9 @@ aside .sidebar a:hover span {
     opacity: 1;
 }
 
-
+.ajuste-info{
+    cursor: pointer;
+}
 
 /* boton modal*/
 .button-modal {
