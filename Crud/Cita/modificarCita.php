@@ -1,11 +1,21 @@
 <?php
-require_once("../../Controlador/Cita/citaControlador.php");
+require_once("../../Controlador/Cita/ControllerCita.php");
 $obj = new usernameControlerCita();
 $FechaCitaInicio = $_POST['FechaInicioCita'];
 $HoraInicio = $_POST['HoraInicio'];
 $FechaInicio = $FechaCitaInicio . ' ' . $HoraInicio;
 
-$obj->modificarCita($_POST['IdCita'],$FechaInicio, $_POST['EstadoCita'], $_POST['MotivoCita'], $_POST['DuracionCita'], $_POST['tipoCita'], $_POST['CanalCita'], $_POST['EtiquetaCita'], $_POST['ColorFondo']);
+$obj->modificarCita(
+    $_POST['id_cita'],           // ID de la cita (name="id_cita" en el formulario)
+    $_POST['fecha_inicio'],      // Fecha de Inicio (name="fecha_inicio" en el formulario)
+    $_POST['EstadoCita'],            // Estado (name="estado" en el formulario)
+    $_POST['motivo'],            // Motivo (name="motivo" en el formulario)
+    $_POST['duracion'],          // Duración (name="duracion" en el formulario)
+    $_POST['tipoCita'],          // Agrega los otros campos que necesites aquí
+    $_POST['CanalCita'],
+    $_POST['EtiquetaCita'],
+    $_POST['ColorFondo']
+);
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -56,10 +66,10 @@ try {
                     <br><a href="https://gestion.contigo-voy.com" style="background-color: #9274b3; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer;">Acceso a la Pagina</a>
                     ';
     $mail->send();
-    header('Location: ../../Vista/citas.php?enviado=true');
+    header('Location: ../../Vista/TablaCitas.php?enviado=true');
     exit;
 } catch (Exception $e) {
-    header('Location: ../../Vista/citas.php?error=' . urlencode($mail->ErrorInfo));
+    header('Location: ../../Vista/TablaCitas.php?error=' . urlencode($mail->ErrorInfo));
     exit;
 }
 
