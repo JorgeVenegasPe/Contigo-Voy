@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-require("C:/xampp/htdocs/Psicologia-Agenda-Clinica-Master/conexion/conexion.php"); // Asegúrate de que la ruta sea correcta
+require("C:/xampp/htdocs/Contigo-Voy/conexion/conexion.php"); // Asegúrate de que la ruta sea correcta
 
 // Verificar si se ha recibido una solicitud POST con los IDs a eliminar
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['ids'])) {

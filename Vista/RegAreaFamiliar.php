@@ -17,7 +17,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <title>Datos del Paciento</title>
 </head>
 <body>    
-<div class="containerTotal">
+<div class="container">
 <?php
     require_once '../Issets/views/Menu.php';
   ?> 
@@ -29,7 +29,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <div class="container-form">
       <div class="recent-updates">
         <form action="../Crud/Paciente/guardarAreaFamiliar.php" method="post">
-        <h4><a href="RegPaciente.php" style="float: left;"><</a>Datos Familiares</h4>
+        <h4><a href="RegPaciente.php" style="float: left; color: #6B93F3;"><</a>Datos Familiares</h4>
         <br>
           <div style="display:flex; flex-direction:row; gap:70px;">
 			      <div class="checkout-information">
@@ -126,7 +126,7 @@ $(document).ready(function() {
 
       // Realizar la solicitud AJAX al servidor
       $.ajax({
-        url: 'Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
+        url: '../Crud/Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
         method: 'POST',
         data: { codigopac: codigopac, idPsicologo: idPsicologo },
         success: function(response) {
@@ -159,7 +159,7 @@ $(document).ready(function() {
 
     // Realizar la solicitud AJAX al servidor
     $.ajax({
-      url: 'Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
+      url: '../Crud/Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
       method: 'POST',
       data: { NomPaciente: NomPaciente, idPsicologo: idPsicologo },
       success: function(response) {

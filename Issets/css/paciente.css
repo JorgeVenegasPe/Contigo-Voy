@@ -1,0 +1,361 @@
+.container-paciente-tabla.active{
+    display: grid;
+    width: 100%;
+    margin: 20px;
+    gap :1rem;
+    grid-template-columns: auto auto ;
+}
+
+.container-paciente-tabla{
+    display: grid;
+    width: 100%;
+    margin: 20px;
+    grid-template-columns: auto 0rem;
+}
+
+.hidden {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 10px; 
+    max-height: 35%;    
+}
+
+tbody tr td:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+tbody tr td:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.buttoncita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: transparent;
+    color: #49c691;
+    cursor: pointer;
+    border-radius: 5px ;
+    border: 0.1em solid #49c691; /* Color del borde */
+    padding: 12px 40px;
+    outline: 1px solid #49c691;
+    transition: color 1s;
+}
+
+.buttoncita:hover {
+    color: black;
+    cursor: pointer;
+}
+
+
+
+.patient-details {
+    display: none;
+    width: 95%;
+    text-align: center;
+    color: #49c691;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    /* box-shadow: var(--box-shadow); */
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.checkout-informationPac,
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.input-group_1 {
+    display: flex;
+    gap: 5%;
+    flex-direction: row;
+    width: 50%;
+}
+.checkout-informationPac {
+	background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    transition: all 300ms ease;
+}
+.checkout-informationPac:hover{
+    box-shadow: none;
+}
+.input-group3{ /*   Añadi esta clase para mi formulario - Hans */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+.Letras{
+    display: flex;
+    width: 77%;
+    height: 45%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.visual{ /*Nueva clase creada para el forulario - Hans */
+    color: #49c691; 
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.arriba{ /*Nueva clase creada para el formulario - Hans */
+    color: #6A92F4;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: start;
+}
+
+.abajo{ /*Nueva clase creada para el formulario - Hans */
+    font-size: 0.90rem;
+    color: #89BEF5; /*Añadi un cambio de color - Hans */
+    font-weight: normal;
+    text-align: center;
+}
+
+.input-group4{  /*   Modifique esta clase para mi formulario - Hans */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between; /*Este codigo genera mi espaciado entre mis parrafos */
+    border-bottom: 1px solid rgb(176, 174, 174);  /*Este codigo coloca los bordes entre mis parrafos */
+}
+
+
+@media (max-width: 1462px) {
+    .visual {
+    color: #49c691;
+    font-size: 1.8rem;
+    font-weight: bold;
+    }
+    .arriba {
+        color: #6A92F4;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: start;
+    }
+    .ids{
+        width: 12%;
+    }
+}
+
+
+/*=========================== Formulario ==========================*/
+.input-group2 input, textarea, select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: var(--color-background);
+    color: #7B7C89;
+}
+.checkout-information,
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.checkout-information {
+	background: #8FBBC8;
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 300ms ease;
+}
+.checkout-information:hover{
+    box-shadow: none;
+}
+
+.input-group2{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.input-group input{
+	width: 100%;
+	padding: 10px 15px;
+	border-radius: 8px;
+	background-color:var(--color-background);
+    height: 100%;
+}
+.input-group h3 {
+    font-size: 0.80rem;
+    color: white;
+}
+
+
+
+
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* Estilos para el contenido del modal */
+  .containerModalEliminar {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 1rem;
+  }
+  /* Estilos para el fondo opaco */
+.modal-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  /* Estilos para el cuadro de diálogo del modal */
+  .modal-dialog {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para el botón de cierre del modal */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0!important;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+/* boton modal*/
+.button-modal {
+    color: white; 
+    padding: 7px 15px; 
+    border: none; 
+    outline: none;
+    border-radius: 5px;  
+    font-size: 12px; 
+    font-weight: 600;
+}
+/* boton cancelar*/
+.button-cancelar {
+    background-color: var(--color-primary);
+}
+
+/* boton delete*/
+.button-delete {
+    background-color: var(--color-danger);
+}
+
+.button-editar {
+    background-color: var(--color-danger);
+}
+
+.button-modal:hover {
+    cursor: pointer;
+    color:#dcdcdc;
+}
+
+.modal-button-container {
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+}
+
+.message_dialog label{
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.message_dialog input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.dialog{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+
+
+/* Estilo para el botón desplegable */
+/* Estilos para las opciones del botón */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Estilos para las opciones del botón cuando se muestra */
+.dropdown-content.active {
+    display: block;
+}
+
+/* Estilos para las opciones del botón */
+.dropdown-content a {
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}

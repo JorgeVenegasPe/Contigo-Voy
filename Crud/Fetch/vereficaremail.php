@@ -1,7 +1,7 @@
 
 
 <?php
-require("C:/xampp/htdocs/Psicologia-Agenda-Clinica-master/Conexion/conexion.php");
+require("C:/xampp/htdocs/Contigo-Voy/Conexion/conexion.php");
 $con=new conexion();
 $conn=$con->conexion();
 

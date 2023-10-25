@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../issets/css/info.css" />
-</head>
-<body>
+
     <div class="top">
-        <button id="menu-btn">
+        <button id="menu-btn" style="display: none;">
             <span class="material-symbols-sharp" translate="no">menu</span>
         </button>
         <div class="theme-toggler">
@@ -14,7 +9,7 @@
         </div>
         <div>
             <div>
-                <a class="ajuste-info nav-link" style="cursor:pointer;" onclick="openModalAjustes()">
+                <a class="ajuste-info" style="cursor:pointer;" onclick="openModalAjustes()">
                     <span class="material-symbols-sharp" translate="no">settings</span>
                 </a>
             </div>
@@ -38,5 +33,3 @@
         modal.style.display = "none";
     }
  </script>
-</body>
-</html>

@@ -12,104 +12,46 @@ if (isset($_SESSION['NombrePsicologo'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../issets/css/historial.css">    
     <link rel="stylesheet" href="../issets/css/main.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos de Paciente</title>
 </head>
-<style>
-    .checkout-information {
-     padding:10px; 
-     width: 102%;
-    height: 105%;
-}
-    .container-paciente-tabla.active{
-        margin: 10px;
-    gap :0.1rem;
-    }
-    .container-paciente-tabla{
-        border-radius: var(--card-border-radius);
-        margin-top: 1rem;
-        box-shadow: var(--box-shadow);
-        animation: fadeIn 0.5s ease-in-out;
-        padding: 10px;
-    }
-    tr {
-    background-color: var(--color-info-light);
-    border-radius: 40px;
-}
-.div-hora{
-    display: flex;
-    align-items: center;
-    background-color: #6A92F4;
-    color: white;
-    justify-content: center;
-}
-.visual2{ /*Nueva clase creada para el formulario - Hans */
-    color: #89BEF5; /*Añadi un cambio de color - Hans */
-    font-size: 22px;
-    font-weight: bold;
-}
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
-    margin-top: 20px;
-    max-height: 55%;
-}
-.patient-details {
-        display: none;
-        width: 100%;
-        min-width: 700px;
-        text-align: center;
-        color: #49c691;
-        border-radius: var(--card-border-radius);
-        margin-top: 1rem;
-        box-shadow: var(--box-shadow);
-        animation: fadeIn 0.5s ease-in-out;
-    }
-    .arriba1 {
-        font-size: 24px;
-        font-weight: 700;
-        text-align: start;
-    }
-    .arriba{
-        font-size: 14px;
-        font-weight: 700;
-        text-align: start;
-    }
-</style>
 <body>
 <?php
 require_once("../Controlador/Paciente/ControllerPaciente.php");
     $Pac=new usernameControlerPaciente();
     $patients=$Pac->showCompletoAtencion($_SESSION['IdPsicologo']);    
 ?>
-<div class="containerTotal">
+<div class="container">
 <?php
     require_once '../issets/views/Menu.php';
   ?> 
   <!----------- end of aside -------->
   <main class="animate_animated animate_fadeIn">
-    <?php
-    require_once '../issets/views/Info.php';
-    ?> 
-    
-    <h2 style="color: #49c691;">Historial de Pacientes</h2>
+    <div class="center-divs">
+        <h4 style="color: #49c691;">Historial de Pacientes</h4>
+        <?php
+            require_once '../Issets/views/Info.php';
+        ?>
+    </div>
     <div class="recent-updates" style="display:flex; flex-direction: row; gap:20px; align-items: center; padding: 10px 0px 0px 10px">
-        <div class="input-group">
-  	        <input type="text" style="background-color: White;" placeholder="Buscar"  class="input" required></input>
+        <div class="input-buscador">
+            <span id="search-icon"><i class="fas fa-search"></i></span>
+            <input type="text" id="myInput" placeholder="Buscar Paciente" class="input" required>
         </div>
-        <a class="button" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
-            <span class="material-symbols-sharp">add</span>Agregar Paciente
+        <a class="button-arriba" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
+            <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar Paciente
         </a>
     </div>
    
     <div class="container-paciente-tabla">      
+        <div class="before-details">
         <table>
             <?php if (!empty($patients)) : ?>
-                <?php foreach ($patients as $patient) : ?>
+                <?php foreach ($patients as $index => $patient) : ?>
                     <tbody>
-                        <tr>
+                        <tr <?php if ($index === 0) echo 'class="primera-fila"'; ?>>
                             <td>
                                 <a style="cursor:pointer"
                                     class="show-info"
@@ -121,22 +63,19 @@ require_once("../Controlador/Paciente/ControllerPaciente.php");
                                     data-medicamentosprescritos="<?=$patient['MedicamentosPrescritos']?>"
                                     data-FechaInicioCita="<?=$patient['FechaInicioCita']?>">
                                     <p style="cursor: pointer;" class="nombre-paciente"><?=$patient['NomPaciente']?> <?=$patient['ApPaterno']?></p>
-                                    <p><?=$patient['Diagnostico']?> / <?=$patient['MotivoConsulta']?></p> 
+                                    <p><?= isset($patient['Diagnostico']) ? $patient['Diagnostico'] : 'Diagnostico' ?> / <?=isset($patient['MotivoConsulta'])?$patient['MotivoConsulta']:'Motivo de Consulta'?></p> 
                                 </a>
                             </td>
-                            <td ><?=$patient['FechaInicioCita']?></td>
+                            <td><?= isset($patient['FechaInicioCita'])? substr($patient['FechaInicioCita'], 0, 10):'Fecha de próx cita'?></td>
                             <td class="additional-column"></td>
                         </tr>
                     </tbody>
                 <?php endforeach;?>             
             <?php endif;?>
         </table>
-        <div class="details" style="display: flex; flex-direction:row">
-        <div class="line"></div>
-        <div class="patient-details">
-        
         </div>
-
+        <div class="patient-details">
+                    
         </div>
     </div>
 </main>
@@ -217,38 +156,36 @@ showInfoLinks.forEach(link => {
             const patientInfoHTML = `
             
             <div style="display:grid; flex-direction:row; gap:10px;">
-                <div class="checkout-information">
-                    <div class="input-group3">
-                        <div>
+                    <div class="top-group">
+                        <div class="name">
                             <h2 class="visual2">${nombres}</h2>                        
                             <p class="arriba">${edad} años, ${FechaInicioCita || 'Aun no hay cita'}</p>
-                            <button type="button" id="butto">Ver Historial Medico</button>                            
+                            <button type="button" class="green-button" id="butto">Ver Historial Medico</button>                            
                         </div>
                         <div class="date">
-                            <h2 style="color: white;" >20/07</h2>
-                            <p style="color: white;" >Próxima Consulta</p>
+                            <h6>20/07</h6>
+                            <p>Próxima Consulta</p>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <h2 class="arriba1" for="#">Diagnostico </h2>
-                        <p class="arriba">${diagnostico || 'Aun no hay cita'}</p>
+                    <div class="ci-input-group">
+                        <h2 class="arriba" for="#">Diagnostico </h2>
+                        <p class="abajo">${diagnostico || 'Aun no hay cita'}</p>
                     </div>
-                    <div class="input-group">
-                        <h2 class="arriba1" for="#">Tratamiento </h2>
-                        <p class="arriba">${tratamiento || 'Aun no hay cita'}</p>
+                    <div class="ci-input-group">
+                        <h2 class="arriba" for="#">Tratamiento </h2>
+                        <p class="abajo">${tratamiento || 'Aun no hay cita'}</p>
                     </div>
-                    <div class="input-group">
-                        <h2 class="arriba1" for="#">Medicamentos </h2>
-                        <p class="arriba">${medicamentosprescritos || 'Aun no hay cita'}</p>
+                    <div class="ci-input-group">
+                        <h2 class="arriba" for="#">Medicamentos </h2>
+                        <p class="abajo">${medicamentosprescritos || 'Aun no hay cita'}</p>
                     </div>
-                    <div class="input-group">
-                        <h2 class="arriba1" for="#">Primera cita </h2>
-                        <p class="arriba">${FechaInicioCita || 'Aun no hay cita'}</p>
+                    <div class="ci-input-group">
+                        <h2 class="arriba" for="#">Primera cita </h2>
+                        <p class="abajo">${FechaInicioCita || 'Aun no hay cita'}</p>
                     </div>
                     <div class="BUT">
-                        <button type="button" id="button2">Nueva Entrada</button>
+                        <button type="button" class="green-button" id="button2">Nueva Entrada</button>
                     </div>
-                </div>
             </div>
             `;
 
