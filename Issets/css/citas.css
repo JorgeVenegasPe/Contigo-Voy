@@ -67,3 +67,26 @@ form {
     font-size: 0.80rem;
     color: white;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: #000;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: 1px solid #49c691;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #49c691;
+}
+
+.pagination .current-page {
+    background-color: #49c691;
+    color: #49c691;
+}

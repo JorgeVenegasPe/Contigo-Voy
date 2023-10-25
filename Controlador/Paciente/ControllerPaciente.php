@@ -24,10 +24,16 @@ class usernameControlerPaciente{
     }
 
     // Mpdificar datos del paciente
-    public function modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email, $Direccion,$AntecedentesMedicos,$MedicamentosPrescritos,$IdProvincia,$IdDepartamento,$IdDistrito){
-        return ($this->model->modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email, $Direccion,$AntecedentesMedicos,$MedicamentosPrescritos,$IdProvincia,$IdDepartamento,$IdDistrito)) !=false ? 
-        header("Location:../../Vista/Historial.php") : header("Location:../../Vista/Historial.php");
+    public function modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email,$Direccion,$AntecedentesMedicos,$MedicamentosPrescritos) {
+        $result = $this->model->modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email,$Direccion,$AntecedentesMedicos,$MedicamentosPrescritos);
+        
+        if ($result !== false) {
+            header("Location:../../Vista/TablaPacientes.php");
+        } else {
+            header("Location:../../Vista/TablaPacientes.php");
+        }
     }
+    
 
     // Mostrar datos del paciente seleccionado
     public function showCompleto($IdPsicologo) {

@@ -123,11 +123,11 @@ public function ver($IdPsicologo) {
     }
 
     // Modificar paciente
-    public function modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email, $Direccion,$AntecedentesMedicos,$MedicamentosPrescritos,$IdProvincia,$IdDepartamento,$IdDistrito) {
+    public function modificarPaciente($IdPaciente,$NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad,$GradoInstruccion, $Ocupacion, $EstadoCivil,$Genero,$Telefono, $Email,$Direccion,$AntecedentesMedicos,$MedicamentosPrescritos) {
         $statement = $this->PDO->prepare("UPDATE Paciente SET NomPaciente=:NomPaciente, ApPaterno=:ApPaterno, ApMaterno=:ApMaterno,
-        Dni=:Dni,FechaNacimiento=:FechaNacimiento,Edad=:Edad, GradoInstruccion=:GradoInstruccion, Ocupacion=:Ocupacion, EstadoCivil=:EstadoCivil, Genero=:Genero,
-        Telefono=:Telefono, Email=:Email, Direccion=:Direccion, AntecedentesMedicos=:AntecedentesMedicos, MedicamentosPrescritos=:MedicamentosPrescritos,
-        IdProvincia=:IdProvincia, IdDepartamento=:IdDepartamento, IdDistrito=:IdDistrito WHERE IdPaciente=:IdPaciente");
+Dni=:Dni, FechaNacimiento=:FechaNacimiento, Edad=:Edad, GradoInstruccion=:GradoInstruccion, Ocupacion=:Ocupacion, EstadoCivil=:EstadoCivil, Genero=:Genero,
+Telefono=:Telefono, Email=:Email, Direccion=:Direccion, AntecedentesMedicos=:AntecedentesMedicos, MedicamentosPrescritos=:MedicamentosPrescritos
+WHERE IdPaciente=:IdPaciente");
         $statement->bindParam(":IdPaciente",$IdPaciente);
         $statement->bindParam(":NomPaciente",$NomPaciente);
         $statement->bindParam(":ApPaterno",$ApPaterno);
@@ -141,12 +141,10 @@ public function ver($IdPsicologo) {
         $statement->bindParam(":Genero",$Genero);
         $statement->bindParam(":Telefono",$Telefono);
         $statement->bindParam(":Email",$Email);
-        $statement->bindParam(":Direccion",$Direccion);
+        $statement->bindParam(":Direccion", $Direccion);
         $statement->bindParam(":AntecedentesMedicos",$AntecedentesMedicos);
         $statement->bindParam(":MedicamentosPrescritos",$MedicamentosPrescritos);
-        $statement->bindParam(":IdProvincia",$IdProvincia);
-        $statement->bindParam(":IdDepartamento",$IdDepartamento);
-        $statement->bindParam(":IdDistrito",$IdDistrito);
+        
 
         return ($statement->execute())? $this->PDO->lastInsertId():false;
     }

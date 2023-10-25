@@ -26,7 +26,7 @@ class usernameControlerCita{
     // Modificar cita completa
     public function modificarCita($IdCita,$FechaInicio, $EstadoCita,$MotivoCita,$Duracioncita,$TipoCita,$CanalCita,$EtiquetaCita ,$ColorFondo){
         return ($this->model->modificarCita($IdCita,$FechaInicio, $EstadoCita,$MotivoCita,$Duracioncita,$TipoCita,$CanalCita,$EtiquetaCita ,$ColorFondo)) !=false ? 
-        header("Location:../../Vista/RegCitas.php") : header("Location:../../Vista/RegCitas.php");
+        header("Location:../../Vista/TablaCitas.php") : header("Location:../../Vista/TablaCitas.php");
     }
 
     // Mostrar datos de cita seleccionada
