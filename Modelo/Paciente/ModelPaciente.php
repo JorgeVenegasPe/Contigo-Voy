@@ -189,34 +189,60 @@ class userModelPaciente
     // Guardar datos familiares segun el paciente
     public function insertarAreaFamiliar($IdPaciente, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
-        $IdPaciente = $_POST['IdPaciente'];
-        $NomPadre = $_POST['NomPadre'];
-        $EstadoPadre = $_POST['EstadoPadre'];
-        $NomMadre = $_POST['NomMadre'];
-        $EstadoMadre = $_POST['EstadoMadre'];
-        $NomApoderado = $_POST['NomApoderado'];
-        $EstadoApoderado = $_POST['EstadoApoderado'];
-        $CantHermanos = $_POST['CantHermanos'];
-        $CantHijos = $_POST['CantHijos'];
-        $IntegracionFamiliar = $_POST['IntegracionFamiliar'];
-        $HistorialFamiliar = $_POST['HistorialFamiliar'];
-        $statement = $this->PDO->prepare("INSERT INTO AreaFamiliar(IdPaciente, NomPadre, EstadoPadre, NomMadre, EstadoMadre, NomApoderado, EstadoApoderado, CantHermanos,CantHijos,IntegracionFamiliar,HistorialFamiliar) VALUES(:IdPaciente, :NomPadre, :EstadoPadre, :NomMadre, :EstadoMadre, :NomApoderado, :EstadoApoderado, :CantHermanos,:CantHijos,:IntegracionFamiliar,:HistorialFamiliar)");
-        $array = array($IdPaciente, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar);
-        $statement->bindParam(":IdPaciente", $IdPaciente);
-        $statement->bindParam(":NomPadre", $NomPadre);
-        $statement->bindParam(":EstadoPadre", $EstadoPadre);
-        $statement->bindParam(":NomMadre", $NomMadre);
-        $statement->bindParam(":EstadoMadre", $EstadoMadre);
-        $statement->bindParam(":NomApoderado", $NomApoderado);
-        $statement->bindParam(":EstadoApoderado", $EstadoApoderado);
-        $statement->bindParam(":CantHermanos", $CantHermanos);
-        $statement->bindParam(":CantHijos", $CantHijos);
-        $statement->bindParam(":IntegracionFamiliar", $IntegracionFamiliar);
-        $statement->bindParam(":HistorialFamiliar", $HistorialFamiliar);
+        // Check if the patient already exists
+        $existingPatient = $this->PDO->prepare("SELECT IdPaciente FROM AreaFamiliar WHERE IdPaciente = :IdPaciente");
+        $existingPatient->bindParam(":IdPaciente", $IdPaciente);
+        $existingPatient->execute();
 
-        return ($statement->execute()) ? $this->PDO->lastInsertId() : false;
+        if ($existingPatient->rowCount() > 0) {
+            // Patient already exists, update the record
+            $statement = $this->PDO->prepare("UPDATE AreaFamiliar SET
+                NomPadre = :NomPadre,
+                EstadoPadre = :EstadoPadre,
+                NomMadre = :NomMadre,
+                EstadoMadre = :EstadoMadre,
+                NomApoderado = :NomApoderado,
+                EstadoApoderado = :EstadoApoderado,
+                CantHermanos = :CantHermanos,
+                CantHijos = :CantHijos,
+                IntegracionFamiliar = :IntegracionFamiliar,
+                HistorialFamiliar = :HistorialFamiliar
+                WHERE IdPaciente = :IdPaciente");
+
+            // Bind parameters
+            $statement->bindParam(":NomPadre", $NomPadre);
+            $statement->bindParam(":EstadoPadre", $EstadoPadre);
+            $statement->bindParam(":NomMadre", $NomMadre);
+            $statement->bindParam(":EstadoMadre", $EstadoMadre);
+            $statement->bindParam(":NomApoderado", $NomApoderado);
+            $statement->bindParam(":EstadoApoderado", $EstadoApoderado);
+            $statement->bindParam(":CantHermanos", $CantHermanos);
+            $statement->bindParam(":CantHijos", $CantHijos);
+            $statement->bindParam(":IntegracionFamiliar", $IntegracionFamiliar);
+            $statement->bindParam(":HistorialFamiliar", $HistorialFamiliar);
+            $statement->bindParam(":IdPaciente", $IdPaciente);
+
+            return $statement->execute();
+        } else {
+            // Patient doesn't exist, insert a new record
+            $statement = $this->PDO->prepare("INSERT INTO AreaFamiliar (IdPaciente, NomPadre, EstadoPadre, NomMadre, EstadoMadre, NomApoderado, EstadoApoderado, CantHermanos, CantHijos, IntegracionFamiliar, HistorialFamiliar) VALUES (:IdPaciente, :NomPadre, :EstadoPadre, :NomMadre, :EstadoMadre, :NomApoderado, :EstadoApoderado, :CantHermanos, :CantHijos, :IntegracionFamiliar, :HistorialFamiliar)");
+
+            // Bind parameters
+            $statement->bindParam(":IdPaciente", $IdPaciente);
+            $statement->bindParam(":NomPadre", $NomPadre);
+            $statement->bindParam(":EstadoPadre", $EstadoPadre);
+            $statement->bindParam(":NomMadre", $NomMadre);
+            $statement->bindParam(":EstadoMadre", $EstadoMadre);
+            $statement->bindParam(":NomApoderado", $NomApoderado);
+            $statement->bindParam(":EstadoApoderado", $EstadoApoderado);
+            $statement->bindParam(":CantHermanos", $CantHermanos);
+            $statement->bindParam(":CantHijos", $CantHijos);
+            $statement->bindParam(":IntegracionFamiliar", $IntegracionFamiliar);
+            $statement->bindParam(":HistorialFamiliar", $HistorialFamiliar);
+
+            return $statement->execute();
+        }
     }
-
     // Mpdoficar datos familiares
     public function ModificarAreaFamiliar($IdFamiliar, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
