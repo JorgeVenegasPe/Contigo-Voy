@@ -64,16 +64,12 @@ if (isset($_SESSION['NombrePsicologo'])){
             <div class="container-paciente-tabla">
                 <table>
                     <?php
-                $rowsPerPage = 2;
-                if (is_array($patients) && count($patients) > 0) {
-                    $totalRows = count($patients);
-                    $totalPages = ceil($totalRows / $rowsPerPage);
-                    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $startIndex = ($currentPage - 1) * $rowsPerPage;
-                    $endIndex = $startIndex + $rowsPerPage;
-                }
-                
-                ?>
+                        $patientsPerPage = 2; // Cantidad de pacientes por página
+                        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+                        $offset = ($currentPage - 1) * $patientsPerPage;
+                        $patientsToDisplay = array_slice($patients, $offset, $patientsPerPage);
+                        ?>
+
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkboxPrincipal" class="checkbox-principal"></th>
@@ -86,8 +82,8 @@ if (isset($_SESSION['NombrePsicologo'])){
                             <th class="additional-column"> Más</th>
                         </tr>
                     </thead>
-                    <?php if (!empty($patients)) : ?>
-                    <?php foreach ($patients as $patient) : ?>
+                    <?php if ($patients) : ?>
+                    <?php foreach ($patientsToDisplay as $patient) : ?>
                     <tbody id="myTable" class="tu-tbody-clase">
                         <tr>
                             <td>
@@ -153,9 +149,18 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <?php endif;?>
                     </tbody>
                 </table>
-                                <div class="patient-details">
-            
+
+                <div class="patient-details">
+
                 </div>
+            </div>
+            <div class="pagination">
+                <?php if ($patients) : ?>
+                <?php $totalPages = ceil(count($patients) / $patientsPerPage); ?>
+                <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
+                <a href="?page=<?= $page ?>" class="<?= $page === $currentPage ? 'active' : '' ?>"><?= $page ?></a>
+                <?php endfor; ?>
+                <?php endif; ?>
             </div>
 
         </main>
@@ -436,17 +441,17 @@ if (isset($_SESSION['NombrePsicologo'])){
     }
 
     function mostrarPagina(page) {
-        var patients = document.getElementById('myTable').getElementsByTagName('tr');
+        var rows = document.getElementById('myTable').getElementsByTagName('tr');
 
-        for (var i = 0; i < patients.length; i++) {
-            patients[i].style.display = 'none';
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].style.display = 'none';
         }
 
         var startIndex = (page - 1) * <?=$rowsPerPage?>;
         var endIndex = startIndex + <?=$rowsPerPage?>;
 
-        for (var i = startIndex; i < endIndex && i < patients.length; i++) {
-            patients[i].style.display = 'table-row';
+        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+            rows[i].style.display = 'table-row';
         }
     }
 
