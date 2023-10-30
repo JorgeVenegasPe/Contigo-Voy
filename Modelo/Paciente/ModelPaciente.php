@@ -187,6 +187,7 @@ class userModelPaciente
     // =================== Area Familiar ================================= //
 
     // Guardar datos familiares segun el paciente
+    //cambios
     public function insertarAreaFamiliar($IdPaciente, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
         // Check if the patient already exists
