@@ -23,14 +23,14 @@ if (isset($_SESSION['NombrePsicologo'])){
 </head>
 
 <body>
-    <?php
+<?php
         require("../Controlador/Paciente/ControllerPaciente.php");
         require("../Controlador/Cita/ControllerCita.php");
-        $obj=new usernameControlerPaciente();
-        $objcita=new usernameControlerCita();
-        $rowscita=$objcita->contarRegistrosEnPacientes($_SESSION['IdPsicologo']);
+        $obj = new usernameControlerPaciente();
+        $objcita = new usernameControlerCita();
+        $rowscita = $objcita->contarRegistrosEnPacientes($_SESSION['IdPsicologo']);
         $patients = $obj->showCompleto($_SESSION['IdPsicologo']);
-    ?>
+        ?>
     <div class="container">
         <?php
             require_once '../Issets/views/Menu.php';
@@ -64,16 +64,12 @@ if (isset($_SESSION['NombrePsicologo'])){
             <div class="container-paciente-tabla">
                 <table>
                     <?php
-                $rowsPerPage = 2;
-                if (is_array($patients) && count($patients) > 0) {
-                    $totalRows = count($patients);
-                    $totalPages = ceil($totalRows / $rowsPerPage);
-                    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $startIndex = ($currentPage - 1) * $rowsPerPage;
-                    $endIndex = $startIndex + $rowsPerPage;
-                }
-                
-                ?>
+                        $patientsPerPage = 7; // Cantidad de pacientes por página
+                        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1; 
+                        $offset = ($currentPage - 1) * $patientsPerPage;
+                        $patientsToDisplay = array_slice($patients, $offset, $patientsPerPage);
+                        ?>
+
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkboxPrincipal" class="checkbox-principal"></th>
@@ -86,8 +82,8 @@ if (isset($_SESSION['NombrePsicologo'])){
                             <th class="additional-column"> Más</th>
                         </tr>
                     </thead>
-                    <?php if (!empty($patients)) : ?>
-                    <?php foreach ($patients as $patient) : ?>
+                    <?php if ($patients) : ?>
+                    <?php foreach ($patientsToDisplay as $patient) : ?>
                     <tbody id="myTable" class="tu-tbody-clase">
                         <tr>
                             <td>
@@ -95,29 +91,15 @@ if (isset($_SESSION['NombrePsicologo'])){
                                     value="<?=$patient[0]?>">
                             </td>
                             <td style="text-align: start; font-weight:bold;padding: 14px;">
-                                <a style="cursor:pointer" class="show-info" data-patient-id="<?=$patient[0]?>"
-                                    data-codigo="<?=$patient['codigopac']?>"
-                                    data-nombres="<?= $patient['NomPaciente'] ?> <?= $patient['ApPaterno'] ?> <?= $patient['ApMaterno']?>"
-                                    data-dni="<?=$patient['Dni']?>" data-genero="<?=$patient['Genero']?>"
-                                    data-edad="<?=$patient['Edad']?>" data-estadocivil="<?=$patient['EstadoCivil']?>"
-                                    data-email="<?=$patient['Email']?>" data-celular="<?=$patient['Telefono']?>"
-                                    data-nombre-madre="<?=$patient['NomMadre']?>"
-                                    data-estado-madre="<?=$patient['EstadoMadre']?>"
-                                    data-nombre-padre="<?=$patient['NomPadre']?>"
-                                    data-estado-padre="<?=$patient['EstadoPadre']?>"
-                                    data-cant-hermanos="<?=$patient['CantHermanos']?>"
-                                    data-antecedentes-familiares="<?=$patient['HistorialFamiliar']?>"
-                                    data-FechaInicioCita="<?=$patient['FechaInicioCita']?>">
-                                    <?=$patient['NomPaciente']?> <?=$patient['ApPaterno']?>
-                                </a>
-                                <a class="buttoncita"
-                                    style="display:none;   width: 110px; padding:6px; font-size:10px;margin-top: 4.5%;margin-bottom: 0%;"
-                                    href="RegCitas.php">
-                                    <div style="display: flex;">
-                                        <span class="material-symbols-sharp">add</span>Crear Cita
-                                    </div>
-                                </a>
-                            </td>
+                                            <a style="cursor:pointer" class="show-info"  data-patient-id="<?= $patient[0] ?>" data-codigo="<?= $patient['codigopac'] ?>" data-nombres="<?= $patient['NomPaciente'] ?>  <?= $patient['ApPaterno'] ?> <?= $patient['ApMaterno'] ?>" data-dni="<?= $patient['Dni'] ?>" data-genero="<?= $patient['Genero'] ?>" data-edad="<?= $patient['Edad'] ?>" data-estadocivil="<?= $patient['EstadoCivil'] ?>" data-email="<?= $patient['Email'] ?>" data-celular="<?= $patient['Telefono'] ?>" data-nombre-madre="<?= $patient['NomMadre'] ?>" data-estado-madre="<?= $patient['EstadoMadre'] ?>" data-nombre-padre="<?= $patient['NomPadre'] ?>" data-estado-padre="<?= $patient['EstadoPadre'] ?>" data-cant-hermanos="<?= $patient['CantHermanos'] ?>" data-antecedentes-familiares="<?= $patient['HistorialFamiliar'] ?>">
+                                                <?= $patient['NomPaciente'] ?> <?= $patient['ApPaterno'] ?>
+                                            </a>
+                                            <a class=" buttoncita" style="display:none;   width: 110px; padding:6px; font-size:10px;margin-top: 4.5%;margin-bottom: 0%;" href="RegCitas.php">
+                                                <div style="display: flex;">
+                                                    <span class="material-symbols-sharp">add</span>Crear Cita
+                                                </div>
+                                            </a>
+                                        </td>
                             <td class="additional-column" style="font-weight:bold;"><?=$patient['codigopac']?></td>
                             <td class="additional-column" style="font-weight:bold;"><?=$patient['Dni']?></td>
                             <td class="additional-column"
@@ -153,9 +135,18 @@ if (isset($_SESSION['NombrePsicologo'])){
                         <?php endif;?>
                     </tbody>
                 </table>
-                                <div class="patient-details">
-            
+
+                <div class="patient-details">
+
                 </div>
+            </div>
+            <div class="pagination">
+                <?php if ($patients) : ?>
+                <?php $totalPages = ceil(count($patients) / $patientsPerPage); ?>
+                <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
+                <a href="?page=<?= $page ?>" class="<?= $page === $currentPage ? 'active' : '' ?>"><?= $page ?></a>
+                <?php endfor; ?>
+                <?php endif; ?>
             </div>
 
         </main>
@@ -436,17 +427,17 @@ if (isset($_SESSION['NombrePsicologo'])){
     }
 
     function mostrarPagina(page) {
-        var patients = document.getElementById('myTable').getElementsByTagName('tr');
+        var rows = document.getElementById('myTable').getElementsByTagName('tr');
 
-        for (var i = 0; i < patients.length; i++) {
-            patients[i].style.display = 'none';
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].style.display = 'none';
         }
 
         var startIndex = (page - 1) * <?=$rowsPerPage?>;
         var endIndex = startIndex + <?=$rowsPerPage?>;
 
-        for (var i = startIndex; i < endIndex && i < patients.length; i++) {
-            patients[i].style.display = 'table-row';
+        for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+            rows[i].style.display = 'table-row';
         }
     }
 

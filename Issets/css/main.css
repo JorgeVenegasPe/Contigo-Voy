@@ -675,8 +675,8 @@ aside .sidebar a:hover span {
     align-items: center;
     text-decoration: none;
     cursor: pointer;
+    
 }
-
 .input-group-modal input, textarea, select{
     width: 100%;
     padding: 10px 15px;
@@ -746,7 +746,6 @@ aside .sidebar a:hover span {
   }
   .closeaaa {
     color: #aaa;
-    float: right;
     font-size: 20px;
     font-weight: bold;
     margin: 0!important;
@@ -827,13 +826,13 @@ aside .sidebar a:hover span {
 .form-info{
     position: relative;
     background: var(--modal-bg-color);
-    width: 600px;
+    width: auto;
     max-width: 600px;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 20px;
-    padding: 40px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     transform: translateY(-50px);
