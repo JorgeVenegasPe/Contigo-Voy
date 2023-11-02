@@ -8,6 +8,73 @@ $fechaInicioObj = new DateTime($FechaInicio);
 $obj->guardar($_POST['IdPaciente'],$_POST['MotivoCita'],$_POST['EstadoCita'],$FechaInicio,$_POST['DuracionCita'],$_POST['FechaFin'],$_POST['TipoCita'], $_POST['ColorFondo'], $_POST['IdPsicologo'], $_POST['CanalCita'], $_POST['EtiquetaCita']);
 
 
+require_once('../../vendor/autoload.php');
+use Twilio\Rest\Client;
+
+    $sid    = "ACd9bb959c9e58da76d5b2ec3991ce60f4";
+    $token  = "fa895f8a13586d9387b8530a1cb57997";
+    $twilio = new Client($sid, $token);
+
+$numeroPaciente = $_POST['telefono'];
+error_log("NUM: ".$numeroPaciente);
+
+$mensaje = "Hola " . $_POST['Paciente'] . ",\n";
+$mensaje .= "Gracias por reservar una cita con nosotros.\n";
+$mensaje .= "Los detalles de su reserva son los siguientes: \n";
+$mensaje .= "Fecha: " . $_POST['FechaInicioCita'] . "\n";
+$mensaje .= "Hora: " . $_POST['HoraInicio'] . "\n";
+$mensaje .= "Cuenta pacientes y reservas de citas en línea\n";
+$mensaje .= "Utilice nuestra plataforma para reservar y administrar sus citas médicas: \n";
+$mensaje .= "telefono: " . $_POST['telefono'] . "\n";
+$mensaje .= "correo: " . $_POST['correo'] . "\n";   
+$mensaje .= "Acceso a la Pagina: https://gestion.contigo-voy.com";
+$bodym = $mensaje;
+
+$message = $twilio->messages
+->create("whatsapp:+51$numeroPaciente", // to
+array(
+"from" => "whatsapp:+14155238886",
+"body" => $mensaje // Mensaje personalizado con los detalles de la cita
+)
+);
+print($message->sid);
+
+//otra opcion  de envio de mensajes
+
+/*$params=array(
+    'token' => 'd1sxwjpyw79qfpkr',
+    'to' => "+51$numeroPaciente",
+    'body' => "$bodym",
+    );
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.ultramsg.com/instance67334/messages/chat",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_SSL_VERIFYHOST => 0,
+      CURLOPT_SSL_VERIFYPEER => 0,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => http_build_query($params),
+      CURLOPT_HTTPHEADER => array(
+        "content-type: application/x-www-form-urlencoded"
+      ),
+    ));
+    
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    
+    curl_close($curl);
+    
+    if ($err) {
+      echo "cURL Error #:" . $err;
+    } else {
+      echo $response;
+    }
+
+ */
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;

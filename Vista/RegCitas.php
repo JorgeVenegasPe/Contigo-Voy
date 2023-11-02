@@ -209,11 +209,13 @@ $(document).ready(function() {
             $('#IdPaciente').val('');
             $('#NomPaciente').val('');
             $('#correo').val('');
+            $('#telefono').val('');
           } else {
             $('#Paciente').val(response.nombre);
             $('#NomPaciente').val(response.nom);
 		        $('#IdPaciente').val(response.id);
 		        $('#correo').val(response.correo);
+            $('#telefono').val(response.telefono);
           }
         },
         error: function() {
@@ -241,10 +243,14 @@ $(document).ready(function() {
           $('#Paciente').val(response.error);
           $('#IdPaciente').val('');
           $('#codigopac').val('');
+          $('#correo').val('');	
+          $('#telefono').val('');
         } else {
           $('#Paciente').val(response.nombre);
 		      $('#IdPaciente').val(response.id);
 		      $('#codigopac').val(response.codigopac);
+          $('#correo').val(response.correo);
+          $('#telefono').val(response.telefono);
         }
       },
       error: function() {
