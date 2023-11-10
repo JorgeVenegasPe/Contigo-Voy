@@ -52,7 +52,8 @@ if (isset($_SESSION['NombrePsicologo'])) {
                         <input type="text" id="myInput" placeholder="Buscar Paciente" class="input" required>
                     </div>
                     <a class="button-arriba" style="padding:10px 30px; font-size:10px;" href="RegPaciente.php">
-                        <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar Paciente
+                        <i id="search-icon" class="fas fa-plus-circle add-icon" style="margin-right: 10px;"></i>Agregar
+                        Paciente
                     </a>
                     <a class="button-eliminar" id="eliminarSeleccionados">
                         <i id="search-icon" class="fas fa-trash" style="margin-right: 10px;color:red"></i>Eliminar
@@ -60,6 +61,13 @@ if (isset($_SESSION['NombrePsicologo'])) {
                 </div>
                 <div class="container-paciente-tabla">
                     <table>
+                        <?php
+                        $patientsPerPage = 7; // Cantidad de pacientes por página
+                        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $offset = ($currentPage - 1) * $patientsPerPage;
+                        $patientsToDisplay = array_slice($patients, $offset, $patientsPerPage);
+                        ?>
+
                         <thead>
                             <tr>
                                 <th><input type="checkbox" id="checkboxPrincipal" class="checkbox-principal"></th>
@@ -72,8 +80,8 @@ if (isset($_SESSION['NombrePsicologo'])) {
                                 <th class="additional-column"> Más</th>
                             </tr>
                         </thead>
-                        <?php if (!empty($patients)) : ?>
-                            <?php foreach ($patients as $patient) : ?>
+                        <?php if ($patients) : ?>
+                            <?php foreach ($patientsToDisplay as $patient) : ?>
                                 <tbody id="myTable" class="tu-tbody-clase">
                                     <tr>
                                         <td>
@@ -91,7 +99,8 @@ if (isset($_SESSION['NombrePsicologo'])) {
                                         </td>
                                         <td class="additional-column" style="font-weight:bold;"><?= $patient['codigopac'] ?></td>
                                         <td class="additional-column" style="font-weight:bold;"><?= $patient['Dni'] ?></td>
-                                        <td class="additional-column" style="font-weight:bold;width:25%;text-align: start; margin-left:4%; padding-left: 3%;"><?= $patient['Email'] ?></td>
+                                        <td class="additional-column" style="font-weight:bold;width:25%;text-align: start; margin-left:4%; padding-left: 3%;">
+                                            <?= $patient['Email'] ?></td>
                                         <td class="additional-column" style="font-weight:bold;"><?= $patient['Telefono'] ?></td>
                                         <td class="additional-column">
                                             <div style="display: flex;justify-content: center;margin-top: 2%;">
@@ -116,82 +125,185 @@ if (isset($_SESSION['NombrePsicologo'])) {
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Modal de eliminación -->
-                                    <div id="modalEliminar<?= $patient[0] ?>" class="modal">
-                                        <div class="containerModalEliminar">
-                                            <a href="#" class="close" onclick="closeModalEliminar('<?= $patient[0] ?>')">&times;</a>
-                                            <div class="message_dialog">
-                                                <h2 style="font-size:1rem; color:#49c691;padding: 0.3rem 0 1rem 1.3rem">
-                                                    ¿Estás seguro de eliminar la cita de <?= $patient[1] ?>?</h2>
-                                                <div class="modal-button-container">
-                                                    <button class="button-modal button-cancelar" onclick="closeModalEliminar('<?= $patient[0] ?>')">Cancelar</button>
-                                                    <button class="button-modal button-delete">Eliminar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modal de edicion -->
-                                    <div id="modalEditar<?= $patient[0] ?>" class="modal">
-                                        <div class="containerModalEliminar">
-                                            <a href="#" class="close" onclick="closeModalEditar('<?= $patient[0] ?>')">&times;</a>
-                                            <div class="message_dialog">
-                                                <h2 style="font-size:1rem; color:#49c691;padding-top:0.3rem; padding-bottom:1rem">Editar Cita de <?= $patient[1] ?></h2>
-                                                <form action="../Crud/Cita/modificarCita.php" method="POST" class="dialog">
-                                                    <input type="hidden" name="id_cita" value="<?= $patient[0] ?>">
-                                                    <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
-                                                    <label for="motivo">Motivo:</label>
-                                                    <input type="text" name="motivo" id="motivo" value="<?= $patient[2] ?>"><br>
-                                                    <label for="estado">Estado:</label>
-                                                    <select name="estado" id="estado" value="<?= $patient[3] ?>">
-                                                        <option value="Pendiente">Se require confirmacion</option>
-                                                        <option value="Cancelada">Confirmado</option>
-                                                        <option value="Realizada">Ausencia del paciente</option>
-                                                    </select><br>
-                                                    <label for="fecha_inicio">Fecha de Inicio:</label>
-                                                    <input type="date" name="fecha_inicio" id="fecha_inicio" value="<?= $patient[4] ?>"><br>
-                                                    <label for="hora_inicio">Hora de Inicio:</label>
-                                                    <input type="time" name="hora_inicio" id="hora_inicio" value="<?= $patient[4] ?>"><br>
-                                                    <label for="duracion">Duracion:</label>
-                                                    <input type="number" name="duracion" id="duracion" value="<?= $patient[5] ?>"><br>
-                                                </form>
-                                                <div class="modal-button-container">
-                                                    <button class="button-modal button-cancelar" onclick="closeModalEditar('<?= $patient[0] ?>')">Cancelar</button>
-                                                    <button class="button-modal button-editar">Guardar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tbody>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
 
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                                </tbody>
                     </table>
+
                     <div class="patient-details">
 
                     </div>
                 </div>
+                <div class="pagination">
+                    <?php if ($patients) : ?>
+                        <?php $totalPages = ceil(count($patients) / $patientsPerPage); ?>
+                        <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
+                            <a href="?page=<?= $page ?>" class="<?= $page === $currentPage ? 'active' : '' ?>"><?= $page ?></a>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                </div>
+
             </main>
         </div>
+        <?php if (!empty($patients)) : ?>
+            <?php foreach ($patients as $patient) : ?>
+                <!-- Modal de eliminación -->
+                <div id="modalEliminar<?= $patient[0] ?>" class="service-modal-eliminar">
+                    <div class="service-modal-body">
+                        <a class="close" onclick="closeModalEliminar('<?= $patient[0] ?>')">&times;</a>
+                        <span style="font-size:50px; color:red" class="material-symbols-sharp">info</span>
+                        <h2 style="font-size:20px">¿Estás seguro de eliminar al paciente <?= $patient[2] . " " . $patient[3] ?>?</h2>
+                        <br>
+                        <div class="modal-button-container">
+                            <a href="../Crud/Paciente/eliminarPaciente.php?id=<?= $patient[0] ?>" class="button-modal button-delete">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal de edicion -->
+                <div id="modalEditar<?= $patient[0] ?>" class="service-modal flex-center">
+                    <div class="service-modal-body">
+                        <a href="#" class="close" onclick="closeModalEditar('<?= $patient[0] ?>')">&times;</a>
+                        <div class="message_dialog">
+                            <h2 style="font-size:20px; color:#49c691">Modificar datos de <?= $patient[2] . " " . $patient[3] ?></h2>
+                            <form action="../Crud/Paciente/modificarPaciente.php" method="POST" class="modifica-form">
+                                <input type="hidden" name="id_cita" value="<?= $patient[0] ?>">
+                                <!-- EDITAR MOTIVO ESTADO FECHA DE INICIO DURACION -->
+                                <div class="input-group-modal" style="display: none">
+                                    <h3 for="IdPsicologo">IdPsicologo</h3>
+                                    <input type="text" id="IdPaciente" class="input" value="<?= $patient[0] ?>" name="IdPaciente" />
+                                </div>
+                                <div class="input-group2">
+                                    <div class="input-group-modal">
+                                        <h3 for="NomPaciente">Nombre</h3>
+                                        <input id="NomPaciente" type="text" value="<?= $patient[2] ?>" name="NomPaciente" class="input" required />
+                                    </div>
+                                    <div class="input-group-modal">
+                                        <h3 for="Dni">DNI</h3>
+                                        <input id="Dni" type="text" value="<?= $patient[5] ?>" name="Dni" class="input" required />
+                                    </div>
+                                </div>
+                                <div class="input-group2">
+                                    <div class="input-group-modal">
+                                        <h3 for="ApPaterno">Apellido Paterno</h3>
+                                        <input id="ApPaterno" type="text" value="<?= $patient[3] ?>" name="ApPaterno" class="input" required />
+                                    </div>
+                                    <div class="input-group-modal">
+                                        <h3 for="ApMaterno">Apellido Materno</h3>
+                                        <input id="ApMaterno" type="text" value="<?= $patient[4] ?>" name="ApMaterno" class="input" required />
+                                    </div>
+                                </div>
+                                <div class="input-group2">
+                                    <div style=" width:190px;" class="input-group-modal">
+                                        <h3 for="FechaNacimiento">Fecha de nacimiento</h3>
+                                        <input type="date" id="FechaNacimiento" value="<?= $patient[6] ?>" name="FechaNacimiento" max="<?= $fechamin ?>" value="<?= $fechamin ?>" onchange="calcularEdad()" />
+                                    </div>
+                                    <div class="input-group-modal">
+                                        <h3 for="Edad">Edad</h3>
+                                        <input type="text" id="Edad" value="<?= $patient[7] ?>" name="Edad" readonly />
+                                    </div>
+                                </div>
+                                <div class="input-group2">
+                                    <div class="input-group-modal">
+                                        <h3 for="GradoInstruccion">Grado de instruccion</h3>
+                                        <input id="GradoInstruccion" value="<?= $patient[8] ?>" type="text" name="GradoInstruccion" class="input" required />
+                                    </div>
+                                    <div class="input-group-modal">
+                                        <h3 for="Ocupacion">Ocupacion</h3>
+                                        <input type="text" id="Ocupacion" value="<?= $patient[9] ?>" class="input" name="Ocupacion" required />
+                                    </div>
+                                </div>
+                                <div class="input-group2">
+                                    <div style="width:190px" class="input-group-modal">
+                                        <h3 for="EstadoCivil">Estado civil</h3>
+                                        <select style="text-align:center" class="input" id="EstadoCivil" name="EstadoCivil" required>
+                                            <option value="">Seleccionar</option>
+                                            <option value="soltero" <?php echo ($patient[10] === 'soltero') ? 'selected' : ''; ?>>
+                                                Soltero/a</option>
+                                            <option value="casado" <?php echo ($patient[10] === 'casado') ? 'selected' : ''; ?>>
+                                                Casado/a</option>
+                                            <option value="divorciado" <?php echo ($patient[10] === 'divorciado') ? 'selected' : ''; ?>>Divorciado/a
+                                            </option>
+                                            <option value="viudo" <?php echo ($patient[10] === 'viudo') ? 'selected' : ''; ?>>
+                                                Viudo/a</option>
+                                        </select>
+
+                                    </div>
+                                    <div style=" width:190px;" class="input-group-modal">
+                                        <h3 for="Genero">Género</h3>
+                                        <select style="text-align:center" class="input" id="Genero" name="Genero" required>
+                                            <option value="">Seleccionar</option>
+                                            <option value="Masculino" <?php echo ($patient[11] === 'Masculino') ? 'selected' : ''; ?>>Masculino</option>
+                                            <option value="Femenino" <?php echo ($patient[11] === 'Femenino') ? 'selected' : ''; ?>>
+                                                Femenino</option>
+                                            <option value="Otro" <?php echo ($patient[11] === 'Otro') ? 'selected' : ''; ?>>Otro
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="input-group-modal">
+                                    <h3 for="Telefono">Celular</h3>
+                                    <input type="text" id="Telefono" value="<?= $patient[12] ?>" class="input" name="Telefono" placeholder="Ejemp. 955888222" required />
+                                </div>
+                                <div style="margin-left:2em" id="respuesta2"> </div>
+                                <div class="input-group-modal">
+                                    <h3 for="Email">Correo Electronico</h3>
+                                    <input type="Email" id="Email" class="input" value="<?= $patient[13] ?>" name="Email" style="color: #7B7C89;" required />
+                                </div>
+                                <div style="margin-left:2em" id="respuesta3"> </div>
+                                <div class="input-group-modal">
+                                    <h3 for="Direccion">Direccion</h3>
+                                    <input type="text" id="Direccion" class="input" value="<?= $patient[14] ?>" name="Direccion" />
+                                </div>
+                                <div class="input-group-modal">
+                                    <h3 for="AntecedentesMedicos">Antecedentes médicos</h3>
+                                    <input type="text" id="AntecedentesMedicos" value="<?= $patient[15] ?>" class="input" name="AntecedentesMedicos" style="color: #7B7C89;" required />
+                                </div>
+                                <div class="input-group-modal">
+                                    <h3 for="MedicamentosPrescritos">Medicamentos Prescritos</h3>
+                                    <input type="text" id="MedicamentosPrescritos" class="input" value="<?= $patient[17] ?>" name="MedicamentosPrescritos" style="color: #7B7C89;" required />
+                                </div>
+                                <div class="input-group-modal" style="display: none">
+                                    <h3 for="IdPsicologo">IdPsicologo</h3>
+                                    <input type="text" id="IdPsicologo" class="input" value="<?= $patient[16] ?>" name="IdPsicologo" value="<?= $_SESSION['IdPsicologo'] ?>" />
+                                </div>
+                                <br>
+                                <div class="modal-button-container">
+                                    <button class="button-modal button-cancelar" onclick="closeModalEditar('<?= $patient[0] ?>')">Cancelar</button>
+                                    <button class="button-modal button-editar">Guardar</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <script src="../Issets/js/pacientes.js"></script>
         <script src="../Issets/js/dashboard.js"></script>
         <script>
             //Funciones del modal
             function openModalEditar(id) {
                 closeOptions(id);
-                document.getElementById('modalEditar' + id).style.display = 'block';
+                var modal = document.getElementById('modalEditar' + id);
+                modal.classList.add('active');
             }
 
             function closeModalEditar(id) {
-                document.getElementById('modalEditar' + id).style.display = 'none';
+                var modal = document.getElementById('modalEditar' + id);
+                modal.classList.remove('active');
             }
 
             function openModalEliminar(id) {
                 closeOptions(id);
-                document.getElementById('modalEliminar' + id).style.display = 'block';
+                var modal = document.getElementById('modalEliminar' + id);
+                modal.classList.add('active');
             }
 
             function closeModalEliminar(id) {
-                document.getElementById('modalEliminar' + id).style.display = 'none';
+                var modal = document.getElementById('modalEliminar' + id);
+                modal.classList.remove('active');
             }
 
             function closeOptions(id) {
@@ -213,9 +325,104 @@ if (isset($_SESSION['NombrePsicologo'])) {
                     }
 
                     dropdownContent.style.display = "block";
+                    dropdownContent.style.marginLeft = "-71px";
                 }
             }
         </script>
+        <script>
+            $(document).ready(function() {
+                $('#Departamento').change(function() {
+                    var departamentoId = $(this).find(':selected').data('id');
+                    obtenerProvincias(departamentoId);
+                });
+
+                function obtenerProvincias(departamentoId) {
+                    $.ajax({
+                        url: '../Crud/Fetch/obtenerProvincias.php',
+                        method: 'POST',
+                        data: {
+                            departamentoId: departamentoId
+                        },
+                        dataType: 'json',
+                        success: function(provincias) {
+                            // Llenar el select de provincias con los datos obtenidos
+                            var selectProvincias = $('#Provincia');
+                            selectProvincias.empty();
+                            selectProvincias.append($('<option>', {
+                                value: '',
+                                text: 'Seleccionar'
+                            }));
+                            provincias.forEach(function(provincia) {
+                                selectProvincias.append($('<option>', {
+                                    value: provincia.id,
+                                    text: provincia.name
+                                }));
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#Provincia').change(function() {
+                var provinciaId = $(this).val();
+                obtenerDistritos(provinciaId);
+            });
+
+            function obtenerDistritos(provinciaId) {
+                $.ajax({
+                    url: '../Crud/Fetch/obtenerDistritos.php',
+                    method: 'POST',
+                    data: {
+                        provinciaId: provinciaId
+                    },
+                    dataType: 'json',
+                    success: function(distritos) {
+                        // Llenar el select de distritos con los datos obtenidos
+                        var selectDistritos = $('#Distrito');
+                        selectDistritos.empty();
+                        selectDistritos.append($('<option>', {
+                            value: '',
+                            text: 'Seleccionar'
+                        }));
+                        distritos.forEach(function(distrito) {
+                            selectDistritos.append($('<option>', {
+                                value: distrito.id,
+                                text: distrito.name
+                            }));
+                        });
+                    }
+                });
+            }
+        </script>
+        <script>
+            var paginationLinks = document.getElementsByClassName('pagination')[0].getElementsByTagName('a');
+
+            for (var i = 0; i < paginationLinks.length; i++) {
+                paginationLinks[i].addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var page = parseInt(this.getAttribute('href').split('=')[1]);
+                    mostrarPagina(page);
+                });
+            }
+
+            function mostrarPagina(page) {
+                var rows = document.getElementById('myTable').getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].style.display = 'none';
+                }
+
+                var startIndex = (page - 1) * <?= $rowsPerPage ?>;
+                var endIndex = startIndex + <?= $rowsPerPage ?>;
+
+                for (var i = startIndex; i < endIndex && i < rows.length; i++) {
+                    rows[i].style.display = 'table-row';
+                }
+            }
+
+            mostrarPagina(1);
+        </script>
+
     </body>
 
     </html>

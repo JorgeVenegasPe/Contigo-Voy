@@ -255,7 +255,6 @@ if (isset($_SESSION['NombrePsicologo'])) {
       });
     </script>
   </body>
-
   </html>
 <?php
 } else {

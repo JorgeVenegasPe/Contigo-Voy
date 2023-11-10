@@ -28,11 +28,17 @@ class usernameControlerPaciente
     }
 
     // Mpdificar datos del paciente
-    public function modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos, $IdProvincia, $IdDepartamento, $IdDistrito)
+    public function modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos)
     {
-        return ($this->model->modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos, $IdProvincia, $IdDepartamento, $IdDistrito)) != false ?
-            header("Location:../../Vista/Historial.php") : header("Location:../../Vista/Historial.php");
+        $result = $this->model->modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos);
+
+        if ($result !== false) {
+            header("Location:../../Vista/TablaPacientes.php");
+        } else {
+            header("Location:../../Vista/TablaPacientes.php");
+        }
     }
+
 
     // Mostrar datos del paciente seleccionado
     public function showCompleto($IdPsicologo)
@@ -41,9 +47,9 @@ class usernameControlerPaciente
     }
 
     // Mostrar datos del paciente seleccionado
-    public function showCompletoAtencion($idPsicologo)
+    public function showCompletoAtencion($IdPsicologo)
     {
-        $patients = $this->model->getAllAtencPatients($idPsicologo);
+        $patients = $this->model->getAllAtencPatients($IdPsicologo);
         return $patients;
     }
 
@@ -92,17 +98,12 @@ class usernameControlerPaciente
         return ($id != false) ? header("Location:../../Vista/TablaPacientes.php") : header("Location:../../Vista/TablaPacientes.php");
     }
 
-
-
-
     // Modificar datos familiares del paciente
     public function ModificarAreaFamiliar($IdFamiliar, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
         return ($this->model->ModificarAreaFamiliar($IdFamiliar, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)) != false ?
             header("Location:../../Vista/TablaPacientes.php") : header("Location:../../Vista/TablaPacientes.php");
     }
-
-
 
     // ================ Atencion al paciente =============//
 

@@ -103,14 +103,23 @@ class userModelPaciente
 
 
 
-    // Mostrar datos del paciente seleccionado 
+
+
     public function getAllAtencPatients($IdPsicologo)
     {
         $query = "SELECT p.*, ate.*, c.FechaInicioCita
                   FROM paciente p
                   LEFT JOIN atencionpaciente ate ON p.IdPaciente = ate.IdPaciente
-                  LEFT JOIN cita c ON p.IdPaciente = c.IdPaciente
+                  LEFT JOIN (
+                    SELECT IdPaciente, MAX(FechaInicioCita) as MaxFechaInicioCita
+                    FROM cita
+                    GROUP BY IdPaciente
+                  ) c_max ON p.IdPaciente = c_max.IdPaciente
+                  LEFT JOIN cita c ON c_max.IdPaciente = c.IdPaciente
+                      AND c_max.MaxFechaInicioCita = c.FechaInicioCita
                   WHERE p.IdPsicologo = :IdPsicologo";
+
+        $query .= " GROUP BY p.IdPaciente"; // Agregar GROUP BY para evitar duplicados
 
         $statement = $this->PDO->prepare($query);
         $statement->bindParam(":IdPsicologo", $IdPsicologo);
@@ -118,6 +127,19 @@ class userModelPaciente
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $results;
+    }
+
+
+    public function getPatientDetailsById($patientId)
+    {
+        $query = "SELECT * FROM paciente WHERE IdPaciente = :patientId";
+
+        $statement = $this->PDO->prepare($query);
+        $statement->bindParam(":patientId", $patientId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     // Elimianr paciente seleccionado
@@ -129,12 +151,12 @@ class userModelPaciente
     }
 
     // Modificar paciente
-    public function modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos, $IdProvincia, $IdDepartamento, $IdDistrito)
+    public function modificarPaciente($IdPaciente, $NomPaciente, $ApPaterno, $ApMaterno, $Dni, $FechaNacimiento, $Edad, $GradoInstruccion, $Ocupacion, $EstadoCivil, $Genero, $Telefono, $Email, $Direccion, $AntecedentesMedicos, $MedicamentosPrescritos)
     {
         $statement = $this->PDO->prepare("UPDATE Paciente SET NomPaciente=:NomPaciente, ApPaterno=:ApPaterno, ApMaterno=:ApMaterno,
-        Dni=:Dni,FechaNacimiento=:FechaNacimiento,Edad=:Edad, GradoInstruccion=:GradoInstruccion, Ocupacion=:Ocupacion, EstadoCivil=:EstadoCivil, Genero=:Genero,
-        Telefono=:Telefono, Email=:Email, Direccion=:Direccion, AntecedentesMedicos=:AntecedentesMedicos, MedicamentosPrescritos=:MedicamentosPrescritos,
-        IdProvincia=:IdProvincia, IdDepartamento=:IdDepartamento, IdDistrito=:IdDistrito WHERE IdPaciente=:IdPaciente");
+Dni=:Dni, FechaNacimiento=:FechaNacimiento, Edad=:Edad, GradoInstruccion=:GradoInstruccion, Ocupacion=:Ocupacion, EstadoCivil=:EstadoCivil, Genero=:Genero,
+Telefono=:Telefono, Email=:Email, Direccion=:Direccion, AntecedentesMedicos=:AntecedentesMedicos, MedicamentosPrescritos=:MedicamentosPrescritos
+WHERE IdPaciente=:IdPaciente");
         $statement->bindParam(":IdPaciente", $IdPaciente);
         $statement->bindParam(":NomPaciente", $NomPaciente);
         $statement->bindParam(":ApPaterno", $ApPaterno);
@@ -151,9 +173,7 @@ class userModelPaciente
         $statement->bindParam(":Direccion", $Direccion);
         $statement->bindParam(":AntecedentesMedicos", $AntecedentesMedicos);
         $statement->bindParam(":MedicamentosPrescritos", $MedicamentosPrescritos);
-        $statement->bindParam(":IdProvincia", $IdProvincia);
-        $statement->bindParam(":IdDepartamento", $IdDepartamento);
-        $statement->bindParam(":IdDistrito", $IdDistrito);
+
 
         return ($statement->execute()) ? $this->PDO->lastInsertId() : false;
     }
@@ -187,7 +207,6 @@ class userModelPaciente
     // =================== Area Familiar ================================= //
 
     // Guardar datos familiares segun el paciente
-    //cambios
     public function insertarAreaFamiliar($IdPaciente, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
         // Check if the patient already exists
@@ -244,6 +263,7 @@ class userModelPaciente
             return $statement->execute();
         }
     }
+
     // Mpdoficar datos familiares
     public function ModificarAreaFamiliar($IdFamiliar, $NomPadre, $EstadoPadre, $NomMadre, $EstadoMadre, $NomApoderado, $EstadoApoderado, $CantHermanos, $CantHijos, $IntegracionFamiliar, $HistorialFamiliar)
     {
