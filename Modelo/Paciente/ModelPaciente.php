@@ -355,4 +355,35 @@ WHERE IdPaciente=:IdPaciente");
         $statement->bindParam(":IdPaciente", $IdPaciente);
         return ($statement->execute()) ? $statement->fetch() : false;
     }
+
+
+
+
+
+
+
+    public function showPsicologo($IdPsicologo)
+    {
+        $statement = $this->PDO->prepare("SELECT IdPsicologo, NombrePsicologo, Passwords, FechaRegistro, Usuario, celular, email
+            FROM psicologo
+            WHERE IdPsicologo = :IdPsicologo LIMIT 1");
+        $statement->bindParam(":IdPsicologo", $IdPsicologo);
+
+        return ($statement->execute()) ? $statement->fetch() : false;
+    }
+
+
+
+    public function updatePsicologo($IdPsicologo, $nombre, $usuario, $correo, $celular, $contrasena)
+    {
+        $statement = $this->PDO->prepare("UPDATE psicologo SET NombrePsicologo = :nombre, Usuario = :usuario, email = :correo, celular = :celular, Passwords = :contrasena WHERE IdPsicologo = :IdPsicologo");
+        $statement->bindParam(":nombre", $nombre);
+        $statement->bindParam(":usuario", $usuario);
+        $statement->bindParam(":correo", $correo);
+        $statement->bindParam(":celular", $celular);
+        $statement->bindParam(":contrasena", $contrasena);
+        $statement->bindParam(":IdPsicologo", $IdPsicologo);
+
+        return $statement->execute();
+    }
 }

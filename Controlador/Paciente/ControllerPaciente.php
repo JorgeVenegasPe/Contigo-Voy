@@ -131,4 +131,27 @@ class usernameControlerPaciente
             return null;
         }
     }
+
+
+
+
+
+
+
+
+    public function showPsicologo($IdPsicologo)
+    {
+        $patients = $this->model->showPsicologo($IdPsicologo);
+        return $patients;
+    }
+
+
+
+
+
+
+    public function updatePsicologo($IdPsicologo, $nombre, $usuario, $correo, $celular, $contrasena)
+    {
+        return $this->model->updatePsicologo($IdPsicologo, $nombre, $usuario, $correo, $celular, $contrasena);
+    }
 }
