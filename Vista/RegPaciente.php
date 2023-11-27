@@ -16,23 +16,21 @@ if (isset($_SESSION['NombrePsicologo'])){
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Datos del Paciente</title>
 </head>
-<body>    
-  <?php
-    require("../Controlador/Paciente/ControllerPaciente.php");
-    $obj = new usernameControlerPaciente();
-    $departamentos = $obj->MostrarDepartamento();
-  ?>
-<div class="containerTotal">
-<?php
-    require_once '../Issets/views/Menu.php';
-  ?> 
+<body>  
+<div class="container">
+    <?php
+      require_once '../Issets/views/Menu.php';
+    ?>   
   <main class="animate__animated animate__fadeIn">
     <?php
-    require_once '../Issets/views/Info.php';
-    ?> 
-      <div class="recent-updates">
+      require_once '../Issets/views/Info.php';
+      require("../Controlador/Paciente/ControllerPaciente.php");
+      $obj = new usernameControlerPaciente();
+      $departamentos = $obj->MostrarDepartamento();
+    ?>
+      <div>
         <form action="../Crud/Paciente/guardarPaciente.php" method="post" >
-        <h4><a href="TablaPacientes.php" style="float: left;"><</a>Datos del Paciente</h4>
+        <h4><a href="TablaPacientes.php" style="float: left;color: #6B93F3;"><</a>Datos del Paciente</h4>
         <br>
         <div style="display:flex; flex-direction:row; gap:70px;">
           <div class="checkout-information">
@@ -104,14 +102,14 @@ if (isset($_SESSION['NombrePsicologo'])){
             </div>
             <div class="input-group">
   		        <h3 for="Telefono">Celular</h3>
-  		        <input type="tel" id="Telefono" class="input" name="Telefono" placeholder="Ejemp. 955888222"  required/>
+  		        <input type="tel" id="Telefono" class="input" name="Telefono" placeholder="Ejemp. 955888222" style="color: #7B7C89;" required/>
   	        </div>
             <div style="margin-left:2em" id="respuesta2"> </div>
           </div>
           <div class="checkout-information">
             <div  class="input-group">
   		          <h3 for="Email">Correo Electronico</h3>
-  		          <input type="Email" id="Email" class="input" name="Email" required/>
+  		          <input type="Email" id="Email" class="input" name="Email" style="color: #7B7C89;" required/>
   	        </div>
             <div style="margin-left:2em" id="respuesta3"> </div>
             <div  class="input-group2">
@@ -140,16 +138,16 @@ if (isset($_SESSION['NombrePsicologo'])){
   	          </div>
               <div class="input-group">
   		          <h3 for="Direccion">Dirección</h3>
-  		          <input type="text" id="Direccion" class="input" name="Direccion" required/>
+  		          <input type="text" id="Direccion" class="input" name="Direccion" style="color: #7B7C89;" required/>
   	        </div>
             </div>
             <div class="input-group">
   		          <h3 for="AntecedentesMedicos">Antecedentes médicos</h3>
-  		          <input type="text" id="AntecedentesMedicos" class="input" name="AntecedentesMedicos" required/>
+  		          <input type="text" id="AntecedentesMedicos" class="input" name="AntecedentesMedicos" style="color: #7B7C89;" required/>
   	        </div>
             <div class="input-group">
   		          <h3 for="MedicamentosPrescritos">Medicamentos Prescritos</h3>
-  		          <input type="text" id="MedicamentosPrescritos" class="input" name="MedicamentosPrescritos"  required/>
+  		          <input type="text" id="MedicamentosPrescritos" class="input" name="MedicamentosPrescritos"  style="color: #7B7C89;" required/>
   	        </div>
             <div class="input-group" style="display: none">
   		          <h3 for="IdPsicologo">IdPsicologo</h3>
@@ -159,17 +157,18 @@ if (isset($_SESSION['NombrePsicologo'])){
         </div>
         <br>
           <div class="button-container">
-            <a href="RegFamiliar.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px; ">Registro Familiar</a>
-            <a href="AtenPaciente.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px;">Atencion al Paciente</a>
-            <button id="submitButton" class="button">Registrar</button>
+            <a href="RegAreaFamiliar.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px; ">Registro Familiar</a>
+            <a href="RegAtencionPaciente.php" id="contenido" style="margin-top: 10px;display: flex;gap: 10px;font-size:15px;">Atencion al Paciente</a>
+            <button id="submitButton" class="button">FINALIZAR</button>
           </div>
         </form>
     </div>
-    <div id="notification" style="display: none;" class="notification">
+  </main>
+  
+  <div id="notification" style="display: none;"  class="notification">
       <p id="notification-text"></p>
       <span class="notification__progress"></span>
     </div>
-  </main>
   <script src="../Issets/js/Dashboard.js"></script>
 <script>
 
@@ -181,7 +180,7 @@ $(document).ready(function() {
 
   function obtenerProvincias(departamentoId) {
     $.ajax({
-      url: 'Fetch/obtenerProvincias.php',
+      url: '../Crud/Fetch/obtenerProvincias.php',
       method: 'POST',
       data: { departamentoId: departamentoId },
       dataType: 'json',
@@ -211,7 +210,7 @@ $('#Provincia').change(function() {
 
 function obtenerDistritos(provinciaId) {
   $.ajax({
-    url: 'Fetch/obtenerDistritos.php',
+    url: '../Crud/Fetch/obtenerDistritos.php',
     method: 'POST',
     data: { provinciaId: provinciaId },
     dataType: 'json',
@@ -279,7 +278,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Dni=' + Dni;
     
       $.ajax({
-        url: 'Fetch/vereficardni.php',
+        url: '../Crud/Fetch/vereficardni.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",
@@ -311,7 +310,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Telefono=' + Telefono;
 
       $.ajax({
-        url: 'Fetch/vereficarcelular.php',
+        url: '../Crud/Fetch/vereficarcelular.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",
@@ -340,7 +339,7 @@ function obtenerDistritos(provinciaId) {
       var dataString = 'Email=' + Email;
 
       $.ajax({
-        url: 'Fetch/vereficaremail.php',
+        url: '../Crud/Fetch/vereficaremail.php',
         type: "GET",
         data: dataString,
         dataType: "JSON",

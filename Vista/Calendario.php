@@ -22,7 +22,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <script src="../Issets/Bootstrap/bootstrap.min.js"></script>
     <script src="../Issets/Bootstrap/datatables.min.js"></script>
     <script src="../Issets/Bootstrap/bootstrap-clockpicker.js"></script> 
-    <script src="../Issets/js/moment-with-locales.js"></script>
+    <script src="../Issets/Bootstrap/moment-with-locales.js"></script>
     <script src="../Issets/fullcalendar/main.js"></script>
     <title>Calendario</title>
 </head>
@@ -33,12 +33,14 @@ if (isset($_SESSION['NombrePsicologo'])){
   ?> 
   <!----------- end of aside -------->
   <main >
-    <?php
-    require_once '../Issets/views/Info.php';
-    ?> 
     <!----------- Calendario ------------------>
     <div class="container-fluid2">
-      <h4 style="text-align:center">Calendario de Citas</h4>
+      <div class="center-divs">
+        <h4 style="color: #49c691;">Calendario de Citas</h4>
+        <?php
+          require_once '../Issets/views/Info.php';
+        ?>
+      </div>
       <div id="Calendario1"></div>
     </div>
 

@@ -3,7 +3,7 @@ class UserModelCita{
     private $PDO;
     public function __construct()
     {
-        require_once("../conexion/conexion.php");
+        require_once("C:/xampp/htdocs/Contigo-Voy/conexion/conexion.php");
         $con=new conexion();
         $this->PDO=$con->conexion();
     }
@@ -48,7 +48,7 @@ class UserModelCita{
 
     // Mostrar datos de cita seleccionada
     public function show($id){
-        $statement=$this->PDO->prepare("SELECT c.IdCita,p.NomPaciente,p.Email,c.EstadoCita,c.MotivoCita,c.FechaInicioCita,c.Duracioncita,c.TipoCita,c.ColorFondo,ps.NombrePsicologo,c.CanalCita,c.EtiquetaCita,c.FechaRegistro FROM cita c
+        $statement=$this->PDO->prepare("SELECT c.IdCita,p.NomPaciente,p.Email,p.Telefono,c.EstadoCita,c.MotivoCita,c.FechaInicioCita,c.Duracioncita,c.TipoCita,c.ColorFondo,ps.NombrePsicologo,c.CanalCita,c.EtiquetaCita,c.FechaRegistro FROM cita c
                                        INNER JOIN psicologo ps on c.IdPsicologo=ps.IdPsicologo
                                        INNER JOIN paciente p on c.IdPaciente=p.IdPaciente
                                        where IdCita=:id limit 1");

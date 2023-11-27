@@ -22,6 +22,9 @@
                     $_SESSION['NombrePsicologo'] = $NombrePsicologo["NombrePsicologo"];
                     $_SESSION['IdPsicologo'] = $NombrePsicologo["IdPsicologo"];
                     $_SESSION['Usuario'] = $NombrePsicologo["Usuario"];
+                    $_SESSION['email'] = $NombrePsicologo["email"];
+                    $_SESSION['celular'] = $NombrePsicologo["celular"];
+                    $_SESSION['Passwords'] = $NombrePsicologo["Passwords"];
                     header("location: ../../Vista/Dashboards.php");
                 }else{
                     header("location: ../../index.php?error=1");

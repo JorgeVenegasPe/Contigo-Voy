@@ -17,7 +17,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <title>Datos del Paciento</title>
 </head>
 <body>    
-<div class="containerTotal">
+<div class="container">
   <?php
     require_once '../Issets/views/Menu.php';
   ?> 
@@ -29,7 +29,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     <div class="container-form">
       <div class="recent-updates">
         <form action="../Crud/Paciente/guardarAtencPaciente.php" method="post">
-        <h4><a href="RegPaciente.php" style="float: left;"><</a>Atencion al Paciente</h4>
+        <h4><a href="RegPaciente.php" style="float: left;color: #6B93F3;"><</a>Atencion al Paciente</h4>
         <br>
         <div style="display:flex; flex-direction:row; gap:70px;">
           <div class="checkout-information">
@@ -104,7 +104,7 @@ if (isset($_SESSION['NombrePsicologo'])){
                 </div>
               </div>
             </div>
-            <div class="input-group" style="flex-direction: column;width: 140%;">
+            <div class="input-group" style="flex-direction: column;    width: 100%;">
                 <h3 for="DescripcionEnfermedad">Clasificacion</h3>
                 <div style="display: flex; gap:5px;">
                   <input id="DescripcionEnfermedad" type="text" name="DescripcionEnfermedad" class="input" />
@@ -132,7 +132,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     $('.btndsm5').click(function() {
       var dsm5 = $('#dsm5').val();
       $.ajax({
-        url: 'Fetch/fetch_dsm5.php',
+        url: '../Crud/Fetch/fetch_dsm5.php',
         method: 'POST',
         data: { dsm5: dsm5 },
         success: function(response) {
@@ -160,7 +160,7 @@ if (isset($_SESSION['NombrePsicologo'])){
     $('.btncea10').click(function() {
       var cea10 = $('#cea10').val();
       $.ajax({
-        url: 'Fetch/fetch_cea10.php',
+        url: '../Crud/Fetch/fetch_cea10.php',
         method: 'POST',
         data: { cea10: cea10 },
         success: function(response) {
@@ -191,7 +191,7 @@ if (isset($_SESSION['NombrePsicologo'])){
 
       // Realizar la solicitud AJAX al servidor
       $.ajax({
-        url: 'Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
+        url: '../Crud/Fetch/fetch_paciente.php', // Archivo PHP que procesa la solicitud
         method: 'POST',
         data: { codigopac: codigopac, idPsicologo: idPsicologo },
         success: function(response) {
@@ -224,7 +224,7 @@ $(document).ready(function() {
 
     // Realizar la solicitud AJAX al servidor
     $.ajax({
-      url: 'Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
+      url: '../Crud/Fetch/fetch_pacienteNom.php', // Archivo PHP que procesa la solicitud
       method: 'POST',
       data: { NomPaciente: NomPaciente, idPsicologo: idPsicologo },
       success: function(response) {
