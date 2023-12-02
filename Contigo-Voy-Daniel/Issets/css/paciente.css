@@ -1,0 +1,232 @@
+.container-paciente-tabla.active{
+    display: grid;
+    width: 100%;
+    margin: 20px;
+    gap :1rem;
+    grid-template-columns: auto auto ;
+}
+
+.container-paciente-tabla{
+    display: grid;
+    width: 100%;
+    margin: 20px;
+    grid-template-columns: auto 0rem;
+}
+
+.hidden {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 10px; 
+    max-height: 35%;    
+}
+
+tbody tr td:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+tbody tr td:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.buttoncita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: transparent;
+    color: #49c691;
+    cursor: pointer;
+    border-radius: 5px ;
+    border: 0.1em solid #49c691; /* Color del borde */
+    padding: 12px 40px;
+    outline: 1px solid #49c691;
+    transition: color 1s;
+}
+
+.buttoncita:hover {
+    color: black;
+    cursor: pointer;
+}
+
+
+
+.patient-details {
+    display: none;
+    width: 95%;
+    text-align: center;
+    color: #49c691;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    /* box-shadow: var(--box-shadow); */
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.checkout-informationPac,
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.input-group_1 {
+    display: flex;
+    gap: 5%;
+    flex-direction: row;
+    width: 50%;
+}
+.checkout-informationPac {
+	background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    transition: all 300ms ease;
+}
+.checkout-informationPac:hover{
+    box-shadow: none;
+}
+.input-group3{ /*   Añadi esta clase para mi formulario - Hans */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+.Letras{
+    display: flex;
+    width: 77%;
+    height: 45%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.visual{ /*Nueva clase creada para el forulario - Hans */
+    color: #49c691; 
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.arriba{ /*Nueva clase creada para el formulario - Hans */
+    color: #6A92F4;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: start;
+}
+
+.abajo{ /*Nueva clase creada para el formulario - Hans */
+    font-size: 0.90rem;
+    color: #89BEF5; /*Añadi un cambio de color - Hans */
+    font-weight: normal;
+    text-align: center;
+}
+
+.input-group4{  /*   Modifique esta clase para mi formulario - Hans */
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between; /*Este codigo genera mi espaciado entre mis parrafos */
+    border-bottom: 1px solid rgb(176, 174, 174);  /*Este codigo coloca los bordes entre mis parrafos */
+}
+
+
+@media (max-width: 1462px) {
+    .visual {
+    color: #49c691;
+    font-size: 1.8rem;
+    font-weight: bold;
+    }
+    .arriba {
+        color: #6A92F4;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: start;
+    }
+    .ids{
+        width: 12%;
+    }
+}
+
+
+
+/*=========================== Formulario ==========================*/
+.input-group2 input, textarea, select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: var(--color-background);
+    color: #7B7C89;
+}
+.checkout-information,
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.checkout-information {
+	background: #8FBBC8;
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 300ms ease;
+}
+.checkout-information:hover{
+    box-shadow: none;
+}
+
+.input-group2{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.input-group input{
+	width: 100%;
+	padding: 10px 15px;
+	border-radius: 8px;
+	background-color:var(--color-background);
+    height: 100%;
+}
+
+
+.input-group h3 {
+    font-size: 0.80rem;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: #000;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: 1px solid #49c691;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #49c691;
+}
+
+.pagination .current-page {
+    background-color: #49c691;
+    color: #49c691;
+}

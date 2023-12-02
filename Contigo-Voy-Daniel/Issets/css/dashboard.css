@@ -1,0 +1,425 @@
+
+.contenedor_dsh {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+/* ========= Agenda ========*/
+.agenda {
+    width: 500px;
+    margin: 0px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.div_event3 {
+    background-color: #6a90f1;
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    padding: 15px 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+.contend_table {
+    height: 370px;
+    max-height: 370px;
+    overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.contend_table:hover {
+    box-shadow: none;
+}
+
+.contend_table::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.contend_table::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.section-cia {
+    border-radius: 5px;
+    border: 2px solid #a0a0a0;
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 10px 5px 0px;
+}
+.button3 {
+    font-size: 10px;
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: #49c691;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px; 
+}
+
+.center-divs .recent-updates h2 {
+    margin-bottom: 0.8rem;
+    text-align: center;
+    background-color: #6A90F1; 
+    margin:0px; 
+    border-radius: 20px 20px 0px 0px;
+    padding:10px 20px; 
+    font-size:25px; 
+    color:#fff;
+}
+
+.center-divs .recent-updates .updates {
+    background: var(--color-white);
+    padding: 10px 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    max-height: 100%;
+    border-radius: 0px 0px 20px 20px;
+}
+.center-divs .recent-updates .updates::-webkit-scrollbar {
+    width: 0.5em;
+}
+  
+.center-divs .recent-updates .updates::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+/* Estilo para la tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  /* Estilo para las filas tr */
+  tr {
+    position: relative;
+    /* Posición relativa para las filas */
+  }
+  
+  /* Estilo para el círculo al inicio de la celda de hora */
+  td:first-child::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    /* Ajusta la posición horizontal del círculo */
+    width: 10px;
+    /* Diámetro del círculo */
+    height: 10px;
+    border-radius: 50%;
+    /* Forma circular */
+    background-color: #55bdbf;
+    /* Color del círculo */
+    transform: translateY(-50%);
+    /* Centrar el círculo verticalmente */
+    z-index: 1;
+    /* Colocar el círculo por encima de la línea */
+    transition: background-color 0.3s;
+    /* Transición de color del círculo */
+  }
+  
+  /* Estilo para la línea horizontal en el medio de la fila */
+  tr::before {
+    content: "";
+    position: absolute;
+    top: 58%;
+    /* Ajusta la posición vertical de la línea */
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid transparent;
+    /* Inicialmente transparente */
+    transform: translateY(-50%);
+    /* Centrar la línea verticalmente */
+    transition: border-color 0.5s;
+    /* Transición de color de borde */
+    z-index: 1;
+    margin-left: 10px;
+  
+    /* Colocar la línea por encima de las celdas */
+  }
+  
+  /* Estilo para cambiar la línea al pasar el mouse por encima de la fila */
+  tr:hover::before {
+    margin-left: 10px;
+    border-color: #49c691;
+    /* Color de la línea al pasar el mouse */
+  }
+  
+  /* Estilo para las celdas td */
+  td {
+    padding: 8px;
+    text-align: center;
+    z-index: 2;
+    /* Colocar las celdas por encima de la línea */
+    position: relative;
+    /* Añadir posición relativa a las celdas */
+  }
+  
+  /* Estilo para el círculo al inicio de la celda td de hora */
+  td::before {
+    content: "";
+    position: absolute;
+    top: 58%;
+    /* Ajusta la posición vertical del círculo */
+    left: -50%;
+    /* Ajusta la posición horizontal del círculo */
+    width: 10px;
+    /* Diámetro del círculo */
+    height: 10px;
+    border-radius: 50%;
+    /* Forma circular */
+    background-color: #fff;
+    /* Color del círculo */
+    transform: translateY(-50%);
+    /* Centrar el círculo verticalmente */
+    z-index: 2;
+    /* Colocar el círculo por encima de la línea */
+    transition: background-color 0.5s;
+    /* Transición de color del círculo */
+  }
+  
+  /* Cambia el color del círculo al pasar el mouse por encima de la fila */
+  tr:hover td::before {
+    visibility: visible;
+    background-color: #49c691;
+    /* Cambia el color del círculo a azul */
+  }
+
+/* ======== Datos =====*/
+main .insights {
+    width: 100%;
+    gap: 3rem;
+    margin-bottom: 15px;
+    margin-top: 180px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+}
+
+main .insights > div {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+main .insights > div:hover {
+    box-shadow: none;
+}
+
+main .insights > div .middle {
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .insights h3 {
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+main .insights .progress {
+    position: relative;
+    height: 90px;
+    width: 90px;
+}
+main .insights small {
+    margin-top: 1.3rem;
+    display: block;
+}
+
+.estadistica_h3 {
+    font-size: 14px;
+    text-align: center;
+}
+
+.div-grafico {
+    background: var(--color-white);
+    padding: 10px 20px;
+    width: 30%;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    max-height: 100%;
+    border-radius:20px;
+}
+
+.div-grafico:hover {
+    box-shadow: none;
+}
+
+.grafico2{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.texto-grafico{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px;
+}
+.grafico {
+    width: 70%;
+}
+
+/*+++++++++++++++++++++ Responsive +++++++++++++++++++++++++++++++++++++*/
+@media screen and (max-width: 1280px) {
+  td::before {
+    left: -65%;
+  }
+  main .recent-orders {
+    width: 94%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0 0 8.8rem;
+  }
+
+  main .recent-orders table {
+    width: 83vw;
+  }
+
+  main table thead tr th:last-child,
+  main table thead tr th:first-child {
+    display: none;
+  }
+
+  main .insights {
+    margin-top: -25px;
+    width: 60%;
+    gap: 0.8rem;
+  }
+
+  main .insights > div {
+    background: var(--color-white);
+    padding: 5px 24px;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+  }
+
+  .div-grafico{
+    width: 40%;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #6a90f1;
+  }
+  .contenedor_dsh {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 1115px) {
+  main .insights {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (max-width: 1115px) {
+  main .insights {
+    margin-top: -25px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .agenda {
+    min-width: 200px;
+    margin: 0px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 10% 50% 35%;
+  }
+
+  main .insights {
+    width: 100%;
+    gap: 0.8rem;
+    margin-bottom: 15px;
+    margin-top: -10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0px;
+  }
+  main .insights > div {
+    background: var(--color-white);
+    padding: 2px;
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+  }
+}
+
+@media screen and (max-width: 919px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 20% 40% 30%;
+  }
+  .estadistica_h3 {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 916px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 912px) {
+  main .insights {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 883px) {
+  main .insights {
+    margin-top: -35px;
+  }
+}
+@media screen and (max-width: 879px) {
+  .contend_table {
+    height: 300px;
+    max-height: 300px;
+  }
+
+  main .insights {
+    margin-top: -25px;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  main .insights {
+    margin-top: -30px;
+  }
+  .right .recent-updates .updates {
+    background: var(--color-white);
+    padding: 10px 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    max-height: 100%;
+    overflow-y: scroll;
+    border-radius: 0px 0px 20px 20px;
+  }
+  .recent-updates {
+    width: 300px;
+  }
+}

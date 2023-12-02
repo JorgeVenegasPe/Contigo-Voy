@@ -1,0 +1,92 @@
+
+main .recent-citas{
+    margin: 20px;
+}
+
+main .recent-citas h2{
+    margin-bottom: 0.8rem;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    max-height: 35%;
+}
+
+
+/*=================== Formulario ======================*/
+form {
+    max-width: 590px;
+}
+
+.checkout-information,
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.checkout-information {
+	background: #8FBBC8;
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.checkout-information:hover{
+    box-shadow: none;
+}
+
+.input-group2 input, textarea, select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: var(--color-background);
+    color: #7B7C89;
+}
+
+.input-group2{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.input-group input{
+	width: 100%;
+	padding: 10px 15px;
+	border-radius: 8px;
+	background-color:var(--color-background);
+    height: 100%;
+}
+.input-group h3 {
+    font-size: 0.80rem;
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: #000;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border: 1px solid #49c691;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #49c691;
+}
+
+.pagination .current-page {
+    background-color: #49c691;
+    color: #49c691;
+}

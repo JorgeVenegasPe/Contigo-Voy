@@ -1,0 +1,105 @@
+{
+    "packages": [
+        {
+            "name": "twilio/sdk",
+            "version": "6.44.4",
+            "version_normalized": "6.44.4.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:twilio/twilio-php.git",
+                "reference": "08aad5f377e2245b9cd7508e7762d95e7392fa4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/08aad5f377e2245b9cd7508e7762d95e7392fa4d",
+                "reference": "08aad5f377e2245b9cd7508e7762d95e7392fa4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=7.0 < 10"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "time": "2023-02-22T19:59:53+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "https://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "install-path": "../twilio/sdk"
+        },
+        {
+            "name": "ultramsg/whatsapp-php-sdk",
+            "version": "2.0.8",
+            "version_normalized": "2.0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ultramsg/whatsapp-php-sdk.git",
+                "reference": "a1234da23bda1b4094dfadf221c6fd41a11416ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ultramsg/whatsapp-php-sdk/zipball/a1234da23bda1b4094dfadf221c6fd41a11416ec",
+                "reference": "a1234da23bda1b4094dfadf221c6fd41a11416ec",
+                "shasum": ""
+            },
+            "time": "2023-08-12T15:02:01+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "ultramsg.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ultramsg.com",
+                    "email": "info@ultramsg.com"
+                }
+            ],
+            "description": "Lightweight PHP library for WhatsApp API to send the whatsappp messages in PHP provided by ultramsg.com",
+            "homepage": "https://ultramsg.com",
+            "keywords": [
+                "whatsapp-api",
+                "whatsapp-api-php",
+                "whatsapp-bot",
+                "whatsapp-chat"
+            ],
+            "support": {
+                "issues": "https://github.com/ultramsg/whatsapp-php-sdk/issues",
+                "source": "https://github.com/ultramsg/whatsapp-php-sdk/tree/2.0.8"
+            },
+            "install-path": "../ultramsg/whatsapp-php-sdk"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
